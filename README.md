@@ -16,7 +16,7 @@
 
 | Student Name | Student Email | GitHub Username |
 |    :---:     |     :---:     |     :---:       |
-| Kiara Gil      |  kgil1@mail.SFSU.edu              | Kiara Gil                |
+| Kiara Gil      |  kgil1@mail.SFSU.edu              | KiaraGil                |
 | Ostyn Sy      | osy@mail.sfsu.edu               | OstynSy                |
 | Joshua Stone      |  jstone2@mail.sfsu.edu              | JoshLikesToCode                |
 | Cong Le     | cle15@mail.sfsu.edu              | CleGuren                 |
