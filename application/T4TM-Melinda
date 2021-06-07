@@ -1,1 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>About Melinda </title>
+</head>
+<body>
 
+<h1> Melinda Yee </h1>
+<img src="https://lh3.googleusercontent.com/kk2GzFZtxyrkOnsrTndyXfjPfBE2ro5-dWEHXwqPNcLy_P68na1fg6AnquChG0xF3JA7_ddPsfHsAooKtouhzZKO-BcnTAiQ9ctowkHN3ZOQumhKqVpiePGizny0LXl5ANx8LwS2css-prNutHpq5mw3tN3Y-jUxvKtOF4cEtQOx5hwRVZUUpTNmjKvAlNLiTWktNeJhldgBFdI8RdeIkHiU95wphtieIombYKWuAZum7FK7iXX5Y6SaUPXisa241mnnUxxULqHd2WKxFGhcxDZEDgDZP0wGXDoNU9v2vFVczJ3hyeo6NmtHjY8d-R3n6fZ26G1xczF4BTEwuKhdpEQyh_yVhbBFQQD1unRgyK1nouQXF6rrG1eQYcJ-WcewhDklEzV8PmY87hIArn-3gqpWe1402FhuRR6CMv8QrwGRB3KD5-SM3EiowugkJONAPxQSCLO2OPxH0JWVPvtHsN-vWHezLIpO9WHy_kQOpB8tEqurfhYTaBCpPgfVowPhQuJbhYv35ThNw2RErhDsIo_fFCM1ZNQYK0xZNA-JoCd-gYe6hAxfKWf1nPElaFiYAhAcShKEysIaMsBoD8Moi-7tF4TBpyIhoKSu44Ty_UF-ZWyEhnAtADE6V7rkiLkgWdyKmhhd_zFJWJ5mafkLQ1zX6wSNrGe3AQf5kTyVbO5HaJj0iuWtzrnBqmlQt4bhjffALM386SPEg5pkLZCPn6al=w736-h1104-no?authuser=1" alt="Image of Melinda" width="333" height="500">
+
+<p> I am a current senior at San Francisco State University, majoring in Computer Science. A little back story about me, I graduated from Alameda Science and Technology Institute (ASTI). It is a small early college high school where you are able to take Community college courses starting your freshman year. I have about a year of experience in the CS/Tech field. The past summer I interned at Bay Area Rapid Transit (BART), where I created a prototype for the fare gates to identify different objects using a camera and a Nvidia Jetson Nano. My hobbies consist of hiking and photography.
+</p>
+
+</body>
+</html>
