@@ -13,7 +13,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# STATIC_ROOT = os.path.join(BASE_DIR, “static/”)
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+ALLOWED_HOSTS = [‘ec2-54-177-222-205.us-west-1.compute.amazonaws.com’]
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,9 +28,6 @@ SECRET_KEY = 'django-insecure-ezup=mubaq(mm+zp+5i3m=4i$hnnz^q=v9*0w0li##w7rk^tn@
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -124,5 +125,4 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_ROOT = os.path.join(BASE_DIR, “static/”)
-ALLOWED_HOSTS = [‘ec2-54-177-222-205.us-west-1.compute.amazonaws.com’]
+
