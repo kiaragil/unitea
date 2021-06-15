@@ -7,4 +7,4 @@
 5. Database Username : admin                                                    
 6. Database Password : T4milkproject!                                           
 7. Database Name     : t4mt-db                                                  
-8. Additional Info   : Our database is oepn on port 3306                        
+8. Additional Info   : Our database is open on port 3306                        
