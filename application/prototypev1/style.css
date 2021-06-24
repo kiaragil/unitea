@@ -1,0 +1,204 @@
+h1 {
+    text-align: center;
+    color: aquamarine;
+    /* text shadow */
+    text-shadow: 4px 4px 5px gold;
+}
+
+/* for class */
+.title {
+    border: 5px dotted springgreen;
+    color: rgb(216, 193, 240);
+    margin: 50px 5px 25px 0px; /*top, right, bottom, left */
+}
+
+/* for id */
+#name {
+    color: orange;
+}
+
+.container {
+    border: 10px dashed lime;
+    /* margin creates white space AROUND the border/box */
+    /*margin: 50px;*/
+    margin: 50px 10px; /* 50px for top and bottom & 10px for right and left */
+    /* padding creates white space INSIDE the border/box */
+    padding: 30px 0px 10px 35px; /*top, right, bottom, left */
+}
+
+.box {
+    /* inline makes the box follow the text/img in the element
+    display: inline; */
+    /* inline-block puts the blocks side by side */
+    /*display: inline-block;*/
+    height: 200px;
+    width: 200px;
+    background: blue;
+    margin: 10px 10px 10px;
+    /*box-shadow: 8px 8px 30px 40px burlywood inset;*/
+}
+
+.circle-img {
+    /* border-radius: 50% ==> circle border */
+    border-radius: 50%;
+}
+
+img {
+    box-shadow: 20px 20px 3px gray;
+}
+
+nav {
+    background: chocolate;
+    text-align: center;
+}
+
+/* link tag */
+a {
+    text-decoration-line: none;
+}
+
+/* targets ul's inside a nav */
+nav ul {
+    /* removes bullet point */
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    padding: 30px;
+}
+
+/* flexbox */
+.flex
+{
+    margin: 30px;
+    border: 3px solid black;
+    display: flex;
+    /* wrap allows the website to scale for things like 
+       mobible phones, tablets, etc */
+    flex-wrap: wrap;
+    /* to center the Box's we do this : */
+    /* other justify-content options are flex-start & flex-end */
+    /*justify-content: center;*/
+    /* this reverses the rows, we can reverse columns too */
+    flex-direction: row-reverse;
+    padding: 100px;
+}
+
+/* css animation */
+@keyframes fadeMe {
+    /* 0% represents the very begenning of animation */
+    0% {
+        opacity: 1;
+    }
+    /* 100% represents the end of animation */
+    100% {
+        opacity: 0;
+    }
+}
+
+/* this denotes which element we are animating */
+#box1 {
+    animation-name: fadeMe;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+/* rotation animation */
+@keyframes rotation {
+    0% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#box2 {
+    animation-name: rotation;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    border-radius: 10%;
+    background-image: radial-gradient(circle, goldenrod, purple, yellow, pink, black);
+
+}
+
+/* get bigger animation */
+@keyframes getBigger {
+    0% {transform: scale(1);}
+    50% {transform: scale(2);}
+    100% {transform: scale(0.5);}
+}
+
+#box3
+{
+    /* shortcut for animations code */
+    animation: getBigger 5s 8s ease-in;
+    border-radius: 50%;
+    background: palevioletred;
+}
+
+/* color changing animation */
+@keyframes changeColors {
+    0% {background-color: grey;}
+    25% {background-color: papayawhip;}
+    50% {background-color: rebeccapurple;}
+    75% {background-color: tomato;}
+    100% {background-color: grey;}
+}
+
+#box6
+{
+    /* forwards keeps the changeColor's last color at end
+    instead of reverting back to base box's blue color */
+    animation: changeColors 8s 7s forwards;
+}
+
+/* move box animation */
+@keyframes moveBox {
+    0% {left: 0px; top: 0px;}
+    /* moves it to the right */
+    25% {left: 100px; top: 0px;}
+    50% {left: 100px; top: 200px;}
+    75% {left: 0px; top: 200px;}
+    100% {left: 0px; top: 0px;}
+}
+
+#box5
+{
+    /* position has to be relative for it to work */
+    position: relative;
+    animation: moveBox 5s 3s;
+    background: red;
+    border-radius: 50%;
+}
+
+#box4
+{
+    top: 10px;
+    left: 20px;
+    position: relative;
+    /* position: absolute <-- this position is absolute */
+    /* position: relative <-- position moves relative to initial position */
+    /* position: fixed; <-- position is fixed, even when scrolling */
+}
+
+/* background images */
+html {
+    /*background-image: url(https://cf.ltkcdn.net/cats/images/orig/259025-1600x1030-gorgeous-grey-cat-breeds.jpg);*/
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to right , grey, green, purple);
+}
+
+
+/* for our forms */
+/*************************************************/
+form input, textarea, button {
+    display: block;
+    margin: 30px;
+}
