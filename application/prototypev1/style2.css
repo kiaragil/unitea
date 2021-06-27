@@ -34,14 +34,16 @@ html {
   background-color:rgb(17, 126, 49);
 }
   
-.wrapper {
+.subject-wrapper {
+  margin-top: 5%;
    display: grid;
-    grid-gap: 10px;
+    grid-gap: 20px;
     /* 20% * 5 = 100% */
-    grid-template-columns: repeat(5, [col] 20% ) ;
-    grid-template-rows: repeat(3, [row] auto  );
+    grid-template-columns: repeat(3, [col] 25%) ;
+    grid-template-rows: repeat(2, [row] 25%  );
     background-color: rgb(48, 238, 105);
     color:rgb(48, 238, 105);
+    justify-content: space-evenly;
 }
   
 *, *:before, *:after {
@@ -51,76 +53,101 @@ html {
 .home-body {
   margin: 40px;
   font-family: 'Open Sans', 'sans-serif';
-  background-color: ;
   color: rgb(17, 126, 49);
+  justify-content: center;
 }
 
-h1, p {
-  margin: 0 0 1em 0;
+@keyframes getBigger {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.5);}
+  100% {transform: scale(1);}
 }
 
-/* no grid support? */
-.sidebar {
-  float: left;
-  width: 19.1489%;
+.box {
+background-color: #444;
+color: #fff;
+border-radius: 10px;
+padding: 35px;
+font-size: 150%;
+margin-top: 30px;
+margin-bottom: 30px;
+text-align: center;
 }
 
-.content {
-  float: right;
-  width: 79.7872%;
+.a {
+  grid-column: col / span  1;
+  grid-row: row 1;
+  animation: getBigger 2s 1s ease-in;
+}
+.b {
+  grid-column: col 2 / span  1 ;
+  grid-row: row 1;
+  animation: getBigger 2s 3s ease-in;
+}
+.c {
+  grid-column: col 3 / span 1;
+  grid-row: row 1;
+  animation: getBigger 2s 5s ease-in;
+}
+.d {
+  grid-column: col / span  1 ;
+  grid-row: row 2;
+  animation: getBigger 2s 7s ease-in;
 }
 
-/* make a grid */
-.wrapper {
-  max-width: 940px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 10px;
+.e {
+  grid-column: col 2 / span 1;
+  grid-row: row 2;
+  animation: getBigger 2s 9s ease-in;
 }
 
-.wrapper > * {
-  background-color: rgb(17, 126, 49);
-  color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 150%;
-  /* needed for the floated layout*/
-  margin-bottom: 10px;
+.f {
+  grid-column: col 3 / span 1;
+  grid-row: row 2  ;
+  animation: getBigger 2s 11s ease-in;
 }
 
-.header, .footer {
-  grid-column: 1 / -1;
-  /* needed for the floated layout */
-  clear: both;
+.g {
+  grid-column: col 1 / span 3;
+  grid-row: row 3  ;
+  background-color: rgba(49,121,207, 0.5);
+  z-index: 20;
+  padding-left: 30px;
+  text-align: center;
+}
+
+.h {
+  grid-column: col 1 / span 3;
+  grid-row: row 3;
+}
+
+.i {
+  grid-column: col 1 / span 3;
+  grid-row: row 4;
+}
+
+.j {
+  grid-column: col 1 / span 3;
+  grid-row: row 5;
 }
 
 
-/* We need to set the widths used on floated items back to auto, and remove the bottom margin as when we have grid we have gaps. */
-@supports (display: grid) {
-  .wrapper > * {
-    width: auto;
-    margin: 0;
-  }
+
+.body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-.home-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
+/*main {
+  flex: 1 0 auto;
+}*/
+
+.foot {
+  margin-top: 10%;
 }
 
-.home-li {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
+.page-footer {
+  background-color: rgb(48, 238, 105);
 }
 
-/* Change the link color on hover */
-.home-li:hover {
-  background-color: #93E9BE;
-  color: white;
-}
