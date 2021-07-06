@@ -27,10 +27,5 @@ urlpatterns = [
     path('miho',views.miho),
     path('cong',views.cong),
     path('melinda',views.melinda),
-    path('searchresults',views.searchresults),
-    path('contactus',views.contactus),
-    path('register',views.register),
-    path('about',views.about),
-
 
 ]
