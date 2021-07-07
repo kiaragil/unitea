@@ -16,6 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-j#(8%625va2!sy8$2uh2%x$r@@4u)h#llpc91k__jyn02)1zb8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-54-177-222-205.us-west-1.compute.amazonaws.com', '127.0.0.1', 'ip-172-31-31-249.us-west-1.compute.internal', 'localhost']
+ALLOWED_HOSTS = ['ec2-54-177-222-205.us-west-1.compute.amazonaws.com', '127.0.0.1']
 
 
 # Application definition
@@ -86,7 +87,7 @@ DATABASES = {
     }
 }
 
- 
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -124,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
