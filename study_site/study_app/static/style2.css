@@ -33,7 +33,7 @@ html {
 .btn:hover {
   background-color:rgb(17, 126, 49);
 }
-  
+
 .subject-wrapper {
   margin-top: 5%;
    display: grid;
@@ -45,7 +45,7 @@ html {
     color:rgb(48, 238, 105);
     justify-content: space-evenly;
 }
-  
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
