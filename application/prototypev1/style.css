@@ -10,7 +10,7 @@ h1 {
     border: 5px dotted springgreen;
     color: rgb(216, 193, 240);
     margin: 50px 5px 25px 0px; /*top, right, bottom, left */
-}
+} 
 
 /* for id */
 #name {

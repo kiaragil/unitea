@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <!-- Our own style sheet -->        
-    <link rel="stylesheet" href="style2.css">
+    {% load static %}       
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <!-- For icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,9 +22,9 @@
         <div class="nav-wrapper">
             <a href="#" class="brand-logo right">UniTea</a>
             <ul id="nav-mobile" class="left">
-                <li><a href="home.html">Home</a></li>
+                <li><a href="/home">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="register.html">Register</a></li>
+                <li><a href="/register">Register</a></li>
                 <li><a href="contactus.html">Contact</a></li>
             </ul>
         </div>
@@ -40,6 +41,28 @@
         <footer class="footer">Register for UniTea today!</footer>
         </div>
     </div> -->
+
+    <!-- Test registered user listing  -->
+    <table>  
+        <thead>  
+            <tr>  
+                <th>User ID</th>  
+                <th>User Name</th>  
+                <th>User Email</th>
+                <th>Role</th>
+            </tr>  
+        </thead>  
+        <tbody>  
+            {% for user in users %}  
+            <tr>  
+                <td>{{ user.userId }}</td>  
+                <td>{{ user.username }}</td>  
+                <td>{{ user.email }}</td>   
+                <td>{{ user.role }}</td>  
+            </tr>  
+            {% endfor %}  
+        </tbody>  
+    </table>  
 
     <div class="home-body">
         <div class="subject-wrapper">
