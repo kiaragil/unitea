@@ -32,6 +32,9 @@ urlpatterns = [
     path('home/', views.home),
     path('register/', views.register),
     path('createuser', views.createUser),
+    path('searchresults', views.searchresults),
+    path('contactus', views.contactus),
+    path('about', views.about),
 ]
 
 if settings.DEBUG:

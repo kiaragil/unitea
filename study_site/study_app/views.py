@@ -10,6 +10,21 @@ def index(request):
     return render(request, 'index.html')
 
 
+def searchresults(request):
+    return render(request, 'searchresults.html')
+
+
+def contactus(request):
+    return render(request, 'contactus.html')
+
+
+def register(request):
+    return render(request, 'register.html')
+
+
+def about(request):
+    return render(request, 'about.html')
+
 def kiara(request):
     return render(request, 'T4TM-Kiara.html')
 
