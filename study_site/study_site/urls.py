@@ -18,7 +18,6 @@ from django.urls import path
 from study_app import views
 from django.conf import settings
 from django.conf.urls.static import static
-from study_app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),

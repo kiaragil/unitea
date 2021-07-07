@@ -7,7 +7,7 @@ class User(models.Model):
 	email = models.EmailField(max_length = 100)
 	password = models.CharField(max_length = 100)
 	role = models.IntegerField()
-	avatar = models.ImageField(upload_to="./static/", blank=True, null=True)
+	avatar = models.ImageField(upload_to='images/')
 	class Meta:
 		db_table = "users";
 
