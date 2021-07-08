@@ -71,7 +71,7 @@ def createUser(request):
         if form.is_valid():
             try:
                 form.save()
-                return redirect('/home')
+                return redirect('/')
             except:
                 pass
         else:
