@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}{% block content %}
+
+<style>
+    .cropped {
+        width: 350px;
+        /* width of container */
+        height: 350px;
+        /* height of container */
+        object-fit: cover;
+        border: 5px dashed black;
+    }
+</style>
+
+    {% if searched %}
+        <h2>Search Results for: {{ searched }}</h2>
+        <br>
+        {% for user in users %}
+            <p>{{ user.username }}</p>
+            <p></p><img class="cropped" src="./../media/{{user.avatar}}" alt="avatar"></p>
+        {% endfor %}
+        </br>
+    {% else %}
+        <h2>Search word invalid!</h2>
+    {% endif %}
+
+{% endblock%}

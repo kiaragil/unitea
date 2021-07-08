@@ -11,27 +11,32 @@
 
     <!-- Our own style sheet -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
 
     <!-- For icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 
 </head>
 <body>
 
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo right">UniTea</a>
-            <ul id="nav-mobile" class="left">
-                <li><a href="/">Home</a></li>
-                <li><a href="about">About</a></li>
-                <li><a href="register">Register</a></li>
-                <li><a href="contactus">Contact</a></li>
-            </ul>
+    <div class="topnav">
+        <a href="/" class="brand-logo right">UniTea</a>
+        <a href="/">Home</a>
+        <a href="about">About</a>
+        <a href="register">Register</a>
+        <a href="contactus">Contact</a>
+        <div class="search-container">
+          <form method=POST  action="/searchusers">
+            {% csrf_token %}
+            <input type="search" placeholder="Search User" name="searched">
+            <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+          </form>
         </div>
-    </nav>
+      </div>
 
         <br></br>
 

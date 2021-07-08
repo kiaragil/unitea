@@ -7,7 +7,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    users = User.objects.all()
+    return render(request, 'index.html', {'users': users})
 
 
 def searchresults(request):
@@ -16,6 +17,9 @@ def searchresults(request):
 
 def contactus(request):
     return render(request, 'contactus.html')
+
+def construction(request):
+    return render(request, 'construction.html')
 
 
 def register(request):
@@ -86,6 +90,4 @@ def searchUsers(request):
         return render(request, 'searchResults.html', {})
 
 
-def home(request):
-    users = User.objects.all()
-    return render(request, 'home.html', {'users': users})
+

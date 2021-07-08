@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.home),
+    path('',views.index),
     path('kiara',views.kiara),
     path('ostyn',views.ostyn),
     path('josh',views.josh),
@@ -29,13 +29,13 @@ urlpatterns = [
     path('miho',views.miho),
     path('cong',views.cong),
     path('melinda',views.melinda),
-    path('home/', views.home),
-    path('register/', views.register),
+    path('register', views.register),
     path('createuser', views.createUser),
     path('searchresults', views.searchresults),
     path('contactus', views.contactus),
     path('about', views.about),
-    path('searchusers', views.searchUsers)
+    path('searchusers', views.searchUsers),
+    path('construction', views.construction)
 ]
 
 if settings.DEBUG:
