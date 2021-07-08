@@ -26,6 +26,11 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="/register">Register</a></li>
                 <li><a href="contactus.html">Contact</a></li>
+                <form method=POST action="/searchusers">
+                    {% csrf_token %}
+                    <input type="search" placeholder="Search User" name="searched">
+                    <button type="submit">Search</button>
+                </form>
             </ul>
         </div>
     </nav>
