@@ -77,6 +77,15 @@ def createUser(request):
     return render(request, 'register.html', context)
 
 
+def searchUsers(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        users = User.objects.filter(username__contains=searched)
+        return render(request, 'searchResults.html', {'searched': searched, 'users': users})
+    else:
+        return render(request, 'searchResults.html', {})
+
+
 def home(request):
     users = User.objects.all()
     return render(request, 'home.html', {'users': users})

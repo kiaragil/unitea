@@ -1,4 +1,15 @@
- {% extends 'base.html' %} {% block content %}
-CONTENT!!!
+{% extends 'base.html' %}
+{% block content %}
 
- {% endblock%}
+    {% if searched %}
+        <h2>Search Results for: {{ searched }}</h2>
+        <br>
+        {% for user in users %}
+            {{ user.username }}
+            <img src="./../media/{{user.avatar}}" alt="avatar"><br>
+        {% endfor %}
+    {% else %}
+        <h2>Search word invalid!</h2>
+    {% endif %}
+
+{% endblock%}
