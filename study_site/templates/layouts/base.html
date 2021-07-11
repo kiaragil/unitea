@@ -16,49 +16,40 @@
     <!-- For icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
-
 </head>
 <body>
 
     <div class="topnav">
         <a href="/" class="brand-logo right">UniTea</a>
         <a href="/">Home</a>
-        <a href="about">About</a>
-        <a href="register">Register</a>
-        <a href="contactus">Contact</a>
+        <a href="/about">About</a>
+        <a href="/register">Register</a>
+        <a href="/contactus">Contact</a>
         <div class="search-container">
-          <form method=POST  action="/searchusers">
-            {% csrf_token %}
-            <input type="search" placeholder="Search User" name="searched">
-            <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
-          </form>
+            <form method=POST  action="/searchusers">
+                {% csrf_token %}
+                <input type="search" placeholder="Search User" name="searched">
+                <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+            </form>
         </div>
-      </div>
+    </div>
 
-        <br></br>
+    <br></br>
 
-        {% block content %} to be replaced {% endblock %}
+    {% block content %} to be replaced {% endblock %}
 
-        <br></br>
+    <br></br>
 
-        <div class="foot">
-            <footer class="page-footer">
-            <div class="footer-copyright">
-                <div class="container">
-                © 2021 UniTea
-                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-                </div>
+    <div class="foot">
+        <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+            © 2021 UniTea
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
             </div>
-            </footer>
         </div>
-
-
-
-
-
+        </footer>
+    </div>
 
         <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
