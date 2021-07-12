@@ -11,7 +11,7 @@
 
     <!-- Our own style sheet -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <!-- For icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -29,20 +29,32 @@
         <a href="about">About</a>
         <a href="register">Register</a>
         <a href="contactus">Contact</a>
-        <div class="search-container">
-          <form method=POST  action="/searchusers">
-            {% csrf_token %}
-            <input type="search" placeholder="Search User" name="searched">
-            <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
-          </form>
-        </div>
+      </div>
+    
+    
+
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">search</i>
+              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+              <!-- 
+                MIHO SEARCH CODE!
+                
+                <form method=POST  action="/searchusers">
+                {% csrf_token %}
+                <input type="search" placeholder="Search User" name="searched">
+                
+              </form> -->
+              <label for="icon_prefix2">Search for subjects</label>
+            </div>
+          </div>
+        </form>
       </div>
 
-        <br></br>
 
         {% block content %} to be replaced {% endblock %}
-
-        <br></br>
 
         <div class="foot">
             <footer class="page-footer">
@@ -54,9 +66,6 @@
             </div>
             </footer>
         </div>
-
-
-
 
 
 
