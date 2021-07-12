@@ -4,14 +4,36 @@
         <div class="row">
             <form method="POST" class="col s12" enctype="multipart/form-data" action="/createuser">
                 {% csrf_token %}
-                {{form.as_table}}
-                {% if form.as_table.errors %}
-                  {{ form.as_table.errors }}
-                {% endif %}
-
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                        <i class="material-icons right">send</i>
-                    </button>
+                <tbody>
+                    <tr>
+                        <th>Username</th>
+                        <td>{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ form.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Password</th>
+                        <td>{{ form.password }}</td>
+                    </tr>
+                    <tr>
+                        <th>Confirm Password</th>
+                        <td>{{ form.confirmPassword }}</td>
+                    </tr>
+                    <tr>
+                        <th>Avatar</th>
+                        <td>{{ form.avatar }}</td>
+                    </tr>
+                </tbody>
+                <label>
+                    {{ form.tosCheck }}
+                    <span>{{ form.tosCheck.label }}</span>
+                </label>
+                <br>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
   
             </form>
         </div>

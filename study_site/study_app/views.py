@@ -3,7 +3,7 @@ from django.template import loader
 from study_app.forms import RegistrationForm
 from study_app.models import User
 from django.http import HttpResponse
-
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 def index(request):
@@ -33,15 +33,26 @@ def createUser(request):
     context = {}
     if request.method == "POST":
         form = RegistrationForm(request.POST, request.FILES)
-        print(form)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('/')
-            except:
-                pass
+        if form.is_valid() and form.cleaned_data['tosCheck']:
+            user = User()
+            user.username = form.cleaned_data['username']
+            user.email = form.cleaned_data['email']
+            user.password = form.cleaned_data['password']
+            user.confirmPassword = form.cleaned_data['confirmPassword']
+            user.avatar = form.cleaned_data['avatar']   
+            user.password = make_password(user.password)
+            if user.password == user.confirmPassword:
+                try:
+                    user.save()
+                    return redirect('/')
+                except:
+                    pass
+            else:
+                print("Confirm password doesn't match")
+                context['form'] = form
         else:
             print("Form not valid")
+            context['form'] = form
     else:
         context['form'] = RegistrationForm()
     return render(request, 'register.html', context)
@@ -53,6 +64,3 @@ def searchUsers(request):
         return render(request, 'searchResults.html', {'searched': searched, 'users': users})
     else:
         return render(request, 'searchResults.html', {})
-
-
-
