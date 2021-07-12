@@ -3,17 +3,12 @@ from django.template import loader
 from study_app.forms import RegistrationForm
 from study_app.models import User
 from django.http import HttpResponse
-
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 def index(request):
     users = User.objects.all()
     return render(request, 'index.html', {'users': users})
-
-
-def searchresults(request):
-    return render(request, 'searchresults.html')
-
 
 def contactus(request):
     return render(request, 'contactus.html')
@@ -21,65 +16,46 @@ def contactus(request):
 def construction(request):
     return render(request, 'construction.html')
 
-
-def register(request):
-    return render(request, 'register.html')
-
-
 def about(request):
     return render(request, 'about.html')
 
-def kiara(request):
-    return render(request, 'T4TM-Kiara.html')
-
-
-def ostyn(request):
-    return render(request, 'T4TM-Ostyn.html')
-
-
-def josh(request):
-    return render(request, 'T4TM-Josh.html')
-
-
-def miho(request):
-    return render(request, 'T4TM-Miho.html')
-
-
-def vernon(request):
-    return render(request, 'T4TM-Vernon.html')
-
-
-def cong(request):
-    return render(request, 'T4TM-Cong.html')
-
-
-def melinda(request):
-    return render(request, 'T4TM-Melinda.html')
-
+def aboutMember(request, member):
+    template = loader.get_template('about/T4TM-{name}.html'.format(name=member))
+    context = {}
+    return HttpResponse(template.render(context, request))
 
 def register(request):
     context = {}
     context['form'] = RegistrationForm()
     return render(request, "register.html", context)
 
-
 def createUser(request):
     context = {}
     if request.method == "POST":
         form = RegistrationForm(request.POST, request.FILES)
-        print(form)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('/')
-            except:
-                pass
+        if form.is_valid() and form.cleaned_data['tosCheck']:
+            user = User()
+            user.username = form.cleaned_data['username']
+            user.email = form.cleaned_data['email']
+            user.password = form.cleaned_data['password']
+            user.confirmPassword = form.cleaned_data['confirmPassword']
+            user.avatar = form.cleaned_data['avatar']   
+            user.password = make_password(user.password)
+            if user.password == user.confirmPassword:
+                try:
+                    user.save()
+                    return redirect('/')
+                except:
+                    pass
+            else:
+                print("Confirm password doesn't match")
+                context['form'] = form
         else:
             print("Form not valid")
+            context['form'] = form
     else:
         context['form'] = RegistrationForm()
     return render(request, 'register.html', context)
-
 
 def searchUsers(request):
     if request.method == "POST":
@@ -88,6 +64,3 @@ def searchUsers(request):
         return render(request, 'searchResults.html', {'searched': searched, 'users': users})
     else:
         return render(request, 'searchResults.html', {})
-
-
-

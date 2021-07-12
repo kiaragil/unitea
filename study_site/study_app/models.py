@@ -1,12 +1,19 @@
 from django.db import models
 
 # Create your models here.
+
+ROLE_CHOICES = (
+	('general', 'general'),
+	('educator', 'educator'),
+	('admin', 'admin')
+)
+
 class User(models.Model):
 	userId = models.AutoField(primary_key=True, unique=True)
 	username = models.CharField(max_length = 40, unique=True)
 	email = models.EmailField(max_length = 100)
 	password = models.CharField(max_length = 100)
-	role = models.IntegerField()
+	role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='general')
 	avatar = models.ImageField(upload_to='images/')
 	class Meta:
 		db_table = "users";
