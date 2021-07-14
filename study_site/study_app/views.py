@@ -43,9 +43,9 @@ def createUser(request):
             user.password = form.cleaned_data['password']
             user.confirmPassword = form.cleaned_data['confirmPassword']
             user.avatar = form.cleaned_data['avatar']   
-            #user.password = make_password(user.password)
             if user.password == user.confirmPassword:
                 try:
+                    user.password = make_password(user.password)
                     user.save()
                     return redirect('/')
                 except:
@@ -57,10 +57,7 @@ def createUser(request):
             print("Form not valid")
             context['form'] = form
     else:
-        form = RegistrationForm(request.POST, request.FILES)
-        print(form.errors.as_data())
         context['form'] = RegistrationForm()
-        
     return render(request, 'register.html', context)
 
 def searchUsers(request):
