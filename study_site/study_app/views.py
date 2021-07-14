@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.template import loader
 from study_app.forms import RegistrationForm, LoginForm
-from study_app.models import User
+from study_app.models import User, Contact
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
@@ -12,6 +12,21 @@ def index(request):
     return render(request, 'index.html', {'users': users})
 
 def contactus(request):
+    context = {}
+    if request.method == "POST":
+        form = RegistrationForm(request.POST, request.FILES)
+        if form.is_valid():
+            contact = Contact()
+            contact.fullName = form.cleaned_data['fullname']
+            contact.telephone = form.cleaned_data['telephone']
+            contact.email = form.cleaned_data['email']
+            contact.message = form.cleaned_data['message']
+            contact.save()
+        else:
+            print("Form not valid")
+            context['form'] = form
+    else:
+        context['form'] = RegistrationForm()
     return render(request, 'contactus.html')
 
 def construction(request):

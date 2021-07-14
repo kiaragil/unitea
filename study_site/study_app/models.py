@@ -81,3 +81,11 @@ class Member(models.Model):
 	studyGroupId = models.ForeignKey(StudyGroup, on_delete=models.CASCADE)
 	class Meta:
 		db_table = "members";
+
+class Contact(models.Model):
+	fullName = models.CharField(max_length = 45)
+	telephone = models.CharField(max_length = 15)
+	email = models.EmailField(max_length = 45)
+	message = models.CharField(max_length = 200)
+	class Meta:
+		db_table = "contacus";
