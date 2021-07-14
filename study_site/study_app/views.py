@@ -7,9 +7,12 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
+
+
 def index(request):
     users = User.objects.all()
     return render(request, 'index.html', {'users': users})
+
 
 def contactus(request):
     context = {}
@@ -29,24 +32,30 @@ def contactus(request):
         context['form'] = ContactForm()
     return render(request, 'contactus.html')
 
+
 def construction(request):
     return render(request, 'construction.html')
+
 
 def about(request):
     return render(request, 'about.html')
 
+
 def landing(request):
     return render(request, 'landing.html')
+
 
 def aboutMember(request, member):
     template = loader.get_template('about/T4TM-{name}.html'.format(name=member))
     context = {}
     return HttpResponse(template.render(context, request))
 
+
 def register(request):
     context = {}
     context['form'] = RegistrationForm()
     return render(request, "register.html", context)
+
 
 def createUser(request):
     if request.method == "POST":
@@ -79,10 +88,12 @@ def createUser(request):
     context['form'] = RegistrationForm()
     return render(request, 'register.html', context)
 
+
 def loginPage(request):
     context = {}
     context['form'] = LoginForm()
     return render(request, "login.html", context)
+
 
 def loginUser(request):
     context = {}
@@ -106,9 +117,11 @@ def loginUser(request):
     context['form'] = LoginForm()
     return render(request, 'login.html', context)
 
+
 def logoutUser(request):
     logout(request)
     return redirect('/')
+
 
 def searchUsers(request):
     if request.method == "POST":
