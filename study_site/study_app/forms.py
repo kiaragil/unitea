@@ -44,3 +44,25 @@ class LoginForm(forms.Form):
 		max_length = 100,
 		required=True
 	)
+
+class ContactForm(forms.Form):
+	fullname = forms.CharField(
+		label='Fullname',
+		max_length=45,
+		required=True
+	)
+	telephone = forms.CharField(
+		label='Telephone',
+		max_length=15,
+		required=True
+	)
+	email = forms.EmailField(
+		label='Email',
+		max_length=45,
+		required=True
+	)
+	message = forms.CharField(
+		label='Message',
+		max_length=200,
+		required=True
+	)

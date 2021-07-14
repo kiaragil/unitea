@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.template import loader
-from study_app.forms import RegistrationForm, LoginForm
+from study_app.forms import RegistrationForm, LoginForm, ContactForm
 from study_app.models import User, Contact
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
@@ -14,7 +14,7 @@ def index(request):
 def contactus(request):
     context = {}
     if request.method == "POST":
-        form = RegistrationForm(request.POST, request.FILES)
+        form = ContactForm(request.POST)
         if form.is_valid():
             contact = Contact()
             contact.fullName = form.cleaned_data['fullname']
@@ -26,7 +26,7 @@ def contactus(request):
             print("Form not valid")
             context['form'] = form
     else:
-        context['form'] = RegistrationForm()
+        context['form'] = ContactForm()
     return render(request, 'contactus.html')
 
 def construction(request):
@@ -95,7 +95,7 @@ def loginUser(request):
             print(user)
             if user is not None:
                 login(request, user)
-                return redirect('/')
+                return redirect('/login')
             else:
                 print("Authentication failed")
         else:
