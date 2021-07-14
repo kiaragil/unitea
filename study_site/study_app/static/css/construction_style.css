@@ -216,15 +216,11 @@ flex-wrap: wrap;*/
   flex-direction: column;
 }
 
-/*main {
-  flex: 1 0 auto;
-}*/
-
 .foot {
   margin-top: 10%;
 }
 
 .page-footer {
-  background-color: rgb(48, 238, 105);
+  background-color: #52a36b;
 }
 

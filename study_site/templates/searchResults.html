@@ -1,15 +1,5 @@
 {% extends 'layouts/base.html' %}{% block content %}
 
-<style>
-    .cropped {
-        width: 350px;
-        /* width of container */
-        height: 350px;
-        /* height of container */
-        object-fit: cover;
-        border: 5px dashed black;
-    }
-</style>
 
     {% if searched %}
         <h2>Search Results for: {{ searched }}</h2>

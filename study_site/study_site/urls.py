@@ -28,7 +28,8 @@ urlpatterns = [
     path('createuser', views.createUser),
     path('contactus', views.contactus),
     path('searchusers', views.searchUsers),
-    path('construction', views.construction)
+    path('construction', views.construction),
+    path('landing', views.landing)
 ]
 
 if settings.DEBUG:

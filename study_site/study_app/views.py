@@ -19,6 +19,9 @@ def construction(request):
 def about(request):
     return render(request, 'about.html')
 
+def landing(request):
+    return render(request, 'landing.html')
+
 def aboutMember(request, member):
     template = loader.get_template('about/T4TM-{name}.html'.format(name=member))
     context = {}
