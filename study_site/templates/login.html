@@ -1,36 +1,22 @@
  {% extends 'layouts/base.html' %} {% block content %}
 
-    <h3>Sign up</h3>
+    <h3>Log in</h3>
     <div class="contact-box">
         <div class="row">
-            <form method="POST" class="col s12" enctype="multipart/form-data" action="/createuser">
+            <form method="POST" class="col s12" enctype="multipart/form-data" action="/loginaccount">
                 {% csrf_token %}
                 <tbody>
                     <tr>
                         <th>{{ form.username.label }}</th>
                         <td>{{ form.username }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ form.email.label }}</th>
-                        <td>{{ form.email }}</td>
+                        <td>{{ form.username.errors }}</td>
                     </tr>
                     <tr>
                         <th>{{ form.password.label }}</th>
                         <td>{{ form.password }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ form.confirmPassword.label }}</th>
-                        <td>{{ form.confirmPassword }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ form.avatar.label }}</th>
-                        <td>{{ form.avatar }}</td>
+                        <td>{{ form.password.error }}</td>
                     </tr>
                 </tbody>
-                <label>
-                    {{ form.tosCheck }}
-                    <span>{{ form.tosCheck.label }}</span>
-                </label>
                 <br>
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                     <i class="material-icons right">send</i>

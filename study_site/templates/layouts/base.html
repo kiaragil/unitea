@@ -28,9 +28,15 @@
   <div class="topnav">
     <a href="/" class="brand-logo right">UniTea</a>
     <a href="/">Home</a>
-    <a href="about">About</a>
-    <a href="register">Register</a>
-    <a href="contactus">Contact</a>
+    <a href="/about">About</a>
+    {% if user.is_authenticated %}
+      <span>Logged in as {{ user.username }}</span>
+      <a href="/logout">Logout</a>
+    {% else %}
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+    {% endif %}
+    <a href="/contactus">Contact</a>
   </div>
 
 

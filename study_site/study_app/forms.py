@@ -1,5 +1,4 @@
 from django import forms
-from study_app.models import User
 
 class RegistrationForm(forms.Form):
 	username = forms.CharField(
@@ -31,4 +30,17 @@ class RegistrationForm(forms.Form):
 	tosCheck = forms.NullBooleanField(
 		label='I agree to Terms of Service',
         widget=forms.CheckboxInput()
+	)
+
+class LoginForm(forms.Form):
+	username = forms.CharField(
+		label='Username', 
+		max_length = 40, 
+		required=True
+	)
+	password = forms.CharField(
+		label='Password',
+		widget=forms.PasswordInput(),
+		max_length = 100,
+		required=True
 	)

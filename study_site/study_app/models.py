@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser
+from django.utils.translation import gettext_lazy as _
+from .managers import UserManager
 
 # Create your models here.
 
@@ -8,13 +11,23 @@ ROLE_CHOICES = (
 	('admin', 'admin')
 )
 
-class User(models.Model):
+class User(AbstractBaseUser):
 	userId = models.AutoField(primary_key=True, unique=True)
 	username = models.CharField(max_length = 40, unique=True)
 	email = models.EmailField(max_length = 100)
 	password = models.CharField(max_length = 100)
 	role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='general')
 	avatar = models.ImageField(upload_to='images/')
+	last_login = None
+
+	USERNAME_FIELD = 'username'
+	REQUIRED_FIELDS = ['email', 'role']
+
+	objects = UserManager()
+
+	def __str__(self):
+		return self.username
+
 	class Meta:
 		db_table = "users";
 
