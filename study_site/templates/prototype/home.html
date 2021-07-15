@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniTea Home</title>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems);
+        });
+    </script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Our own style sheet -->        
+    <link rel="stylesheet" href="style.css">
+
+    <!-- For icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</head>
+<body>
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">UniTea</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="contactus.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="register.html">Register</a></li>
+    <li><a href="contactus.html">Contact</a></li>
+  </ul>
+
+  <div class="row" method=post action="/searchusers">
+    <div class="center-it">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">search</i>
+            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+            <label for="icon_prefix2">Search for subjects</label>
+          </div>
+            <button class="btn waves-effect waves-light" type="search" name="searched">Submit
+                  <i class="material-icons right">send</i>
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="home-body">
+    <div class="subject-wrapper">
+      <a href="construction.html"><div class="box a"></div></a>
+      <a href="construction.html"><div class="box b"></div></a>
+      <a href="construction.html"><div class="box c"></div></a>
+      <a href="construction.html"><div class="box d"></div></a>
+      <a href="construction.html"><div class="box e"></div></a>
+      <a href="construction.html"><div class="box f"></div></a>
+    </div>
+
+    <div class="foot">
+      <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+            © 2021 UniTea
+            <a class="grey-text text-lighten-4 right" href="#!">Terms of Service</a>
+            </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,5 +1,5 @@
- {% extends 'layouts/base.html' %} {% block content %}
-    <!-- <div class="abt-body">
+{% extends 'layouts/base.html' %} {% block content %}
+<!-- <div class="abt-body">
         <div class="wrapper">
         <header class="header">UniTea, making studying easier for you.</header>
         <aside class="sidebar">Tea time with a kick!</aside>
@@ -10,15 +10,20 @@
         <footer class="footer">Register for UniTea today!</footer>
         </div>
     </div><h2>THE T4 MILK TEA TEAM</h2> -->
-    
-    <ul class="abt-ul">
-        <li class="abt-li"><a href="/about/kiara">Kiara</a></li>
-        <li class="abt-li"><a href="/about/ostyn">Osytn</a></li>
-        <li class="abt-li"><a href="/about/josh">Josh</a></li>
-        <li class="abt-li"><a href="/about/cong">Cong</a></li>
-        <li class="abt-li"><a href="/about/miho">Miho</a></li>
-        <li class="abt-li"><a href="/about/vernon">Vernon</a></li>
-        <li class="abt-li"><a href="/about/melinda">Melinda</a></li>
-    </ul>
-    
+
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/abt.css' %}">
+{% endblock %}
+
+<ul class="abt-ul">
+    <li class="abt-li"><a href="/about/kiara">Kiara</a></li>
+    <li class="abt-li"><a href="/about/ostyn">Ostyn</a></li>
+    <li class="abt-li"><a href="/about/josh">Josh</a></li>
+    <li class="abt-li"><a href="/about/cong">Cong</a></li>
+    <li class="abt-li"><a href="/about/miho">Miho</a></li>
+    <li class="abt-li"><a href="/about/vernon">Vernon</a></li>
+    <li class="abt-li"><a href="/about/melinda">Melinda</a></li>
+</ul>
+
 {% endblock%}

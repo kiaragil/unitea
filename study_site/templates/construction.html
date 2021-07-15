@@ -1,26 +1,29 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
 {% load static %}
-    <link rel="stylesheet" href="{% static 'css/construction_style.css' %}">
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/construction_style.css' %}">
+{% endblock %}
 
-    <div class="home-body">
 
-        <h1>This page is currently under</h1>
+<div class="home-body">
 
-        <div class="construction-wrapper">
-            <div class="box a">C</div>
-            <div class="box b">O</div>
-            <div class="box c">N</div>
-            <div class="box d">S</div>
-            <div class="box e">T</div>
-            <div class="box f">R</div>
-            <div class="box g">U</div>
-            <div class="box h">C</div>
-            <div class="box i">T</div>
-            <div class="box j">I</div>
-            <div class="box k">O</div>
-            <div class="box l">N</div>
-        </div>
+    <h1>This page is currently under</h1>
+
+    <div class="construction-wrapper">
+        <div class="box a">C</div>
+        <div class="box b">O</div>
+        <div class="box c">N</div>
+        <div class="box d">S</div>
+        <div class="box e">T</div>
+        <div class="box f">R</div>
+        <div class="box g">U</div>
+        <div class="box h">C</div>
+        <div class="box i">T</div>
+        <div class="box j">I</div>
+        <div class="box k">O</div>
+        <div class="box l">N</div>
     </div>
+</div>
 
 {% endblock %}

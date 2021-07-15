@@ -73,11 +73,11 @@ h5 {
   justify-content: center;
 }
 
-/* @keyframes getBigger {
+@keyframes getBigger {
   0% {transform: scale(1);}
   50% {transform: scale(1.5);}
   100% {transform: scale(1);}
-} */
+}
 
 .box {
 background-color: #444;
@@ -216,11 +216,15 @@ flex-wrap: wrap;*/
   flex-direction: column;
 }
 
+/*main {
+  flex: 1 0 auto;
+}*/
+
 .foot {
   margin-top: 10%;
 }
 
 .page-footer {
-  background-color: #52a36b;
+  background-color: rgb(48, 238, 105);
 }
 

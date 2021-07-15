@@ -21,16 +21,23 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index),
+    path('', views.index),
     path('about', views.about),
     path('about/<str:member>', views.aboutMember),
     path('register', views.register),
     path('createuser', views.createUser),
-    path('contactus', views.contactus),
+    path('login', views.loginPage),
+    path('loginaccount', views.loginUser),
+    path('logout', views.logoutUser),
+    path('contactus', views.contactusPage),
+    path('submitcontactus', views.submitContactus),
     path('searchusers', views.searchUsers),
-    path('construction', views.construction)
+    path('createstudygroup', views.createStudyGroup),
+    path('execcreatestudygroup', views.execCreateStudyGroup),
+    path('construction', views.construction),
+    path('landing', views.landing)
 ]
 
 if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

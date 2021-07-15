@@ -92,8 +92,6 @@ a {
 .row {
     margin-left: 33%;
 }
-
-  
   
 .subject-wrapper {
     margin-top: 5%;
@@ -133,11 +131,6 @@ a {
     justify-content: center;
   }
   
-  /* @keyframes getBigger {
-    0% {transform: scale(1);}
-    50% {transform: scale(1.5);}
-    100% {transform: scale(1);}
-  } */
   
   .box {
   background-color: #444;
@@ -242,17 +235,11 @@ a {
     margin-top: 50px;
   }
   
-  
-  
   .body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
   }
-  
-  /*main {
-    flex: 1 0 auto;
-  }*/
   
   .foot {
     margin-top: 10%;
@@ -261,25 +248,12 @@ a {
   .page-footer {
     background-color: #52a36b;
   }
-/* about */
 
-.abt-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-}
-
-.abt-li a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-/* Change the link color on hover */
-.abt-li a:hover {
-  background-color: #555;
-  color: white;
+  .cropped {
+    width: 350px;
+    /* width of container */
+    height: 350px;
+    /* height of container */
+    object-fit: cover;
+    border: 5px dashed black;
 }
