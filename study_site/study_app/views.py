@@ -63,6 +63,11 @@ def aboutMember(request, member):
 # ----------------------------
 
 def register(request):
+    #logged in users must not access 
+    if request.user.is_authenticated:
+        print("user is already logged in")
+        return redirect('/')
+
     context = {}
     context['form'] = RegistrationForm()
     return render(request, "register.html", context)
@@ -102,6 +107,11 @@ def createUser(request):
 
 
 def loginPage(request):
+    #logged in users must not access 
+    if request.user.is_authenticated:
+        print("user is already logged in")
+        return redirect('/')
+
     context = {}
     context['form'] = LoginForm()
     return render(request, "login.html", context)
@@ -149,6 +159,11 @@ def searchUsers(request):
 # ----------------------------
 
 def createStudyGroup(request):
+    #not logged in users must not access 
+    if not request.user.is_authenticated:
+        print("user is not logged in")
+        return redirect('/login')
+
     context = {}
     context['form'] = StudyGroupForm()
     return render(request, "studygroupcreation.html", context)
