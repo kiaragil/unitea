@@ -66,6 +66,21 @@ class ContactForm(forms.Form):
     )
     message = forms.CharField(
         label='Message',
+        widget=forms.Textarea(),
         max_length=200,
+        required=True
+    )
+
+
+class StudyGroupForm(forms.Form):
+    groupName = forms.CharField(
+        label='Study Group Name', 
+        max_length = 100, 
+        required=True
+    )
+    description = forms.CharField(
+        label='Description',
+        widget=forms.Textarea(),
+        max_length = 5000,
         required=True
     )

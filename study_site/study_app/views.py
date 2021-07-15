@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.template import loader
-from study_app.forms import RegistrationForm, LoginForm, ContactForm
-from study_app.models import User, Contact
+from study_app.forms import *
+from study_app.models import *
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
@@ -57,6 +57,10 @@ def aboutMember(request, member):
     context = {}
     return HttpResponse(template.render(context, request))
 
+
+# ----------------------------
+#  User
+# ----------------------------
 
 def register(request):
     context = {}
@@ -138,3 +142,37 @@ def searchUsers(request):
         return render(request, 'searchResults.html', {'searched': searched, 'users': users})
     else:
         return render(request, 'searchResults.html', {})
+
+
+# ----------------------------
+#  Study Group
+# ----------------------------
+
+def createStudyGroup(request):
+    context = {}
+    context['form'] = StudyGroupForm()
+    return render(request, "studygroupcreation.html", context)
+
+def execCreateStudyGroup(request):
+    context = {}
+    if request.method == "POST":
+        form = StudyGroupForm(request.POST)
+        if form.is_valid():
+            studyGroup = StudyGroup()
+            studyGroup.groupName = form.cleaned_data['groupName']
+            studyGroup.description = form.cleaned_data['description']
+            #owner is the currently logged in user
+            studyGroup.ownerId = User.objects.get(userId=request.user.userId)
+            print(studyGroup.ownerId)
+            try:
+                studyGroup.save()
+                return redirect('/')
+            except:
+                pass
+        else:
+            print("Invalid form data")
+
+    #login failed
+    context['form'] = StudyGroupForm()
+    return render(request, 'studygroupcreation.html', context)
+

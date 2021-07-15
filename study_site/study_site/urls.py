@@ -32,6 +32,8 @@ urlpatterns = [
     path('contactus', views.contactusPage),
     path('submitcontactus', views.submitContactus),
     path('searchusers', views.searchUsers),
+    path('createstudygroup', views.createStudyGroup),
+    path('execcreatestudygroup', views.execCreateStudyGroup),
     path('construction', views.construction),
     path('landing', views.landing)
 ]
