@@ -11,6 +11,11 @@ ROLE_CHOICES = (
 	('admin', 'admin')
 )
 
+GROUP_TYPE_CHOICES = (
+	('general', 'general'),
+	('educator', 'educator'),
+)
+
 
 class User(AbstractBaseUser):
 	userId = models.AutoField(primary_key=True, unique=True)
@@ -59,6 +64,8 @@ class StudyGroup(models.Model):
 	studyGroupId = models.AutoField(primary_key=True, unique=True)
 	groupName = models.CharField(max_length=100)
 	description = models.CharField(max_length=5000)
+	groupType = models.CharField(max_length=10, choices=GROUP_TYPE_CHOICES, default='general')
+	memberCount = models.IntegerField(default=0)
 	ownerId = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	class Meta:
@@ -88,12 +95,38 @@ class StudyGroupComment(models.Model):
 		db_table = "studygroupcomments";
 
 
-class Member(models.Model):
+class StudyGroupMember(models.Model):
 	userId = models.ForeignKey(User, on_delete=models.CASCADE)
 	studyGroupId = models.ForeignKey(StudyGroup, on_delete=models.CASCADE)
 
 	class Meta:
-		db_table = "members";
+		db_table = "studygroupmembers";
+
+
+class ChatRoom(models.Model):
+	chatRoomId = models.AutoField(primary_key=True, unique=True)
+
+	class Meta:
+		db_table = "chatrooms";
+
+
+class Message(models.Model):
+	messageId = models.AutoField(primary_key=True, unique=True)
+	message = models.CharField(max_length=5000)
+	messageDateTime = models.DateTimeField(auto_now=True)
+	userId = models.ForeignKey(User, on_delete=models.CASCADE)
+	chatRoomId = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
+
+	class Meta:
+		db_table = "messages";
+
+
+class ChatMember(models.Model):
+	userId = models.ForeignKey(User, on_delete=models.CASCADE)
+	chatRoomId = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
+
+	class Meta:
+		db_table = "chatmembers";
 
 
 class Contact(models.Model):
