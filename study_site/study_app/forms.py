@@ -50,7 +50,7 @@ class LoginForm(forms.Form):
 
 class ContactForm(forms.Form):
     fullname = forms.CharField(
-        label='Fullname',
+        label='Full Name',
         max_length=45,
         required=True
     )

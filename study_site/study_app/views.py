@@ -14,23 +14,30 @@ def index(request):
     return render(request, 'index.html', {'users': users})
 
 
-def contactus(request):
+def contactusPage(request):
+    context = {}
+    context['form'] = ContactForm()
+    return render(request, "contactus.html", context)
+
+
+def submitContactus(request):
     context = {}
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
             contact = Contact()
-            contact.fullName = form.cleaned_data['fullname']
+            contact.fullname = form.cleaned_data['fullname']
             contact.telephone = form.cleaned_data['telephone']
             contact.email = form.cleaned_data['email']
             contact.message = form.cleaned_data['message']
             contact.save()
+            return redirect('/contactus')
         else:
             print("Form not valid")
             context['form'] = form
     else:
         context['form'] = ContactForm()
-    return render(request, 'contactus.html')
+    return render(request, 'contactus.html', context)
 
 
 def construction(request):

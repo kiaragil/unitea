@@ -29,7 +29,8 @@ urlpatterns = [
     path('login', views.loginPage),
     path('loginaccount', views.loginUser),
     path('logout', views.logoutUser),
-    path('contactus', views.contactus),
+    path('contactus', views.contactusPage),
+    path('submitcontactus', views.submitContactus),
     path('searchusers', views.searchUsers),
     path('construction', views.construction),
     path('landing', views.landing)
