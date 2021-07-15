@@ -4,31 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Page</title>
+    <title>Register Page</title>
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <!-- Our own style sheet -->        
-    <link rel="stylesheet" href="reg_style.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- For icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+        <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems);
+        });
+    </script>
+
+
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo right">UniTea</a>
-            <ul id="nav-mobile" class="left">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="contactus.html">Contact</a></li>
-                <li><a href="construction.html">Profile</a></li>
-            </ul>
-        </div>
-    </nav>
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">UniTea</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="contactus.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="register.html">Register</a></li>
+    <li><a href="contactus.html">Contact</a></li>
+  </ul>
     <div class="contact-box">
         <div class="row">
             <form class="col s12">
@@ -76,11 +94,6 @@
     </footer>
 </div>
 
-
-        
-        <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <!-- Script for validating password. This code was authored by w3schools at the url: https://www.w3schools.com/howto/howto_js_password_validation.asp -->
-    <script type="text/javascript" src="validation.js"></script>
+<script type="text/javascript" src="validation.js"></script>
 </body>
 </html>
