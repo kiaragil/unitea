@@ -65,6 +65,7 @@ def register(request):
 
 
 def createUser(request):
+    context = {}
     if request.method == "POST":
         form = RegistrationForm(request.POST, request.FILES)
         if form.is_valid() and form.cleaned_data['tosCheck']:
@@ -87,12 +88,12 @@ def createUser(request):
                     pass
             else:
                 print("Confirm password doesn't match")
+                context['form'] = form
         else:
             print("Invalid form data")
-
-    #registration failed
-    context = {}
-    context['form'] = RegistrationForm()
+            context['form'] = form
+    else:
+        context['form'] = RegistrationForm()
     return render(request, 'register.html', context)
 
 
@@ -107,21 +108,21 @@ def loginUser(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
+            user = authenticate(email=email, password=password)
             print(user)
             if user is not None:
                 login(request, user)
-                return redirect('/login')
+                return redirect('/')
             else:
                 print("Authentication failed")
+                context['form'] = form
         else:
             print("Invalid form data")
-
-    #login failed
-    context = {}
-    context['form'] = LoginForm()
+            context['form'] = form
+    else:
+        context['form'] = LoginForm()
     return render(request, 'login.html', context)
 
 

@@ -15,14 +15,14 @@ ROLE_CHOICES = (
 class User(AbstractBaseUser):
 	userId = models.AutoField(primary_key=True, unique=True)
 	username = models.CharField(max_length=40, unique=True)
-	email = models.EmailField(max_length=100)
+	email = models.EmailField(max_length=100, unique=True)
 	password = models.CharField(max_length=100)
 	role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='general')
 	avatar = models.ImageField(upload_to='images/')
 	last_login = None
 
-	USERNAME_FIELD = 'username'
-	REQUIRED_FIELDS = ['email', 'role']
+	USERNAME_FIELD = 'email'
+	REQUIRED_FIELDS = ['username', 'role']
 
 	objects = UserManager()
 
