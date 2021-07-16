@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<<<<<<< Updated upstream
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,28 +13,54 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   
   <!-- Our own style sheet -->
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+=======
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniTea Home</title>
 
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems);
+        });
+    </script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Our own style sheet -->
+>>>>>>> Stashed changes
+  {% load static %}
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{% static 'css/stylenew.css' %}">
   {% block styles %}
   {% endblock %}
 
-  <!-- For icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    <!-- For icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
-
 <body>
 
-  <div class="topnav">
-    <a href="/" class="brand-logo right">UniTea</a>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">UniTea</a>
+      <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contactus">Contact</a></li>
+        
     {% if user.is_authenticated %}
-      <span>Logged in as {{ user.username }}</span>
-      <a href="/logout">Logout</a>
+      <li>Logged in as {{ user.username }}</li> 
+      <li><a href="/logout">Logout</a></li>
     {% else %}
+<<<<<<< Updated upstream
       <a href="/register">Register</a>
       <a href="/login">Login</a>
     {% endif %}
@@ -54,26 +80,43 @@
       {% endif %}
     {% endfor %}
   {% endif %}
+=======
+      <li><a href="/register">Register</a></li>
+      <li><a href="/login">Login</a></li>
+    {% endif %} 
+      </ul>
+    </div>
+  </nav>
 
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">search</i>
-          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="home">Home</a></li>
+    <li><a href="about">About</a></li>
+    <li><a href="contactus">Contact</a></li>
+    {% if user.is_authenticated %}
+      <li>Logged in as {{ user.username }}</li> 
+      <li><a href="/logout">Logout</a></li>
+    {% else %}
+      <li><a href="/register">Register</a></li>
+      <li><a href="/login">Login</a></li>
+    {% endif %} 
+  </ul>
+>>>>>>> Stashed changes
 
-          <!-- <form method=POST  action="/searchusers">
-                {% csrf_token %}
-                <input type="search" placeholder="Search User" name="searched">
-                
-                </form> -->
-          <label for="icon_prefix2">Search for subjects</label>
-        </div>
-      </div>
-    </form>
-  </div>
 
+  <!-- SEARCH BAR! -->
+<!-- <form method=POST  action="/searchusers">
+  {% csrf_token %}
+  <input type="search" placeholder="Search User" name="searched">
+  
+<label for="icon_prefix2">Search for subjects</label>
+</form> -->
+
+<<<<<<< Updated upstream
   {% block content %} to be replaced {% endblock %}
+=======
+
+  {% block content %} PAGE CONTENT {% endblock %}
+>>>>>>> Stashed changes
 
   <div class="foot">
     <footer class="page-footer">

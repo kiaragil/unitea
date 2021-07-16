@@ -1,4 +1,5 @@
- {% extends 'layouts/base.html' %} {% block content %}
+ {% extends 'layouts/base.html' %}
+ {% load materializecss%} {% block content %}
 
     <h3>Log in</h3>
     <div class="contact-box">
@@ -7,20 +8,20 @@
                 {% csrf_token %}
                 <tbody>
                     <tr>
-                        <th>{{ form.email.label }}</th>
-                        <td>{{ form.email }}</td>
+                        <td>{{ form.email | materializecss:'s12 m6, icon=email' }}</td>
                         <td>{{ form.email.errors }}</td>
                     </tr>
                     <tr>
-                        <th>{{ form.password.label }}</th>
-                        <td>{{ form.password }}</td>
+                        <td>{{ form.password | materializecss:'s12 m6, icon=password' }}</td>
                         <td>{{ form.password.error }}</td>
                     </tr>
                 </tbody>
-                <br>
+                
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                     <i class="material-icons right">send</i>
                 </button>
+        
+                </form>
   
             </form>
         </div>

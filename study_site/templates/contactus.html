@@ -1,4 +1,5 @@
-{% extends 'layouts/base.html' %} {% block content %}
+{% extends 'layouts/base.html' %} 
+{% load materializecss %}{% block content %}
 
     <h3>Contact Us</h3>
     <div class="contact-box">
@@ -7,52 +8,21 @@
                 {% csrf_token %}
                 <tbody>
                     <tr>
-                        <th>{{ form.fullname.label }}</th>
-                        <td>{{ form.fullname }}</td>
+                        <td>{{ form.fullname  | materializecss:'s12 m6, icon=person' }}</td>
                     </tr>
                     <tr>
-                        <th>{{ form.telephone.label }}</th>
-                        <td>{{ form.telephone }}</td>
+                        <td>{{ form.telephone  | materializecss:'s12 m6, icon=phone' }}</td>
                     </tr>
                     <tr>
-                        <th>{{ form.email.label }}</th>
-                        <td>{{ form.email }}</td>
+                        <td>{{ form.email | materializecss:'s12 m6, icon=email' }}</td>
                     </tr>
                     <tr>
-                        <th>{{ form.message.label }}</th>
-                        <td>{{ form.message }}</td>
+                        <td>{{ form.message | materializecss:'s12 m6, icon=message' }}</td>
                     </tr>
                 </tbody>
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                             <i class="material-icons right">send</i>
                 </button>
-<!--
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="icon_prefix" type="text" class="validate">
-                        <label for="icon_prefix">Full Name</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">phone</i>
-                        <input id="icon_telephone" type="tel" class="validate">
-                        <label for="icon_telephone">Telephone</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">email</i>
-                        <input id="icon_prefix" type="email" class="validate">
-                        <label for="icon_prefix">Email</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">mode_edit</i>
-                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                        <label for="icon_prefix2">Enter message</label>
-                    </div>
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            <i class="material-icons right">send</i>
-                        </button>
-                </div>
-                -->
             </form>
         </div>
     </div>

@@ -1,4 +1,5 @@
- {% extends 'layouts/base.html' %} {% block content %}
+ {% extends 'layouts/base.html' %}
+ {% load materializecss %} {% block content %}
 
     <h3>Sign up</h3>
     <div class="contact-box">
@@ -7,23 +8,24 @@
                 {% csrf_token %}
                 <tbody>
                     <tr>
-                        <th>{{ form.username.label }}</th>
-                        <td>{{ form.username }}</td>
+                        
+                        <td>{{ form.username | materializecss:'s12 m6, icon=person' }}</td>
                     </tr>
                     <tr>
-                        <th>{{ form.email.label }}</th>
-                        <td>{{ form.email }}</td>
+                        
+                        <td>{{ form.email | materializecss:'s12 m6, icon=email' }}</td>
+                    </tr>
+                    
+                    <tr>
+                        
+                        <td>{{ form.password | materializecss:'s12 m6, icon=password'}}</td>
                     </tr>
                     <tr>
-                        <th>{{ form.password.label }}</th>
-                        <td>{{ form.password }}</td>
+                        
+                        <td>{{ form.confirmPassword | materializecss:'s12 m6, icon=password' }}</td>
                     </tr>
                     <tr>
-                        <th>{{ form.confirmPassword.label }}</th>
-                        <td>{{ form.confirmPassword }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ form.avatar.label }}</th>
+                        
                         <td>{{ form.avatar }}</td>
                     </tr>
                 </tbody>
@@ -39,6 +41,15 @@
             </form>
         </div>
     </div>
+
+
+    <div id="message">
+        <h5>Password must contain the following:</h5>
+              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+              <p id="number" class="invalid">A <b>number</b></p>
+              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+      </div>
         
         
 {% endblock %}
