@@ -24,20 +24,20 @@
                         
                         <td>{{ form.confirmPassword | materializecss:'s12 m6, icon=password' }}</td>
                     </tr>
-                    <tr>
-                        
-                        <td>{{ form.avatar }}</td>
-                    </tr>
-                </tbody>
-                <label>
-                    {{ form.tosCheck }}
-                    <span>{{ form.tosCheck.label }}</span>
-                </label>
-                <br>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-  
+                <div id="btm" style="clear: left;">
+                        <tr>
+                            <td>{{ form.avatar }}</td>
+                        </tr>
+                    </tbody>
+                    <label>
+                        {{ form.tosCheck }}
+                        <span>{{ form.tosCheck.label }}</span>
+                    </label>
+                    <br>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
             </form>
         </div>
     </div>
