@@ -9,7 +9,9 @@
 
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
   <!-- Our own style sheet -->
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -39,7 +41,19 @@
     <a href="/contactus">Contact</a>
   </div>
 
-
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == 'success' %}
+        <script>M.toast({html: "{{ message }}", classes: 'green rounded', displayLength:2000});</script>
+      {% elif message.tags == 'info' %}
+        <script>M.toast({html: "{{ message }}", classes: 'blue rounded', displayLength:2000});</script>
+      {% elif message.tags == 'warning' %}
+        <script>M.toast({html: "{{ message }}", classes: 'orange rounded', displayLength:3000});</script>
+      {% elif message.tags == 'error' %}
+        <script>M.toast({html: "{{ message }}", classes: 'red rounded', displayLength:3000});</script>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 
   <div class="row">
     <form class="col s12">
@@ -59,7 +73,6 @@
     </form>
   </div>
 
-
   {% block content %} to be replaced {% endblock %}
 
   <div class="foot">
@@ -73,10 +86,6 @@
     </footer>
   </div>
 
-
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>

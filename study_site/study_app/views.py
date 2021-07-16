@@ -5,6 +5,7 @@ from study_app.models import *
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 # Create your views here.
 
@@ -91,17 +92,19 @@ def createUser(request):
                     #hash password
                     user.password = make_password(user.password)
                     #register a user
+                    messages.success(request, "New account created!")
                     user.save()
                     return redirect('/')
                 except:
                     pass
             else:
-                print("Confirm password doesn't match")
+                messages.error(request, "Confirm password doesn't match")
                 context['form'] = form
         else:
-            print("Invalid form data")
+            messages.error(request, "Invalid form data")
             context['form'] = form
     else:
+        messages.error(request, "Something is wrong")
         context['form'] = RegistrationForm()
     return render(request, 'register.html', context)
 
@@ -125,15 +128,15 @@ def loginUser(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             user = authenticate(email=email, password=password)
-            print(user)
             if user is not None:
+                messages.success(request, "You are successfully logged in!")
                 login(request, user)
                 return redirect('/')
             else:
-                print("Authentication failed")
+                messages.error(request, "Authentication failed")
                 context['form'] = form
         else:
-            print("Invalid form data")
+            messages.error(request, "Invalid form data")
             context['form'] = form
     else:
         context['form'] = LoginForm()
@@ -141,6 +144,7 @@ def loginUser(request):
 
 
 def logoutUser(request):
+    messages.success(request, "You are logged out!")
     logout(request)
     return redirect('/')
 
@@ -161,7 +165,7 @@ def searchUsers(request):
 def createStudyGroup(request):
     #not logged in users must not access 
     if not request.user.is_authenticated:
-        print("user is not logged in")
+        messages.error(request, "You need to log in to create a study group")
         return redirect('/login')
 
     context = {}
