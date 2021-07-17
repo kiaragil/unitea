@@ -38,18 +38,38 @@ urlpatterns = [
     path('contactus', views.contactusPage),
     path('submitcontactus', views.submitContactus),
     
-    path('createstudygroup', views.createStudyGroup),
-    path('execcreatestudygroup', views.execCreateStudyGroup),
-    path('<int:id>/editstudygroup', views.editStudyGroup),
-    path('<int:id>/updatestudygroup', views.updateStudyGroup),
-    path('<int:id>/deletestudygroup', views.deleteStudyGroup),
+    path('forum', views.showForum),
     
     path('createmainpost', views.createMainPost),
     path('execcreatemainpost', views.execCreateMainPost),
-    path('<int:id>/editmainpost', views.editMainPost),
-    path('<int:id>/updatemainpost', views.updateMainPost),
-    path('<int:id>/deletemainpost', views.deleteMainPost),
+    path('<int:postId>/mainpost', views.showMainPost),
+    path('<int:postId>/editmainpost', views.editMainPost),
+    path('<int:postId>/updatemainpost', views.updateMainPost),
+    path('<int:postId>/deletemainpost', views.deleteMainPost),
+
+    path('<int:postId>/execcreatemaincomment', views.execCreateMainComment),
+    path('<int:postId>/<int:commentId>/editmaincomment', views.editMainComment),
+    path('<int:postId>/<int:commentId>/updatemaincomment', views.updateMainComment),
+    path('<int:postId>/<int:commentId>/deletemaincomment', views.deleteMainComment),
     
+    path('createstudygroup', views.createStudyGroup),
+    path('execcreatestudygroup', views.execCreateStudyGroup),
+    path('<int:studyGroupId>/editstudygroup', views.editStudyGroup),
+    path('<int:studyGroupId>/updatestudygroup', views.updateStudyGroup),
+    path('<int:studyGroupId>/deletestudygroup', views.deleteStudyGroup),
+
+    #path('<int:studyGroupId>/createstudygrouppost', views.createStudyGroupPost),
+    #path('<int:studyGroupId>/execcreatestudygrouppost', views.execCreateStudyGroupPost),
+    #path('<int:studyGroupId>/<int:postId>/studygrouppost', views.showStudyGroupPost),
+    #path('<int:studyGroupId>/<int:postId>/editstudygrouppost', views.editStudyGroupPost),
+    #path('<int:studyGroupId>/<int:postId>/updatestudygrouppost', views.updateStudyGroupPost),
+    #path('<int:studyGroupId>/<int:postId>/deletestudygrouppost', views.deleteStudyGroupPost),
+
+    #path('<int:studyGroupId>/<int:postId>/execcreatestudygroupcomment', views.execCreateStudyGroupComment),
+    #path('<int:studyGroupId>/<int:postId>/<int:commentId>/editstudygroupcomment', views.editStudyGroupComment),
+    #path('<int:studyGroupId>/<int:postId>/<int:commentId>/updatestudygroupcomment', views.updateStudyGroupComment),
+    #path('<int:studyGroupId>/<int:postId>/<int:commentId>/deletestudygroupcomment', views.deleteStudyGroupComment),
+
     path('construction', views.construction),
     path('landing', views.landing)
 ]

@@ -108,3 +108,33 @@ class MainPostForm(forms.ModelForm):
     class Meta:
         model = MainPost
         fields = ['postTitle', 'post']
+
+
+class MainCommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        widget=forms.Textarea(),
+    )
+
+    class Meta:
+        model = MainComment
+        fields = ['comment']
+
+
+class StudyGroupPostForm(forms.ModelForm):
+    post = forms.CharField(
+        widget=forms.Textarea(),
+    )
+
+    class Meta:
+        model = StudyGroupPost
+        fields = ['postTitle', 'post']
+
+
+class StudyGroupCommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        widget=forms.Textarea(),
+    )
+
+    class Meta:
+        model = StudyGroupComment
+        fields = ['comment']

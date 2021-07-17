@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %} {% block content %}
+
+    <h3>{{ mainpost.postTitle }}</h3>
+    
+    {{ mainpost.post }}
+
+    <h4>Comments</h4>
+    <table>
+        <tbody>  
+            {% for comment in comments %}  
+            <tr>  
+                <td>{{ comment.comment }}</td>
+                <td>{{ comment.userId }}</td>
+                <td>{{ comment.commentDateTime }}</td>
+            </tr>  
+            {% endfor %}
+            <tr>
+                <td>
+                    <form method="POST" class="col s12" enctype="multipart/form-data" action="execcreatemaincomment">
+                    {% csrf_token %}
+                    {{ form.comment }}
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Send
+                    <i class="material-icons right">send</i>
+                    </button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>  
+    </table>
+        
+{% endblock %}
