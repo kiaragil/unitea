@@ -104,7 +104,7 @@ text-align: center;
   animation: getBigger 2s 1s ease-in;
   margin-top: 30px;
   margin-bottom: 30px;
-  background-image: url("../media/Math.png");
+  background-image: url("static/media/Math.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -114,7 +114,7 @@ text-align: center;
   animation: getBigger 2s 3s ease-in;
   margin-top: 30px;
   margin-bottom: 30px;
-  background-image: url("../media/Science.png");
+  background-image: url("static/media/Science.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -124,7 +124,7 @@ text-align: center;
   animation: getBigger 2s 5s ease-in;
   margin-top: 30px;
   margin-bottom: 30px;
-  background-image: url("../media/Languages.png");
+  background-image: url("static/media/Languages.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -134,7 +134,7 @@ text-align: center;
   animation: getBigger 2s 7s ease-in;
   margin-top: 30px;
   margin-bottom: 30px;
-  background-image: url("../media/Economics.png");
+  background-image: url("static/media/Economics.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -145,7 +145,7 @@ text-align: center;
   animation: getBigger 2s 9s ease-in;
   margin-top: 30px;
   margin-bottom: 30px;
-  background-image: url("../media/History.png");
+  background-image: url("static/media/History.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -156,7 +156,7 @@ text-align: center;
   animation: getBigger 2s 11s ease-in;
   margin-top: 30px;
   margin-bottom: 30px;
-  background-image: url("../media/Business1.png");
+  background-image: url("static/media/Business1.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
