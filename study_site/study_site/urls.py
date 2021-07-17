@@ -23,17 +23,27 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('about', views.about),
-    path('about/<str:member>', views.aboutMember),
+    path('about/<str:member>', views.aboutUs),
+
     path('register', views.register),
     path('createuser', views.createUser),
+    path('edituser', views.editUserProfile),
+    path('updateuser', views.updateUserProfile),
     path('login', views.loginPage),
     path('loginaccount', views.loginUser),
     path('logout', views.logoutUser),
+    path('deleteuser', views.deleteUser),
+    path('searchusers', views.searchUsers),
+    
     path('contactus', views.contactusPage),
     path('submitcontactus', views.submitContactus),
-    path('searchusers', views.searchUsers),
+    
     path('createstudygroup', views.createStudyGroup),
     path('execcreatestudygroup', views.execCreateStudyGroup),
+    path('<int:id>/editstudygroup', views.editStudyGroup),
+    path('<int:id>/updatestudygroup', views.updateStudyGroup),
+    path('<int:id>/deletestudygroup', views.deleteStudyGroup),
+    
     path('construction', views.construction),
     path('landing', views.landing)
 ]

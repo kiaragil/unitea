@@ -1,5 +1,5 @@
 from django import forms
-
+from study_app.models import User, StudyGroup
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(
@@ -32,6 +32,16 @@ class RegistrationForm(forms.Form):
         label='I agree to Terms of Service',
         widget=forms.CheckboxInput()
     )
+
+
+class UserProfileForm(forms.ModelForm):
+    avatar = forms.ImageField(
+        required=False
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'avatar']
 
 
 class LoginForm(forms.Form):
@@ -72,7 +82,7 @@ class ContactForm(forms.Form):
     )
 
 
-class StudyGroupForm(forms.Form):
+class StudyGroupForm(forms.ModelForm):
     groupName = forms.CharField(
         label='Study Group Name', 
         max_length = 100, 
@@ -84,3 +94,7 @@ class StudyGroupForm(forms.Form):
         max_length = 5000,
         required=True
     )
+
+    class Meta:
+        model = StudyGroup
+        fields = ['groupName', 'description']

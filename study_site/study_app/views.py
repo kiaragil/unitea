@@ -53,7 +53,7 @@ def landing(request):
     return render(request, 'landing.html')
 
 
-def aboutMember(request, member):
+def aboutUs(request, member):
     template = loader.get_template('about/T4TM-{name}.html'.format(name=member))
     context = {}
     return HttpResponse(template.render(context, request))
@@ -71,7 +71,7 @@ def register(request):
 
     context = {}
     context['form'] = RegistrationForm()
-    return render(request, "register.html", context)
+    return render(request, "user/register.html", context)
 
 
 def createUser(request):
@@ -106,7 +106,30 @@ def createUser(request):
     else:
         messages.error(request, "Something is wrong")
         context['form'] = RegistrationForm()
-    return render(request, 'register.html', context)
+    return render(request, 'user/register.html', context)
+
+
+def editUserProfile(request):
+    #not logged in users must not access 
+    if not request.user.is_authenticated:
+        messages.error(request, "You're not logged in")
+        return redirect('/login')
+
+    user = User.objects.get(userId=request.user.userId)
+    context = {}
+    context['form'] = UserProfileForm(instance = user)
+    return render(request, 'user/edituserprofile.html', context)
+
+
+def updateUserProfile(request):
+    user = User.objects.get(userId=request.user.userId)
+    form = UserProfileForm(request.POST, instance = user)
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+    else:
+        messages.error(request, "Invalid form data")
+    return render(request, 'user/edituserprofile.html', {'user': user})
 
 
 def loginPage(request):
@@ -117,7 +140,7 @@ def loginPage(request):
 
     context = {}
     context['form'] = LoginForm()
-    return render(request, "login.html", context)
+    return render(request, "user/login.html", context)
 
 
 def loginUser(request):
@@ -140,12 +163,24 @@ def loginUser(request):
             context['form'] = form
     else:
         context['form'] = LoginForm()
-    return render(request, 'login.html', context)
+    return render(request, 'user/login.html', context)
 
 
 def logoutUser(request):
     messages.success(request, "You are logged out!")
     logout(request)
+    return redirect('/')
+
+
+def deleteUser(request):
+    #logged in users must not access 
+    if not request.user.is_authenticated:
+        print("You're not logged in")
+        return redirect('/')
+
+    #delete the currently logged in user
+    user = User.objects.get(userId=request.user.userId)
+    user.delete()
     return redirect('/')
 
 
@@ -170,7 +205,7 @@ def createStudyGroup(request):
 
     context = {}
     context['form'] = StudyGroupForm()
-    return render(request, "studygroupcreation.html", context)
+    return render(request, "studygroup/createstudygroup.html", context)
 
 def execCreateStudyGroup(request):
     context = {}
@@ -184,14 +219,55 @@ def execCreateStudyGroup(request):
             studyGroup.ownerId = User.objects.get(userId=request.user.userId)
             print(studyGroup.ownerId)
             try:
+                messages.success(request, "New study group created")
                 studyGroup.save()
                 return redirect('/')
             except:
                 pass
         else:
-            print("Invalid form data")
+            messages.error(request, "Invalid form data")
 
     #login failed
     context['form'] = StudyGroupForm()
-    return render(request, 'studygroupcreation.html', context)
+    return render(request, 'studygroup/createstudygroup.html', context)
+
+def editStudyGroup(request, id):
+    #not logged in users must not access 
+    if not request.user.is_authenticated:
+        messages.error(request, "You're not logged in")
+        return redirect('/login')
+
+    studygroup = StudyGroup.objects.get(studyGroupId=id)
+    context = {}
+    context['form'] = StudyGroupForm(instance = studygroup)
+    return render(request, 'studygroup/editstudygroup.html', context)
+
+def updateStudyGroup(request, id):
+    studygroup = StudyGroup.objects.get(studyGroupId=id)
+    form = StudyGroupForm(request.POST, instance=studygroup)
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+    else:
+        messages.error(request, "Invalid form data")
+    return render(request, 'studygroup/editstudygroup.html', {'studygroup': studygroup})
+
+def deleteStudyGroup(request, id):
+    #logged in users must not access 
+    if not request.user.is_authenticated:
+        print("You're not logged in")
+        return redirect('/')
+
+    #delete the currently logged in user
+    studygroup = StudyGroup.objects.get(studyGroupId=id)
+    studygroup.delete()
+    return redirect('/')
+
+def searchStudyGroups(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        users = User.objects.filter(studyGroupName__contains=searched)
+        return render(request, 'searchResults.html', {'searched': searched, 'studygroups': studygroups})
+    else:
+        return render(request, 'studygroup/searchStudyGroupResults.html', {})
 
