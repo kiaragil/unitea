@@ -129,7 +129,8 @@ def updateUserProfile(request):
         return redirect('/')
     else:
         messages.error(request, "Invalid form data")
-    return render(request, 'edituserprofile.html', {'user': user})
+    context['form'] = form
+    return render(request, 'edituserprofile.html', context)
 
 
 def loginPage(request):
@@ -205,7 +206,7 @@ def createStudyGroup(request):
 
     context = {}
     context['form'] = StudyGroupForm()
-    return render(request, "studygroup/createstudygroup.html", context)
+    return render(request, "createStudyGroup.html", context)
 
 def execCreateStudyGroup(request):
     context = {}
@@ -229,7 +230,7 @@ def execCreateStudyGroup(request):
 
     #login failed
     context['form'] = StudyGroupForm()
-    return render(request, 'createstudygroup.html', context)
+    return render(request, 'createStudyGroup.html', context)
 
 def editStudyGroup(request, id):
     #not logged in users must not access 
@@ -240,7 +241,7 @@ def editStudyGroup(request, id):
     studygroup = StudyGroup.objects.get(studyGroupId=id)
     context = {}
     context['form'] = StudyGroupForm(instance = studygroup)
-    return render(request, 'editstudygroup.html', context)
+    return render(request, 'editStudyGroup.html', context)
 
 def updateStudyGroup(request, id):
     studygroup = StudyGroup.objects.get(studyGroupId=id)
@@ -250,7 +251,9 @@ def updateStudyGroup(request, id):
         return redirect('/')
     else:
         messages.error(request, "Invalid form data")
-    return render(request, 'editstudygroup.html', {'studygroup': studygroup})
+    context = {}
+    context['form'] = form
+    return render(request, 'editStudyGroup.html', context)
 
 def deleteStudyGroup(request, id):
     #logged in users must not access 
@@ -271,3 +274,73 @@ def searchStudyGroups(request):
     else:
         return render(request, 'searchStudyGroupResults.html', {})
 
+
+# ----------------------------
+#  Main Forum Post
+# ----------------------------
+
+def createMainPost(request):
+    #not logged in users must not access 
+    if not request.user.is_authenticated:
+        messages.error(request, "You need to log in to create a study group")
+        return redirect('/login')
+
+    context = {}
+    context['form'] = MainPostForm()
+    return render(request, "createMainPost.html", context)
+
+def execCreateMainPost(request):
+    context = {}
+    if request.method == "POST":
+        form = MainPostForm(request.POST)
+        if form.is_valid():
+            mainPost = MainPost()
+            mainPost.postTitle = form.cleaned_data['postTitle']
+            mainPost.post = form.cleaned_data['post']
+            #owner is the currently logged in user
+            mainPost.userId = User.objects.get(userId=request.user.userId)
+            try:
+                messages.success(request, "New post created")
+                mainPost.save()
+                return redirect('/')
+            except:
+                pass
+        else:
+            messages.error(request, "Invalid form data")
+
+    #login failed
+    context['form'] = MainPostForm()
+    return render(request, 'createMainPost.html', context)
+
+def editMainPost(request, id):
+    #not logged in users must not access 
+    if not request.user.is_authenticated:
+        messages.error(request, "You're not logged in")
+        return redirect('/login')
+
+    mainPost = MainPost.objects.get(postId=id)
+    context = {}
+    context['form'] = MainPostForm(instance = mainPost)
+    return render(request, 'editMainPost.html', context)
+
+def updateMainPost(request, id):
+    mainPost = MainPost.objects.get(postId=id)
+    form = MainPostForm(request.POST, instance=mainPost)
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+    else:
+        messages.error(request, "Invalid form data")
+    context['form'] = form
+    return render(request, 'editMainPost.html', context)
+
+def deleteMainPost(request, id):
+    #logged in users must not access 
+    if not request.user.is_authenticated:
+        print("You're not logged in")
+        return redirect('/')
+
+    #delete the currently logged in user
+    mainPost = MainPost.objects.get(postId=id)
+    mainPost.delete()
+    return redirect('/')

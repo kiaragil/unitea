@@ -1,5 +1,5 @@
 from django import forms
-from study_app.models import User, StudyGroup
+from study_app.models import *
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(
@@ -98,3 +98,13 @@ class StudyGroupForm(forms.ModelForm):
     class Meta:
         model = StudyGroup
         fields = ['groupName', 'description']
+
+
+class MainPostForm(forms.ModelForm):
+    post = forms.CharField(
+        widget=forms.Textarea(),
+    )
+
+    class Meta:
+        model = MainPost
+        fields = ['postTitle', 'post']

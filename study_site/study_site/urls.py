@@ -44,6 +44,12 @@ urlpatterns = [
     path('<int:id>/updatestudygroup', views.updateStudyGroup),
     path('<int:id>/deletestudygroup', views.deleteStudyGroup),
     
+    path('createmainpost', views.createMainPost),
+    path('execcreatemainpost', views.execCreateMainPost),
+    path('<int:id>/editmainpost', views.editMainPost),
+    path('<int:id>/updatemainpost', views.updateMainPost),
+    path('<int:id>/deletemainpost', views.deleteMainPost),
+    
     path('construction', views.construction),
     path('landing', views.landing)
 ]
