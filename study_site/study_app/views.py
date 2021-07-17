@@ -71,7 +71,7 @@ def register(request):
 
     context = {}
     context['form'] = RegistrationForm()
-    return render(request, "user/register.html", context)
+    return render(request, "register.html", context)
 
 
 def createUser(request):
@@ -106,7 +106,7 @@ def createUser(request):
     else:
         messages.error(request, "Something is wrong")
         context['form'] = RegistrationForm()
-    return render(request, 'user/register.html', context)
+    return render(request, 'register.html', context)
 
 
 def editUserProfile(request):
@@ -118,7 +118,7 @@ def editUserProfile(request):
     user = User.objects.get(userId=request.user.userId)
     context = {}
     context['form'] = UserProfileForm(instance = user)
-    return render(request, 'user/edituserprofile.html', context)
+    return render(request, 'edituserprofile.html', context)
 
 
 def updateUserProfile(request):
@@ -129,7 +129,7 @@ def updateUserProfile(request):
         return redirect('/')
     else:
         messages.error(request, "Invalid form data")
-    return render(request, 'user/edituserprofile.html', {'user': user})
+    return render(request, 'edituserprofile.html', {'user': user})
 
 
 def loginPage(request):
@@ -140,7 +140,7 @@ def loginPage(request):
 
     context = {}
     context['form'] = LoginForm()
-    return render(request, "user/login.html", context)
+    return render(request, "login.html", context)
 
 
 def loginUser(request):
@@ -163,7 +163,7 @@ def loginUser(request):
             context['form'] = form
     else:
         context['form'] = LoginForm()
-    return render(request, 'user/login.html', context)
+    return render(request, 'login.html', context)
 
 
 def logoutUser(request):
@@ -229,7 +229,7 @@ def execCreateStudyGroup(request):
 
     #login failed
     context['form'] = StudyGroupForm()
-    return render(request, 'studygroup/createstudygroup.html', context)
+    return render(request, 'createstudygroup.html', context)
 
 def editStudyGroup(request, id):
     #not logged in users must not access 
@@ -240,7 +240,7 @@ def editStudyGroup(request, id):
     studygroup = StudyGroup.objects.get(studyGroupId=id)
     context = {}
     context['form'] = StudyGroupForm(instance = studygroup)
-    return render(request, 'studygroup/editstudygroup.html', context)
+    return render(request, 'editstudygroup.html', context)
 
 def updateStudyGroup(request, id):
     studygroup = StudyGroup.objects.get(studyGroupId=id)
@@ -250,7 +250,7 @@ def updateStudyGroup(request, id):
         return redirect('/')
     else:
         messages.error(request, "Invalid form data")
-    return render(request, 'studygroup/editstudygroup.html', {'studygroup': studygroup})
+    return render(request, 'editstudygroup.html', {'studygroup': studygroup})
 
 def deleteStudyGroup(request, id):
     #logged in users must not access 
@@ -269,5 +269,5 @@ def searchStudyGroups(request):
         users = User.objects.filter(studyGroupName__contains=searched)
         return render(request, 'searchResults.html', {'searched': searched, 'studygroups': studygroups})
     else:
-        return render(request, 'studygroup/searchStudyGroupResults.html', {})
+        return render(request, 'searchStudyGroupResults.html', {})
 
