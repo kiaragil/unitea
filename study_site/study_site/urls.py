@@ -54,21 +54,22 @@ urlpatterns = [
     
     path('createstudygroup', views.createStudyGroup),
     path('execcreatestudygroup', views.execCreateStudyGroup),
+    path('<int:studyGroupId>/studygroup', views.showStudyGroup),
     path('<int:studyGroupId>/editstudygroup', views.editStudyGroup),
     path('<int:studyGroupId>/updatestudygroup', views.updateStudyGroup),
     path('<int:studyGroupId>/deletestudygroup', views.deleteStudyGroup),
 
-    #path('<int:studyGroupId>/createstudygrouppost', views.createStudyGroupPost),
-    #path('<int:studyGroupId>/execcreatestudygrouppost', views.execCreateStudyGroupPost),
-    #path('<int:studyGroupId>/<int:postId>/studygrouppost', views.showStudyGroupPost),
-    #path('<int:studyGroupId>/<int:postId>/editstudygrouppost', views.editStudyGroupPost),
-    #path('<int:studyGroupId>/<int:postId>/updatestudygrouppost', views.updateStudyGroupPost),
-    #path('<int:studyGroupId>/<int:postId>/deletestudygrouppost', views.deleteStudyGroupPost),
+    path('<int:studyGroupId>/createstudygrouppost', views.createStudyGroupPost),
+    path('<int:studyGroupId>/execcreatestudygrouppost', views.execCreateStudyGroupPost),
+    path('<int:studyGroupId>/studygrouppost', views.showStudyGroupPost),
+    path('<int:studyGroupId>/<int:postId>/editstudygrouppost', views.editStudyGroupPost),
+    path('<int:studyGroupId>/<int:postId>/updatestudygrouppost', views.updateStudyGroupPost),
+    path('<int:studyGroupId>/<int:postId>/deletestudygrouppost', views.deleteStudyGroupPost),
 
-    #path('<int:studyGroupId>/<int:postId>/execcreatestudygroupcomment', views.execCreateStudyGroupComment),
-    #path('<int:studyGroupId>/<int:postId>/<int:commentId>/editstudygroupcomment', views.editStudyGroupComment),
-    #path('<int:studyGroupId>/<int:postId>/<int:commentId>/updatestudygroupcomment', views.updateStudyGroupComment),
-    #path('<int:studyGroupId>/<int:postId>/<int:commentId>/deletestudygroupcomment', views.deleteStudyGroupComment),
+    path('<int:studyGroupId>/<int:postId>/execcreatestudygroupcomment', views.execCreateStudyGroupComment),
+    path('<int:studyGroupId>/<int:postId>/<int:commentId>/editstudygroupcomment', views.editStudyGroupComment),
+    path('<int:studyGroupId>/<int:postId>/<int:commentId>/updatestudygroupcomment', views.updateStudyGroupComment),
+    path('<int:studyGroupId>/<int:postId>/<int:commentId>/deletestudygroupcomment', views.deleteStudyGroupComment),
 
     path('construction', views.construction),
     path('landing', views.landing)
