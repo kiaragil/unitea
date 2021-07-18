@@ -216,17 +216,13 @@ text-align: center;
   flex-direction: column;
 }
 
-.foot {
-  margin-top: 10%;    
-  
-}
 
 .page-footer {
   background-color: #94618E;
-  /* fixed position has overlay issues */
   position: fixed;
   bottom: 0;
   width: 100%;
+  padding-top: 0px;
 }
 
 
