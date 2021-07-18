@@ -1,0 +1,73 @@
+/* for our forms */
+/*************************************************/
+html {
+  background-color: rgb(76, 77, 76);
+}
+
+a {
+  color: white;
+}
+
+#center-it {
+  margin-left: 33%;
+  margin-right: 33%;
+}
+
+#btn-center {
+  margin-left: 100%;
+}
+
+.nav-wrapper {
+    background-color: rgb(52, 50, 73);
+}
+
+.contact-box {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    margin-top: 5%;
+    margin-left: 5%;
+    align-items: left;
+    display: flex;
+}
+
+.card-title {
+    color: black;
+    align-self: center;
+}
+
+.card-action {
+    align-self: flex-start;
+    float: right;
+}
+
+.card-action {
+    align-items: baseline;
+}
+
+.input-field {
+    margin: 20px;
+}
+
+.btn {
+  background-color: rgb(52, 50, 73);
+}
+
+.btn:hover {
+  background-color:rgb(43, 63, 87);
+}
+
+/*main {
+  flex: 1 0 auto;
+}*/
+
+.foot {
+  margin-top: 10%;
+}
+
+.page-footer {
+  background-color: rgb(52, 50, 73);
+}
+
