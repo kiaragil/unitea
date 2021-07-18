@@ -72,7 +72,16 @@ urlpatterns = [
     path('<int:studyGroupId>/<int:postId>/<int:commentId>/deletestudygroupcomment', views.deleteStudyGroupComment),
 
     path('construction', views.construction),
-    path('landing', views.landing)
+    path('landing', views.landing),
+
+    # ----------------------------
+    #  Front End Testing 
+    # ----------------------------
+    path('testEditStudyGroup', views.testEditStudyGroup),
+    path('testCreateStudyPost', views.testCreateStudyPost),
+    path('testCreateMainPost', views.testCreateMainPost),
+    path('testEditMainPost', views.testEditMainPost)
+
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,30 @@
+ {% extends 'layouts/base.html' %} {% block content %}
+
+    <h3>Edit a Study Group</h3>
+    <div class="contact-box">
+        <div class="row">
+            <form method="POST" class="col s12" enctype="multipart/form-data" action="updatestudygroup">
+                {% csrf_token %}
+                <tbody>
+                    <tr>
+                        <th>{{ form.groupName.label }}</th>
+                        <td>{{ form.groupName }}</td>
+                        <td>{{ form.groupName.errors }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ form.description.label }}</th>
+                        <td>{{ form.description }}</td>
+                        <td>{{ form.description.error }}</td>
+                    </tr>
+                </tbody>
+                <br>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+  
+            </form>
+        </div>
+    </div>
+        
+        
+{% endblock %}

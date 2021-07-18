@@ -580,3 +580,20 @@ def deleteStudyGroupComment(request, studyGroupId, postId, commentId):
     studyGroupComment = StudyGroupComment.objects.get(commentId=commentId)
     studyGroupComment.delete()
     return redirect('/')
+
+
+# ----------------------------
+#  Front End Testing 
+# ----------------------------
+
+def testEditStudyGroup(request):
+    return render(request, 'testEditStudyGroup.html')
+
+def testCreateStudyPost(request):
+    return render(request, 'testCreateStudyPost.html')
+
+def testCreateMainPost(request):
+    return render(request, 'testCreateMainPost.html')
+
+def testEditMainPost(request):
+    return render(request, 'testEditMainPost.html')
