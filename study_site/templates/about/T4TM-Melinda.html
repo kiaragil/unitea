@@ -1,4 +1,8 @@
 {% extends 'layouts/about-base.html' %} {% block about %}
+ {% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
 <h1> Melinda Yee </h1>
 <img class="cropped" src="https://cdn.discordapp.com/attachments/700587771999420468/851282374952353792/kk2GzFZtxyrkOnsrTndyXfjPfBE2ro5-dWEHXwqPNcLy_P68na1fg6AnquChG0xF3JA7_ddPsfHsAooKtouhzZKO-BcnTAiQ9cto.png" alt="Image of Melinda" width="333" height="500">
 

@@ -1,4 +1,8 @@
 {% extends 'layouts/about-base.html' %} {% block about %}
+ {% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
 <h1>Miho Shimizu</h1>
 <img class="cropped" src="https://cdn.discordapp.com/attachments/851329758364827689/851812930701492244/Shinjuku.JPG">
 <p>I'm a graduate student at SF State University, doing a Master's degree in Computer Science. I'm from Japan and currently taking classes from here. Previously, I graduated from a university in Japan with a Bachelor's degree in Information Science. After

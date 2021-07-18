@@ -1,4 +1,8 @@
 {% extends 'layouts/about-base.html' %} {% block about %}
+ {% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
 <h1>Ostyn Sy</h1>
 <img class="cropped" src="https://cdn.discordapp.com/attachments/851329758364827689/851907759933882379/3474.jpeg">
 <p>Hello! My name is Ostyn, and I am the back end lead. I am a senior at SFSU trying to complete my degree in computer science by 2022. A few of my hobbies include anime, games, traveling, and martial arts.</p>
