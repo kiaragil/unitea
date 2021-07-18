@@ -1,6 +1,5 @@
 html {
   scroll-behavior: smooth;
-
 }
 
 .landing-box {
@@ -25,7 +24,6 @@ html {
 
 .greeting-text {
   font-size: xx-large;
-  /* font-weight: 600; */
   text-align: center;
   margin: 10px;
 }

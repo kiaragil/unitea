@@ -25,11 +25,11 @@ urlpatterns = [
     path('about', views.about),
     path('about/<str:member>', views.aboutUs),
 
-    path('register', views.register),
+    path('register', views.register, name='register'),
     path('createuser', views.createUser),
     path('edituser', views.editUserProfile),
     path('updateuser', views.updateUserProfile),
-    path('login', views.loginPage),
+    path('login', views.loginPage, name='login'),
     path('loginaccount', views.loginUser),
     path('logout', views.logoutUser),
     path('deleteuser', views.deleteUser),
