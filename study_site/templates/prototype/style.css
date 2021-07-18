@@ -63,6 +63,7 @@ a {
     color: rgb(52, 50, 73);
     justify-content: space-evenly;
     margin-bottom: 30px;
+    height: auto;
 }
 
 
@@ -180,6 +181,9 @@ text-align: center;
 
 .foot {
   margin-top: 10%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .page-footer {

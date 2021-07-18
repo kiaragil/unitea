@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 {% endblock %}
 
-<div class="main" id="section1">
+{% comment %} <div class="main" id="section1">
     <h2>Section 1</h2>
     <p>This is section one!</p>
     <a href="#section2">Click Me to Smooth Scroll to Section 2 Below</a>
@@ -22,6 +22,34 @@
     <h2>Section 3</h2>
     <p>This is section three!</p>
     <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
-</div>
+</div> {% endcomment %}
+
+    <div class="landing-box">
+        <div class="greeting-box" id="greeting-box">
+            <div class='text1'>
+                Find your study group today!
+            </div>
+            <div class="landing-register-button">
+                <button type="button">Register Now</button>
+            </div>
+            <div class="landing-login-button">
+                <button type="button">Already a member? Log in</button>
+            </div>
+        </div>
+        <div class='landing-photo' id='landing-photo'>
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjI2MzgwMjUx&ixlib=rb-1.2.1&q=80&w=1080" alt="Study Group" class="landing-img">
+        </div>
+        <div class="landing-slogan">
+            <div class="landing-slogan1">
+                A new and refreshing way to study together
+            </div>
+            <div class="landing-slogan2">
+                Connect with real people
+            </div>
+            <div class="landing-slogan3">
+                Make new connections to drive your success
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

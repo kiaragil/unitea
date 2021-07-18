@@ -243,6 +243,9 @@ a {
   
   .foot {
     margin-top: 10%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
   
   .page-footer {
