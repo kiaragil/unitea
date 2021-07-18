@@ -3,21 +3,6 @@ html {
 
 }
 
-/* #section1 {
-  height: 450px;
-  background-color: #97bfa2;
-}
-
-#section2 {
-  height: 450px;
-  background-color: #97bfa2;
-}
-
-#section3 {
-  height: 450px;
-  background-color: #97bfa2;
-} */
-
 .landing-box {
   font-family: 'Comfortaa', sans-serif;
   display: grid;
@@ -35,12 +20,22 @@ html {
   display: grid;
   place-self: center;
   text-align: center;
+  /* padding: 10px; */
 }
 
 .greeting-text {
   font-size: xx-large;
   /* font-weight: 600; */
   text-align: center;
+  margin: 10px;
+}
+
+.landing-register-button {
+  margin: 10px;
+}
+
+.landing-login-button {
+  margin: 10px;
 }
 
 .landing-photo {
@@ -63,7 +58,7 @@ html {
 }
 
 .landing-slogan{
-  padding-top: 50px;
+  padding-top: 20px;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(3, minmax(0, 1fr));

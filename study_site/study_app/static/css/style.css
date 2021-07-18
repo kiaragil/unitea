@@ -241,15 +241,15 @@ a {
     flex-direction: column;
   }
   
-  .foot {
+  /* .foot {
     margin-top: 10%;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
+  } */
   
   .page-footer {
     background-color: #52a36b;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
 
   .cropped {

@@ -23,7 +23,7 @@ a {
 }
 
 .nav-wrapper {
-    background-color: #83849c;
+    background-color: #94618E;
 }
 
 .contact-box {
@@ -218,13 +218,15 @@ text-align: center;
 
 .foot {
   margin-top: 10%;    
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+
 }
 
 .page-footer {
-  background-color: #83849c;
+  background-color: #94618E;
+  /* fixed position has overlay issues */
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
 }
 
 
