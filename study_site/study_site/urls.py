@@ -55,6 +55,8 @@ urlpatterns = [
     path('createstudygroup', views.createStudyGroup),
     path('execcreatestudygroup', views.execCreateStudyGroup),
     path('<int:studyGroupId>/studygroup', views.showStudyGroup),
+    path('<int:studyGroupId>/joinstudygroup', views.joinStudyGroup),
+    path('<int:studyGroupId>/leavestudygroup', views.leaveStudyGroup),
     path('<int:studyGroupId>/editstudygroup', views.editStudyGroup),
     path('<int:studyGroupId>/updatestudygroup', views.updateStudyGroup),
     path('<int:studyGroupId>/deletestudygroup', views.deleteStudyGroup),

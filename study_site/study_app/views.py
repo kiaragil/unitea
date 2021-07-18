@@ -438,6 +438,31 @@ def deleteStudyGroup(request, studyGroupId):
     studygroup.delete()
     return redirect('/')
 
+def isMember(request, studyGroupId):
+    studyGroupMember = StudyGroupMember.objects.filter(userId=request.user.userId, studyGroupId=studyGroupId)
+    return True if studyGroupMember else False
+
+def joinStudyGroup(request, studyGroupId):
+    studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
+    if not studyGroup.isFull() and not isMember(request, studyGroupId):
+        studyGroupMember = StudyGroupMember()
+        studyGroupMember.userId = User.objects.get(userId=request.user.userId)
+        studyGroupMember.studyGroupId = studyGroup
+        studyGroupMember.save()
+
+        studyGroup.memberCount += 1
+        studyGroup.save()
+    return redirect('/')
+
+def leaveStudyGroup(request, studyGroupId):
+    studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
+    if studyGroup.memberCount > 0:
+        studyGroup.memberCount -= 1
+    
+    studyGroupMember = StudyGroupMember.objects.filter(userId=request.user.userId, studyGroupId=studyGroupId)
+    studyGroupMember.delete()
+    return redirect('/')
+
 
 # ----------------------------
 #  Study Group Forum Post

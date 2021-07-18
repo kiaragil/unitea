@@ -16,6 +16,7 @@ GROUP_TYPE_CHOICES = (
 	('educator', 'educator'),
 )
 
+STUDY_GROUP_CAPACITY = 20
 
 class User(AbstractBaseUser):
 	userId = models.AutoField(primary_key=True, unique=True)
@@ -67,6 +68,10 @@ class StudyGroup(models.Model):
 	groupType = models.CharField(max_length=10, choices=GROUP_TYPE_CHOICES, default='general')
 	memberCount = models.IntegerField(default=0)
 	ownerId = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+	def isFull(self):
+		return True if self.memberCount >= STUDY_GROUP_CAPACITY else False
 
 	class Meta:
 		db_table = "studygroups";
