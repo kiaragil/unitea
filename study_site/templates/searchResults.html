@@ -4,9 +4,14 @@
     {% if searched %}
         <h2>Search Results for: {{ searched }}</h2>
         <br>
-        {% for user in users %}
-            <p>{{ user.username }}</p>
-            <p></p><img class="cropped" src="./../media/{{user.avatar}}" alt="avatar"></p>
+        {% for studyGroup in studyGroups %}
+        <tbody>  
+            <tr>  
+                <td>{{ studyGroup.groupName }}</td>
+                <td>{{ studyGroup.ownerId }}</td>
+                <td>{{ studyGroup.description }}</td>
+            </tr>
+        </tbody>
         {% endfor %}
         </br>
     {% else %}

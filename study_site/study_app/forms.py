@@ -138,3 +138,13 @@ class StudyGroupCommentForm(forms.ModelForm):
     class Meta:
         model = StudyGroupComment
         fields = ['comment']
+
+
+class MessageForm(forms.ModelForm):
+    message = forms.CharField(
+        widget=forms.Textarea(),
+    )
+
+    class Meta:
+        model = Message
+        fields = ['message']

@@ -33,7 +33,7 @@ urlpatterns = [
     path('loginaccount', views.loginUser),
     path('logout', views.logoutUser),
     path('deleteuser', views.deleteUser),
-    path('searchusers', views.searchUsers),
+    path('search', views.searchStudyGroups),
     
     path('contactus', views.contactusPage),
     path('submitcontactus', views.submitContactus),
