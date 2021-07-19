@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniTea Home</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniTea Home</title>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('.sidenav');
-          var instances = M.Sidenav.init(elems);
-        });
-    </script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+  </script>
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <!-- Our own style sheet -->
   {% load static %}
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css"
+    integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
   <link rel="stylesheet" href="{% static 'css/stylenew.css' %}">
   {% block styles %}
   {% endblock %}
 
-  
-    <!-- For icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- For Comfortaa font https://fonts.google.com/specimen/Comfortaa -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+  <!-- For Comfortaa font https://fonts.google.com/specimen/Comfortaa -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
 
 
 </head>
+
 <body>
 
   <nav>
@@ -47,14 +44,15 @@
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/contactus">Contact</a></li>
-        
-    {% if user.is_authenticated %}
-      <li class="nav-username">Hi&nbsp;{{ user.username }}</li> 
-      <li><a href="/logout">Logout</a></li>
-    {% else %}
-      <li><a href="/register">Register</a></li>
-      <li><a href="/login">Login</a></li>
-    {% endif %} 
+
+        {% if user.is_authenticated %}
+        <li class="nav-username">hi, {{ user.username }}</li>
+        <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
+        {% endif %}
+
       </ul>
     </div>
   </nav>
@@ -64,37 +62,51 @@
     <li><a href="about">About</a></li>
     <li><a href="contactus">Contact</a></li>
     {% if user.is_authenticated %}
-      <li>Logged in as {{ user.username }}</li> 
-      <li><a href="/logout">Logout</a></li>
+    <li>Logged in as {{ user.username }}</li>
+    <li><a href="/logout">Logout</a></li>
     {% else %}
-      <li><a href="/register">Register</a></li>
-      <li><a href="/login">Login</a></li>
-    {% endif %} 
+    <li><a href="/register">Register</a></li>
+    <li><a href="/login">Login</a></li>
+    {% endif %}
   </ul>
 
   {% if messages %}
-    {% for message in messages %}
-      {% if message.tags == 'success' %}
-        <script>M.toast({html: "{{ message }}", classes: 'green rounded', displayLength:2000});</script>
-      {% elif message.tags == 'info' %}
-        <script>M.toast({html: "{{ message }}", classes: 'blue rounded', displayLength:2000});</script>
-      {% elif message.tags == 'warning' %}
-        <script>M.toast({html: "{{ message }}", classes: 'orange rounded', displayLength:3000});</script>
-      {% elif message.tags == 'error' %}
-        <script>M.toast({html: "{{ message }}", classes: 'red rounded', displayLength:3000});</script>
-      {% endif %}
-    {% endfor %}
+  {% for message in messages %}
+  {% if message.tags == 'success' %}
+  <script>M.toast({ html: "{{ message }}", classes: 'green rounded', displayLength: 2000 });</script>
+  {% elif message.tags == 'info' %}
+  <script>M.toast({ html: "{{ message }}", classes: 'blue rounded', displayLength: 2000 });</script>
+  {% elif message.tags == 'warning' %}
+  <script>M.toast({ html: "{{ message }}", classes: 'orange rounded', displayLength: 3000 });</script>
+  {% elif message.tags == 'error' %}
+  <script>M.toast({ html: "{{ message }}", classes: 'red rounded', displayLength: 3000 });</script>
+  {% endif %}
+  {% endfor %}
   {% endif %}
 
-  <!-- SEARCH BAR! -->
-<!-- <form method=POST  action="/search">
-  {% csrf_token %}
-  <input type="search" placeholder="Search Study Group" name="searched">
-  
-<label for="icon_prefix2">Search for Study Groups</label>
-</form> -->
 
-  {% block content %} PAGE CONTENT {% endblock %}
+
+
+  <div class="row">
+    <form class="col s12" method=POST action="/search">
+      {% csrf_token %}
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">search</i>
+
+          <label for="icon_prefix2">Search for Study Groups</label>
+  <!-- input box remains white for some reason - looking for fix - otherwise search function works ---KIARA -->
+          <input id="icon_prefix2" name="searched" type="search" class="materialize-input"></input>
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  <div id="test-container">
+    {% block content %} PAGE CONTENT {% endblock %}
+  </div>
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -105,8 +117,7 @@
         <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
       </div>
     </div>
-  </footer> 
+  </footer>
 </body>
 
 </html>
-
