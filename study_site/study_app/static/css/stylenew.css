@@ -26,6 +26,10 @@ a {
     background-color: #94618E;
 }
 
+.nav-username{
+  font-weight: bold;
+}
+
 .contact-box {
     display: flex;
     justify-content: center;
@@ -41,8 +45,6 @@ a {
     margin-left: 33%;
     margin-right: 33%;
 }
-
-
 
 .btn {
   background-color: rgb(52, 50, 73);
@@ -210,10 +212,11 @@ text-align: center;
   margin-top: 50px;
 }
 
-.body {
+body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  margin-bottom: 100px;
 }
 
 
@@ -221,8 +224,10 @@ text-align: center;
   background-color: #94618E;
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
   padding-top: 0px;
+  color: white;
 }
 
 
