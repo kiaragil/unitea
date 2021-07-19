@@ -63,25 +63,26 @@ def aboutUs(request, member):
 #  Main Pages
 # ----------------------------
 
+#show the main forum and the study group listing
 def showForum(request):
     mainposts = MainPost.objects.all()
     studygroups = StudyGroup.objects.all()
     return render(request, 'forums.html', {'mainposts': mainposts, 'studygroups': studygroups})
 
-
+#show a main post
 def showMainPost(request, postId):
     mainpost = MainPost.objects.get(postId=postId)
     comments = MainComment.objects.all()
     form = MainCommentForm()
     return render(request, 'mainPostPage.html', {'mainpost': mainpost, 'comments': comments, 'form':form})
 
-
+#show a study group page
 def showStudyGroup(request, studyGroupId):
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId)
     return render(request, 'studyGroupPage.html', {'studygroup': studygroup, 'studygroupposts': studygroupposts})
 
-
+#show a study group post
 def showStudyGroupPost(request, studyGroupId, postId):
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygrouppost = StudyGroupPost.objects.get(postId=postId)
@@ -94,6 +95,7 @@ def showStudyGroupPost(request, studyGroupId, postId):
 #  User
 # ----------------------------
 
+#show the user registration page
 def register(request):
     #logged in users must not access 
     if request.user.is_authenticated:
@@ -104,7 +106,7 @@ def register(request):
     context['form'] = RegistrationForm()
     return render(request, "register.html", context)
 
-
+#create a user account
 def createUser(request):
     context = {}
     if request.method == "POST":
@@ -137,9 +139,11 @@ def createUser(request):
     else:
         messages.error(request, "Something is wrong")
         context['form'] = RegistrationForm()
+
+    #user creation failed
     return render(request, 'register.html', context)
 
-
+#show the edit user profile page
 def editUserProfile(request):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -151,7 +155,7 @@ def editUserProfile(request):
     context['form'] = UserProfileForm(instance = user)
     return render(request, 'edituserprofile.html', context)
 
-
+#update user profile
 def updateUserProfile(request):
     user = User.objects.get(userId=request.user.userId)
     form = UserProfileForm(request.POST, instance = user)
@@ -163,7 +167,7 @@ def updateUserProfile(request):
     context['form'] = form
     return render(request, 'edituserprofile.html', context)
 
-
+#show the login page
 def loginPage(request):
     #logged in users must not access 
     if request.user.is_authenticated:
@@ -174,7 +178,7 @@ def loginPage(request):
     context['form'] = LoginForm()
     return render(request, "login.html", context)
 
-
+#let a user login
 def loginUser(request):
     context = {}
     if request.method == "POST":
@@ -197,13 +201,13 @@ def loginUser(request):
         context['form'] = LoginForm()
     return render(request, 'login.html', context)
 
-
+#let a user logout
 def logoutUser(request):
     messages.success(request, "You are logged out!")
     logout(request)
     return redirect('/')
 
-
+#delete a user account
 def deleteUser(request):
     #logged in users must not access 
     if not request.user.is_authenticated:
@@ -216,19 +220,11 @@ def deleteUser(request):
     return redirect('/')
 
 
-def searchUsers(request):
-    if request.method == "POST":
-        searched = request.POST['searched']
-        users = User.objects.filter(username__contains=searched)
-        return render(request, 'searchResults.html', {'searched': searched, 'users': users})
-    else:
-        return render(request, 'searchResults.html', {})
-
-
 # ----------------------------
 #  Main Forum Post
 # ----------------------------
 
+#show the main post creation page
 def createMainPost(request):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -239,6 +235,7 @@ def createMainPost(request):
     context['form'] = MainPostForm()
     return render(request, "createMainPost.html", context)
 
+#create a main post
 def execCreateMainPost(request):
     context = {}
     if request.method == "POST":
@@ -258,10 +255,10 @@ def execCreateMainPost(request):
         else:
             messages.error(request, "Invalid form data")
 
-    #login failed
     context['form'] = MainPostForm()
     return render(request, 'createMainPost.html', context)
 
+#show the edit post page
 def editMainPost(request, postId):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -273,6 +270,7 @@ def editMainPost(request, postId):
     context['form'] = MainPostForm(instance = mainPost)
     return render(request, 'editMainPost.html', context)
 
+#update a main post
 def updateMainPost(request, postId):
     mainPost = MainPost.objects.get(postId=postId)
     form = MainPostForm(request.POST, instance=mainPost)
@@ -284,13 +282,13 @@ def updateMainPost(request, postId):
     context['form'] = form
     return render(request, 'editMainPost.html', context)
 
+#delete a main post
 def deleteMainPost(request, postId):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
         return redirect('/')
 
-    #delete the currently logged in user
     mainPost = MainPost.objects.get(postId=postId)
     mainPost.delete()
     return redirect('/')
@@ -300,6 +298,7 @@ def deleteMainPost(request, postId):
 #  Main Forum Post Comment
 # ----------------------------
 
+#show the main comment creation page (currently not in use)
 def createMainComment(request, postId):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -310,6 +309,7 @@ def createMainComment(request, postId):
     context['form'] = MainCommentForm()
     return render(request, "createMainComment.html", context)
 
+#create a comment for a main post
 def execCreateMainComment(request, postId):
     context = {}
     if request.method == "POST":
@@ -329,10 +329,10 @@ def execCreateMainComment(request, postId):
         else:
             messages.error(request, "Invalid form data")
 
-    #login failed
     context['form'] = MainCommentForm()
     return render(request, 'createMainComment.html', context)
 
+#show the edit main comment page
 def editMainComment(request, commentId):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -344,6 +344,7 @@ def editMainComment(request, commentId):
     context['form'] = MainCommentForm(instance = mainComment)
     return render(request, 'editMainComment.html', context)
 
+#update a main comment
 def updateMainComment(request, commentId):
     mainComment = MainComment.objects.get(commentId=commentId)
     form = MainCommentForm(request.POST, instance=mainComment)
@@ -355,13 +356,13 @@ def updateMainComment(request, commentId):
     context['form'] = form
     return render(request, 'editMainComment.html', context)
 
+#delete a main comment
 def deleteMainComment(request, commentId):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
         return redirect('/')
 
-    #delete the currently logged in user
     mainComment = MainComment.objects.get(commentId=commentId)
     mainComment.delete()
     return redirect('/')
@@ -371,6 +372,7 @@ def deleteMainComment(request, commentId):
 #  Study Group
 # ----------------------------
 
+#show the study group creation page
 def createStudyGroup(request):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -381,6 +383,7 @@ def createStudyGroup(request):
     context['form'] = StudyGroupForm()
     return render(request, "createStudyGroup.html", context)
 
+#create a study group
 def execCreateStudyGroup(request):
     context = {}
     if request.method == "POST":
@@ -400,10 +403,10 @@ def execCreateStudyGroup(request):
         else:
             messages.error(request, "Invalid form data")
 
-    #login failed
     context['form'] = StudyGroupForm()
     return render(request, 'createStudyGroup.html', context)
 
+#show the edit study group page
 def editStudyGroup(request, studyGroupId):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -415,6 +418,7 @@ def editStudyGroup(request, studyGroupId):
     context['form'] = StudyGroupForm(instance = studygroup)
     return render(request, 'editStudyGroup.html', context)
 
+#update a study group
 def updateStudyGroup(request, studyGroupId):
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     form = StudyGroupForm(request.POST, instance=studygroup)
@@ -427,21 +431,23 @@ def updateStudyGroup(request, studyGroupId):
     context['form'] = form
     return render(request, 'editStudyGroup.html', context)
 
+#delete a study group
 def deleteStudyGroup(request, studyGroupId):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
         return redirect('/')
 
-    #delete the currently logged in user
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygroup.delete()
     return redirect('/')
 
+#check if the logged in user is a member of the study group
 def isMember(request, studyGroupId):
     studyGroupMember = StudyGroupMember.objects.filter(userId=request.user.userId, studyGroupId=studyGroupId)
     return True if studyGroupMember else False
 
+#let the logged in user join a study group
 def joinStudyGroup(request, studyGroupId):
     studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     if not studyGroup.isFull() and not isMember(request, studyGroupId):
@@ -454,6 +460,7 @@ def joinStudyGroup(request, studyGroupId):
         studyGroup.save()
     return redirect('/')
 
+#let the logged in user leave a study group
 def leaveStudyGroup(request, studyGroupId):
     studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     if studyGroup.memberCount > 0:
@@ -463,11 +470,22 @@ def leaveStudyGroup(request, studyGroupId):
     studyGroupMember.delete()
     return redirect('/')
 
+#search study groups
+def searchStudyGroups(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        #search users
+        studyGroups = StudyGroup.objects.filter(groupName__contains=searched)
+        return render(request, 'searchResults.html', {'searched': searched, 'studyGroups': studyGroups})
+    else:
+        return render(request, 'searchResults.html', {})
+
 
 # ----------------------------
 #  Study Group Forum Post
 # ----------------------------
 
+#show the study group post creation page
 def createStudyGroupPost(request, studyGroupId):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -478,6 +496,7 @@ def createStudyGroupPost(request, studyGroupId):
     context['form'] = StudyGroupPostForm()
     return render(request, "createStudyGroupPost.html", context)
 
+#create a study group forum post
 def execCreateStudyGroupPost(request, studyGroupId):
     context = {}
     if request.method == "POST":
@@ -498,10 +517,10 @@ def execCreateStudyGroupPost(request, studyGroupId):
         else:
             messages.error(request, "Invalid form data")
 
-    #login failed
     context['form'] = StudyGroupPostForm()
     return render(request, 'createStudyGroupPost.html', context)
 
+#show the edit study group forum post page
 def editStudyGroupPost(request, studyGroupId, postId):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -513,6 +532,7 @@ def editStudyGroupPost(request, studyGroupId, postId):
     context['form'] = StudyGroupPostForm(instance = studyGroupPost)
     return render(request, 'editStudyGroupPost.html', context)
 
+#update a study group forum post
 def updateStudyGroupPost(request, studyGroupId, postId):
     studyGroupPost = StudyGroupPost.objects.get(postId=postId)
     form = StudyGroupPostForm(request.POST, instance=studyGroupPost)
@@ -524,13 +544,13 @@ def updateStudyGroupPost(request, studyGroupId, postId):
     context['form'] = form
     return render(request, 'editStudyGroupPost.html', context)
 
+#delete a study group forum post
 def deleteStudyGroupPost(request, studyGroupId, postId):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
         return redirect('/')
 
-    #delete the currently logged in user
     studyGroupPost = StudyGroupPost.objects.get(postId=postId)
     studyGroupPost.delete()
     return redirect('/')
@@ -540,6 +560,7 @@ def deleteStudyGroupPost(request, studyGroupId, postId):
 #  StudyGroup Forum Post Comment
 # ----------------------------
 
+#show the study group comment page (currently not in use)
 def createStudyGroupComment(request, studyGroupId, postId):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -550,6 +571,7 @@ def createStudyGroupComment(request, studyGroupId, postId):
     context['form'] = StudyGroupCommentForm()
     return render(request, "createStudyGroupComment.html", context)
 
+# create a comment for a study group forum post
 def execCreateStudyGroupComment(request, studyGroupId, postId):
     context = {}
     if request.method == "POST":
@@ -569,10 +591,10 @@ def execCreateStudyGroupComment(request, studyGroupId, postId):
         else:
             messages.error(request, "Invalid form data")
 
-    #login failed
     context['form'] = StudyGroupCommentForm()
     return render(request, 'createStudyGroupComment.html', context)
 
+#show the edit study group comment page
 def editStudyGroupComment(request, studyGroupId, postId, commentId):
     #not logged in users must not access 
     if not request.user.is_authenticated:
@@ -584,6 +606,7 @@ def editStudyGroupComment(request, studyGroupId, postId, commentId):
     context['form'] = StudyGroupCommentForm(instance = studyGroupComment)
     return render(request, 'editStudyGroupComment.html', context)
 
+#update a study group comment
 def updateStudyGroupComment(request, studyGroupId, postId, commentId):
     studyGroupComment = StudyGroupComment.objects.get(commentId=commentId)
     form = StudyGroupCommentForm(request.POST, instance=studyGroupComment)
@@ -595,13 +618,13 @@ def updateStudyGroupComment(request, studyGroupId, postId, commentId):
     context['form'] = form
     return render(request, 'editStudyGroupComment.html', context)
 
+#delete a study group comment
 def deleteStudyGroupComment(request, studyGroupId, postId, commentId):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
         return redirect('/')
 
-    #delete the currently logged in user
     studyGroupComment = StudyGroupComment.objects.get(commentId=commentId)
     studyGroupComment.delete()
     return redirect('/')
