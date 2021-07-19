@@ -1,8 +1,3 @@
-.about-wrapper{
-    display: flex;
-    justify-content: center;
-}
-
 .about-flex {
     align-self: center;
     display: flex;

@@ -1,5 +1,20 @@
-
-<div>
-  <img class="cropped" src="https://media.discordapp.net/attachments/851329758364827689/851536635962458152/82397003_3286781398015061_772263896101683200_n.jpg">
-          <p>Greetings, my name is Joshua Stone. I'm the Front-End Lead for our team, T4 Milk Tea Team. I'm currently a student at San Francisco State University who's majoring in Computer Science. I plan to graduate this year, in December 2021. Some of my hobbies include: reading, anime, and cheesy reality TV shows like Survivor and The Amazing Race.</p>
-</div>
+{% extends 'layouts/about-base.html' %} {% block about %}
+ {% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-image">
+        <img class="cropped" src="https://media.discordapp.net/attachments/851329758364827689/851536635962458152/82397003_3286781398015061_772263896101683200_n.jpg">
+            <span class="card-title">Joshua Stone</span>
+        </div>
+        <div class="card-content">
+          <p>Greetings, my name is Joshua Stone. I'm the Front-End Lead for our team, T4 Milk Tea Team. I'm currently a student at San Francisco State University who's majoring in Computer Science. I plan to graduate this year, in December 2021. Some of my hobbies
+    include: reading, anime, and cheesy reality TV shows like Survivor and The Amazing Race.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}  
