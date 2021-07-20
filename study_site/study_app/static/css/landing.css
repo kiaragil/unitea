@@ -29,10 +29,12 @@ html {
 }
 
 .landing-register-button {
+  z-index: 0 !important;
   margin: 10px;
 }
 
 .landing-login-button {
+  z-index: 0 !important;
   margin: 10px;
 }
 
