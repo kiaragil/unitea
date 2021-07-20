@@ -1,3 +1,8 @@
+.about-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
 .about-flex {
     align-self: center;
     display: flex;
@@ -7,19 +12,14 @@
     justify-content: center;
     align-items: normal;
     margin: 2%;
-    width: 1277px;
+    max-width: 1277px;
 }
-
 
 div[class^="card"] {
     margin: 1%;
     max-width: 400px;
-
-    /* align-self: baseline; */
-    /* align-self: center; */
     align-self: top;
 }
-
 
 img{
     width: 100%;
@@ -30,5 +30,4 @@ img{
     width: 350px;
     height: 350px;
     object-fit: cover;
-
 }

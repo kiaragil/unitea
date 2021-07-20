@@ -645,6 +645,3 @@ def testCreateMainPost(request):
 
 def testEditMainPost(request):
     return render(request, 'testEditMainPost.html')
-
-def testabout(request):
-    return render(request, 'testabout.html')

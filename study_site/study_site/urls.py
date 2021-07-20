@@ -23,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('about', views.about),
-    path('about/<str:member>', views.aboutUs),
 
     path('register', views.register, name='register'),
     path('createuser', views.createUser),
@@ -83,7 +82,6 @@ urlpatterns = [
     path('testCreateStudyPost', views.testCreateStudyPost),
     path('testCreateMainPost', views.testCreateMainPost),
     path('testEditMainPost', views.testEditMainPost),
-    path('testabout', views.testabout)
 ]
 
 if settings.DEBUG:
