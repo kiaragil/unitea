@@ -1,4 +1,5 @@
 /* LANDING */
+
 html {
   scroll-behavior: smooth;
 }
@@ -69,6 +70,7 @@ html {
   height: min-content;
   font-size: large;
 }
+
 /* END LANDING */
 
 /* NAVIGATION BAR */
@@ -107,6 +109,8 @@ html {
 /* END NAVIGATION BAR */
 
 
+/* FORM */
+
 form input, textarea, button {
   display: block;
   margin: 30px;
@@ -125,27 +129,30 @@ margin-left: 33%;
 margin-right: 33%;
 }
 
-#btn-center {
-margin-left: 100%;
-}
 
 .contact-box {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .input-field {
-    margin: 20px;
+  margin: 20px;
 }
 
 .row {
-    display: block;
-    justify-content: center;
-    margin-left: 33%;
-    margin-right: 33%;
+  display: block;
+  justify-content: center;
+  margin-left: 33%;
+  margin-right: 33%;
 }
 
+/* END FORM */
+
 /* SUBMIT BUTTON */
+
+#btn-center {
+margin-left: 100%;
+}
 
 .btn {
   background-color: rgb(52, 50, 73);
@@ -154,8 +161,9 @@ margin-left: 100%;
 .btn:hover {
   background-color:rgb(43, 63, 87);
 }
- 
+
 /* END SUBMIT BUTTON */
+  
 .subject-wrapper {
   margin-top: 5%;
    display: grid;
@@ -165,7 +173,7 @@ margin-left: 100%;
     grid-template-rows: repeat(2, [row] 25%  );
     background-color: #d9b787;
     color: rgb(52, 50, 73);
-    /* justify-content: space-evenly; */
+    justify-content: space-evenly;
     margin-bottom: 30px;
 }
 
@@ -186,8 +194,6 @@ margin-left: 100%;
   box-sizing: border-box;
 }
 
-/* HOME */
-
 .home-body {
   margin: 40px;
   font-family: 'Open Sans', 'sans-serif';
@@ -198,7 +204,6 @@ margin-left: 100%;
 /* SUBJECT BUTTONS */
 
 .box {
-
 background-color: #444;
 color: #fff;
 border-radius: 10px;
