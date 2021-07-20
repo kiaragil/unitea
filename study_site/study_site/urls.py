@@ -21,8 +21,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
+    path('', views.landing),
     path('about', views.about),
+    path('home', views.index),
 
     path('register', views.register, name='register'),
     path('createuser', views.createUser),
@@ -73,7 +74,7 @@ urlpatterns = [
     path('<int:studyGroupId>/<int:postId>/<int:commentId>/deletestudygroupcomment', views.deleteStudyGroupComment),
 
     path('construction', views.construction),
-    path('landing', views.landing),
+    
 
     # ----------------------------
     #  Front End Testing 
