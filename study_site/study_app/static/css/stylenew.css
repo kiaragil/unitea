@@ -28,8 +28,8 @@ a {
 
 .nav-search{
   display: inline-flex;
-  width: 290px !important;
-  margin-right: -10px !important;
+  width: 265px !important;
+  margin-right: -20px !important;
 }
 
 .nav-searchbar{
@@ -40,14 +40,39 @@ a {
   background: transparent;
   color: white;
   border: transparent;
-  height: 63px;
-  width: 63px;
+  height: 55px;
+  width: 53px;
   margin-top: -10px;
-  margin-left: -1px;
+  margin-left: -42px;
+}
+
+.side-search-wrapper{
+  margin-top: 10px;
+  margin-left: 32px;
+  margin-bottom: -24px;
 }
 
 .search-button:hover{
   background: #885182;
+}
+
+.side-nav-search {
+  display: inline-flex;
+  width: 264px;
+}
+
+.side-search-button{
+  background: transparent;
+  color: black;
+  border: transparent;
+  height: 52px;
+  width: 53px;
+  margin-top: -10px;
+  margin-left: -42px;
+}
+
+.side-search-button:hover{
+  background: whitesmoke;
 }
 
 .nav-username{
