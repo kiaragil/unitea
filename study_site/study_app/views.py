@@ -157,6 +157,7 @@ def editUserProfile(request):
 
 #update user profile
 def updateUserProfile(request):
+    context = {}
     user = User.objects.get(userId=request.user.userId)
     form = UserProfileForm(request.POST, instance = user)
     if form.is_valid():
@@ -272,6 +273,7 @@ def editMainPost(request, postId):
 
 #update a main post
 def updateMainPost(request, postId):
+    context = {}
     mainPost = MainPost.objects.get(postId=postId)
     form = MainPostForm(request.POST, instance=mainPost)
     if form.is_valid():
@@ -346,6 +348,7 @@ def editMainComment(request, commentId):
 
 #update a main comment
 def updateMainComment(request, commentId):
+    context = {}
     mainComment = MainComment.objects.get(commentId=commentId)
     form = MainCommentForm(request.POST, instance=mainComment)
     if form.is_valid():
@@ -474,7 +477,6 @@ def leaveStudyGroup(request, studyGroupId):
 def searchStudyGroups(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        #search users
         studyGroups = StudyGroup.objects.filter(groupName__contains=searched)
         return render(request, 'searchResults.html', {'searched': searched, 'studyGroups': studyGroups})
     else:
@@ -534,6 +536,7 @@ def editStudyGroupPost(request, studyGroupId, postId):
 
 #update a study group forum post
 def updateStudyGroupPost(request, studyGroupId, postId):
+    context = {}
     studyGroupPost = StudyGroupPost.objects.get(postId=postId)
     form = StudyGroupPostForm(request.POST, instance=studyGroupPost)
     if form.is_valid():
@@ -608,6 +611,7 @@ def editStudyGroupComment(request, studyGroupId, postId, commentId):
 
 #update a study group comment
 def updateStudyGroupComment(request, studyGroupId, postId, commentId):
+    context = {}
     studyGroupComment = StudyGroupComment.objects.get(commentId=commentId)
     form = StudyGroupCommentForm(request.POST, instance=studyGroupComment)
     if form.is_valid():
