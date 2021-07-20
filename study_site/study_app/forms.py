@@ -101,7 +101,7 @@ class StudyGroupForm(forms.ModelForm):
     description = forms.CharField(
         label='Description',
         widget=forms.Textarea(),
-        max_length = 5000,
+        max_length=5000,
         required=True
     )
     subject = forms.CharField(
@@ -127,6 +127,7 @@ class MainPostForm(forms.ModelForm):
 
 class MainCommentForm(forms.ModelForm):
     comment = forms.CharField(
+        label='Comment',
         widget=forms.Textarea(),
     )
 

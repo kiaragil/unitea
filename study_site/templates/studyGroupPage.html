@@ -3,11 +3,13 @@
     <h3>{{ studygroup.groupName }}</h3>
 
     <ul>
-        <li>host: {{ studygroup.ownerId }}</li>
+        <li>Host: {{ studygroup.ownerId }}</li>
+
         <li>Description: {{ studygroup.description }} </li>
         <li>Subject: {{ studygroup.subject }} </li>
-        <li>Group Capacity: </li>
+        <li>Group Capacity: {{ studygroup.memberCount }}</li>
         <li>Members:  </li>
+
     </ul>
 
     

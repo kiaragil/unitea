@@ -8,6 +8,7 @@
                 <tr>
                     <th>Study Group Name</th>
                     <th>Description</th>
+                    <th>Posted By</th>
                 </tr>
             </thead>  
             <tbody>  
@@ -15,6 +16,7 @@
                 <tr>  
                     <td>{{ mainpost.postTitle }}</td>
                     <td>{{ mainpost.post }}</td>
+                    <td>{{ mainpost.userId }}</td>
                 </tr>  
                 {% endfor %}  
             </tbody>  
