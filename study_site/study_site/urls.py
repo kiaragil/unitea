@@ -37,6 +37,7 @@ urlpatterns = [
     
     path('contactus', views.contactusPage),
     path('submitcontactus', views.submitContactus),
+    path('profile', views.profilePage),
     
     path('forum', views.showForum),
     

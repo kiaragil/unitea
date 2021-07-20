@@ -14,13 +14,17 @@ def index(request):
     users = User.objects.all()
     return render(request, 'index.html', {'users': users})
 
+#show the profile Page
+def profilePage(request):
+    return render(request, "profile.html")
 
+#show the contact us page
 def contactusPage(request):
     context = {}
     context['form'] = ContactForm()
     return render(request, "contactus.html", context)
 
-
+#submits the contact us form
 def submitContactus(request):
     context = {}
     if request.method == "POST":
