@@ -38,7 +38,7 @@
 
   <nav>
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo">UniTea</a>
+      <a href="/home" class="brand-logo">UniTea</a>
       <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/home">Home</a></li>
@@ -62,7 +62,7 @@
     <li><a href="about">About</a></li>
     <li><a href="contactus">Contact</a></li>
     {% if user.is_authenticated %}
-    <li>Logged in as {{ user.username }}</li>
+    <li style="margin-left: 32px;">Logged in as {{ user.username }}</li>
     <li><a href="/logout">Logout</a></li>
     {% else %}
     <li><a href="/register">Register</a></li>
@@ -85,18 +85,15 @@
   {% endif %}
 
 
-
-
   <div class="row">
     <form class="col s12" method=POST action="/search">
       {% csrf_token %}
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12" style="width: 300px;">
           <i class="material-icons prefix">search</i>
 
           <label for="icon_prefix2">Search for Study Groups</label>
-  <!-- input box remains white for some reason - looking for fix - otherwise search function works ---KIARA -->
-          <input id="icon_prefix2" name="searched" type="search" class="materialize-input"></input>
+          <input id="icon_prefix2" name="searched" type="text" class="materialize-input"></input>
 
         </div>
       </div>
