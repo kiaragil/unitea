@@ -31,6 +31,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
 
+  <!-- For Search Button-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -38,14 +40,23 @@
 
   <nav>
     <div class="nav-wrapper">
-      <a href="/home" class="brand-logo">UniTea</a>
-      <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+        {% if user.is_authenticated %}
+          <a href="home" class="brand-logo">UniTea</a>
+          <a href="home" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        {% else %}
+          <a href="/" class="brand-logo">UniTea</a>
+          <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        {% endif %}
+
+      {% comment %} <a href="/" class="brand-logo">UniTea</a>
+      <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> {% endcomment %}
       <ul class="right hide-on-med-and-down">
         <li>    
-          <nav>
-              <form class="col s12" method=POST action="/search">
+          {% comment %} <nav>
+              <form id="search-wrapper" class="col s12" method=POST action="/search"">
                 {% csrf_token %}
-                <div class="nav-wrapper ">
+                <div class="nav-wrapper">
                   <div class="input-field col s12" >
                     <i class="material-icons prefix">search</i>
                     <label for="icon_prefix2">Search for Study Groups</label>
@@ -53,7 +64,14 @@
                 </div>
               </form>
             </div>
-          </nav>    
+          </nav> {% endcomment %}
+          <div class="search-wrapper">
+            <form class="nav-search" method=POST action="/search">
+              {% csrf_token %}
+              <input class="nav-searchbar" name="searched" type="text" placeholder="Search for Study Groups . . ."/>
+              <button class="search-button"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
          </li>  
         <li><a href="/home">Home</a></li>
         <li><a href="/about">About</a></li>

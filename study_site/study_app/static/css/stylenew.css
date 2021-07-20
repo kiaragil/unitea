@@ -26,6 +26,30 @@ a {
     background-color: #94618E;
 }
 
+.nav-search{
+  display: inline-flex;
+  width: 290px !important;
+  margin-right: -10px !important;
+}
+
+.nav-searchbar{
+  color: white;
+}
+
+.search-button{
+  background: transparent;
+  color: white;
+  border: transparent;
+  height: 63px;
+  width: 63px;
+  margin-top: -10px;
+  margin-left: -1px;
+}
+
+.search-button:hover{
+  background: #885182;
+}
+
 .nav-username{
   font-weight: bold;
 }
