@@ -1,5 +1,10 @@
 {% extends 'layouts/base.html' %}{% block content %}
 
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/searchResults.css' %}">
+{% endblock %}
+
     {% if searched %}
         <h4>Search Results for: {{ searched }}</h4>
         <div class="collection">
