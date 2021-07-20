@@ -16,6 +16,13 @@
                         <td>{{ form.description }}</td>
                         <td>{{ form.description.error }}</td>
                     </tr>
+                    <tr>
+                        <th>{{ form.subject.label }}</th>
+                        <div class="input-field col s12">
+                            {{ form.subject }}
+                        </div>
+                        <td>{{ form.subject.error }}</td>
+                    </tr>
                 </tbody>
                 <br>
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit
@@ -27,4 +34,10 @@
     </div>
         
         
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, []);
+      });
+    </script>
 {% endblock %}

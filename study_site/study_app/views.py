@@ -9,10 +9,17 @@ from django.contrib import messages
 
 # Create your views here.
 
-
+#show landing page to general users and homepage to logged in users
 def index(request):
-    users = User.objects.all()
-    return render(request, 'index.html', {'users': users})
+    #not logged in users don't access the landing page
+    if not request.user.is_authenticated:
+        return redirect('/landing')
+
+    return render(request, 'index.html')
+
+#show homepage
+def home(request):
+    return render(request, 'index.html')
 
 #show the profile Page
 def profilePage(request):
@@ -52,8 +59,13 @@ def construction(request):
 def about(request):
     return render(request, 'about.html')
 
-
+#show landing page
 def landing(request):
+    #logged in users don't access the landing page
+    if request.user.is_authenticated:
+        print("user is already logged in")
+        return redirect('/')
+
     return render(request, 'landing.html')
 
 
@@ -121,7 +133,6 @@ def createUser(request):
             user.email = form.cleaned_data['email']
             user.password = form.cleaned_data['password']
             user.confirmPassword = form.cleaned_data['confirmPassword']
-            user.avatar = form.cleaned_data['avatar']
 
             #password and confirm password must match
             if user.password == user.confirmPassword:
@@ -131,7 +142,7 @@ def createUser(request):
                     #register a user
                     messages.success(request, "New account created!")
                     user.save()
-                    return redirect('/')
+                    return redirect('/login')
                 except:
                     pass
             else:
@@ -217,12 +228,17 @@ def deleteUser(request):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
-        return redirect('/')
+        return redirect('/login')
 
     #delete the currently logged in user
     user = User.objects.get(userId=request.user.userId)
     user.delete()
     return redirect('/')
+
+#show a specified user's profile
+def showUserProfile(request, userId):
+    user = User.objects.get(userId=userId)
+    return render(request, 'profile.html', {'user': user})
 
 
 # ----------------------------
@@ -254,7 +270,7 @@ def execCreateMainPost(request):
             try:
                 messages.success(request, "New post created")
                 mainPost.save()
-                return redirect('/')
+                return redirect('/forum')
             except:
                 pass
         else:
@@ -282,7 +298,7 @@ def updateMainPost(request, postId):
     form = MainPostForm(request.POST, instance=mainPost)
     if form.is_valid():
         form.save()
-        return redirect('/')
+        return redirect('/postId/mainpost')
     else:
         messages.error(request, "Invalid form data")
     context['form'] = form
@@ -293,11 +309,11 @@ def deleteMainPost(request, postId):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
-        return redirect('/')
+        return redirect('/login')
 
     mainPost = MainPost.objects.get(postId=postId)
     mainPost.delete()
-    return redirect('/')
+    return redirect('/forum')
 
 
 # ----------------------------
@@ -329,7 +345,7 @@ def execCreateMainComment(request, postId):
             try:
                 messages.success(request, "New post created")
                 mainComment.save()
-                return redirect('/')
+                return redirect('/postId/mainpost')
             except:
                 pass
         else:
@@ -339,7 +355,7 @@ def execCreateMainComment(request, postId):
     return render(request, 'createMainComment.html', context)
 
 #show the edit main comment page
-def editMainComment(request, commentId):
+def editMainComment(request, postId, commentId):
     #not logged in users must not access 
     if not request.user.is_authenticated:
         messages.error(request, "You're not logged in")
@@ -351,28 +367,28 @@ def editMainComment(request, commentId):
     return render(request, 'editMainComment.html', context)
 
 #update a main comment
-def updateMainComment(request, commentId):
+def updateMainComment(request, postId, commentId):
     context = {}
     mainComment = MainComment.objects.get(commentId=commentId)
     form = MainCommentForm(request.POST, instance=mainComment)
     if form.is_valid():
         form.save()
-        return redirect('/')
+        return redirect('/postId/mainpost')
     else:
         messages.error(request, "Invalid form data")
     context['form'] = form
     return render(request, 'editMainComment.html', context)
 
 #delete a main comment
-def deleteMainComment(request, commentId):
+def deleteMainComment(request, postId, commentId):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
-        return redirect('/')
+        return redirect('/login')
 
     mainComment = MainComment.objects.get(commentId=commentId)
     mainComment.delete()
-    return redirect('/')
+    return redirect('/postId/mainpost')
 
 
 # ----------------------------
@@ -399,12 +415,13 @@ def execCreateStudyGroup(request):
             studyGroup = StudyGroup()
             studyGroup.groupName = form.cleaned_data['groupName']
             studyGroup.description = form.cleaned_data['description']
+            studyGroup.subject = form.cleaned_data['subject']
             #owner is the currently logged in user
             studyGroup.ownerId = User.objects.get(userId=request.user.userId)
             try:
                 messages.success(request, "New study group created")
                 studyGroup.save()
-                return redirect('/')
+                return redirect('/forum')
             except:
                 pass
         else:
@@ -431,7 +448,7 @@ def updateStudyGroup(request, studyGroupId):
     form = StudyGroupForm(request.POST, instance=studygroup)
     if form.is_valid():
         form.save()
-        return redirect('/')
+        return redirect('/studyGroupId/studygroup')
     else:
         messages.error(request, "Invalid form data")
     context = {}
@@ -443,11 +460,11 @@ def deleteStudyGroup(request, studyGroupId):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
-        return redirect('/')
+        return redirect('/login')
 
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygroup.delete()
-    return redirect('/')
+    return redirect('/forum')
 
 #check if the logged in user is a member of the study group
 def isMember(request, studyGroupId):
@@ -465,7 +482,7 @@ def joinStudyGroup(request, studyGroupId):
 
         studyGroup.memberCount += 1
         studyGroup.save()
-    return redirect('/')
+    return redirect('/studyGroupId/studygroup')
 
 #let the logged in user leave a study group
 def leaveStudyGroup(request, studyGroupId):
@@ -475,7 +492,7 @@ def leaveStudyGroup(request, studyGroupId):
     
     studyGroupMember = StudyGroupMember.objects.filter(userId=request.user.userId, studyGroupId=studyGroupId)
     studyGroupMember.delete()
-    return redirect('/')
+    return redirect('/studyGroupId/studygroup')
 
 #search study groups
 def searchStudyGroups(request):
@@ -517,7 +534,7 @@ def execCreateStudyGroupPost(request, studyGroupId):
             try:
                 messages.success(request, "New post created")
                 studyGroupPost.save()
-                return redirect('/')
+                return redirect('/studyGroupId/studygroup')
             except:
                 pass
         else:
@@ -545,7 +562,7 @@ def updateStudyGroupPost(request, studyGroupId, postId):
     form = StudyGroupPostForm(request.POST, instance=studyGroupPost)
     if form.is_valid():
         form.save()
-        return redirect('/')
+        return redirect('/studyGroupId/postId/studygrouppost')
     else:
         messages.error(request, "Invalid form data")
     context['form'] = form
@@ -556,11 +573,11 @@ def deleteStudyGroupPost(request, studyGroupId, postId):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
-        return redirect('/')
+        return redirect('/login')
 
     studyGroupPost = StudyGroupPost.objects.get(postId=postId)
     studyGroupPost.delete()
-    return redirect('/')
+    return redirect('/studyGroupId/studygroup')
 
 
 # ----------------------------
@@ -592,7 +609,7 @@ def execCreateStudyGroupComment(request, studyGroupId, postId):
             try:
                 messages.success(request, "New post created")
                 studyGroupComment.save()
-                return redirect('/')
+                return redirect('/studyGroupId/postId/studygrouppost')
             except:
                 pass
         else:
@@ -620,7 +637,7 @@ def updateStudyGroupComment(request, studyGroupId, postId, commentId):
     form = StudyGroupCommentForm(request.POST, instance=studyGroupComment)
     if form.is_valid():
         form.save()
-        return redirect('/')
+        return redirect('/studyGroupId/postId/studygrouppost')
     else:
         messages.error(request, "Invalid form data")
     context['form'] = form
@@ -631,11 +648,11 @@ def deleteStudyGroupComment(request, studyGroupId, postId, commentId):
     #logged in users must not access 
     if not request.user.is_authenticated:
         print("You're not logged in")
-        return redirect('/')
+        return redirect('/login')
 
     studyGroupComment = StudyGroupComment.objects.get(commentId=commentId)
     studyGroupComment.delete()
-    return redirect('/')
+    return redirect('/studyGroupId/postId/studygrouppost')
 
 
 # ----------------------------

@@ -1,6 +1,16 @@
 from django import forms
 from study_app.models import *
 
+SUBJECT_CHOICES = (
+    ('', ''),
+    ('math', 'Math'),
+    ('science', 'Science'),
+    ('languages', 'Languages'),
+    ('economics', 'Economics'),
+    ('history', 'History'),
+    ('business', 'Business'),
+)
+
 class RegistrationForm(forms.Form):
     username = forms.CharField(
         label='Username',
@@ -24,10 +34,6 @@ class RegistrationForm(forms.Form):
         max_length=100,
         required=True
     )
-    avatar = forms.ImageField(
-        label='Avatar',
-        required=False
-    )
     tosCheck = forms.NullBooleanField(
         label='I agree to Terms of Service',
         widget=forms.CheckboxInput()
@@ -39,6 +45,7 @@ class UserProfileForm(forms.ModelForm):
         required=False
     )
     profile = forms.CharField(
+        widget=forms.Textarea(),
         required=False
     )    
 
@@ -99,7 +106,7 @@ class StudyGroupForm(forms.ModelForm):
     )
     subject = forms.CharField(
         label='Subject', 
-        max_length = 100, 
+        widget=forms.Select(choices=SUBJECT_CHOICES),
         required=False
     )
 

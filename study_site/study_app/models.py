@@ -71,7 +71,6 @@ class StudyGroup(models.Model):
 	memberCount = models.IntegerField(default=0)
 	subject = models.CharField(max_length=100, blank=True, null=True)
 	ownerId = models.ForeignKey(User, on_delete=models.CASCADE)
-	subject = models.CharField(max_length=100)
 
 	def isFull(self):
 		return True if self.memberCount >= STUDY_GROUP_CAPACITY else False

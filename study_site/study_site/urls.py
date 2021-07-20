@@ -21,11 +21,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.landing),
+    path('', views.index),
+    path('home', views.home),
     path('about', views.about),
-    path('home', views.index),
     path('landing', views.landing),
-
 
     path('register', views.register, name='register'),
     path('createuser', views.createUser),
@@ -66,7 +65,7 @@ urlpatterns = [
 
     path('<int:studyGroupId>/createstudygrouppost', views.createStudyGroupPost),
     path('<int:studyGroupId>/execcreatestudygrouppost', views.execCreateStudyGroupPost),
-    path('<int:studyGroupId>/studygrouppost', views.showStudyGroupPost),
+    path('<int:studyGroupId>/<int:postId>/studygrouppost', views.showStudyGroupPost),
     path('<int:studyGroupId>/<int:postId>/editstudygrouppost', views.editStudyGroupPost),
     path('<int:studyGroupId>/<int:postId>/updatestudygrouppost', views.updateStudyGroupPost),
     path('<int:studyGroupId>/<int:postId>/deletestudygrouppost', views.deleteStudyGroupPost),
