@@ -54,7 +54,7 @@
       <ul class="right hide-on-med-and-down">
         <li>    
           {% comment %} <nav>
-              <form id="search-wrapper" class="col s12" method=POST action="/search"">
+              <form id="search-wrapper" class="col s12" method=POST action="/search">
                 {% csrf_token %}
                 <div class="nav-wrapper">
                   <div class="input-field col s12" >
@@ -75,6 +75,7 @@
          </li>  
         <li><a href="/home">Home</a></li>
         <li><a href="/about">About</a></li>
+        <li><a href="/mainforum">Forum</a></li>
         <li><a href="/contactus">Contact</a></li>
 
         {% if user.is_authenticated %}

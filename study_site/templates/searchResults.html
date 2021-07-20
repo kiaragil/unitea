@@ -1,22 +1,17 @@
 {% extends 'layouts/base.html' %}{% block content %}
 
-
     {% if searched %}
-        <h2>Search Results for: {{ searched }}</h2>
-        <br>
-        {% for studyGroup in studyGroups %}
-        <tbody>  
-            <tr>  
-                <td>{{ studyGroup.groupName }}</td>
-                <td>{{ studyGroup.ownerId }}</td>
-                <td>{{ studyGroup.description }}</td>
-            </tr>
-        </tbody>
-        {% endfor %}
-        </br>
+        <h4>Search Results for: {{ searched }}</h4>
+        <div class="collection">
+            {% for studygroup in studygroups %}
+            <a href="{{ studygroup.studyGroupId }}/studygroup" class="collection-item">
+                <b>{{ studygroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
+                <p>{{ studygroup.description }}</p>
+            </a>
+            {% endfor %}
+        </div>
     {% else %}
-        <h2>Search word invalid!</h2>
-        <h2>{{ searched }}</h2>
+        <h3>Please input a search word</h3>
     {% endif %}
 
 {% endblock%}

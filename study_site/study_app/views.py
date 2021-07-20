@@ -489,10 +489,13 @@ def leaveStudyGroup(request, studyGroupId):
 def searchStudyGroups(request):
     if request.method == "POST":
         searched = request.POST['searched']
+        if not searched:
+            messages.info(request, "Please enter a search word")
+            return redirect('/home')
         studyGroups = StudyGroup.objects.filter(groupName__contains=searched)
-        return render(request, 'searchResults.html', {'searched': searched, 'studyGroups': studyGroups})
+        return render(request, 'searchResults.html', {'searched': searched, 'studygroups': studyGroups})
     else:
-        return render(request, 'searchResults.html', {})
+        return redirect('/home')
 
 
 # ----------------------------
