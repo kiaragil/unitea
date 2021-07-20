@@ -17,7 +17,7 @@
 
 div[class^="card"] {
     margin: 1%;
-    max-width: 400px;
+    max-width: 350px;
     align-self: top;
 }
 

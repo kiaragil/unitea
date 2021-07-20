@@ -1,4 +1,8 @@
 {% extends 'layouts/base.html' %} {% block content %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/editStudyGroupPost.css' %}">
+{% endblock %}
     <h3>Edit a Post</h3>
     <div class="contact-box">
         <div class="row">
