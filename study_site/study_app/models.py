@@ -68,6 +68,7 @@ class StudyGroup(models.Model):
 	groupType = models.CharField(max_length=10, choices=GROUP_TYPE_CHOICES, default='general')
 	memberCount = models.IntegerField(default=0)
 	ownerId = models.ForeignKey(User, on_delete=models.CASCADE)
+	subject = models.CharField(max_length=100)
 
 
 	def isFull(self):
