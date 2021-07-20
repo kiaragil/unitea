@@ -40,7 +40,7 @@ urlpatterns = [
     path('submitcontactus', views.submitContactus),
     path('profile', views.profilePage),
     
-    path('forum', views.showForum),
+    path('mainforum', views.showMainForum),
     
     path('createmainpost', views.createMainPost),
     path('execcreatemainpost', views.execCreateMainPost),
@@ -54,6 +54,8 @@ urlpatterns = [
     path('<int:postId>/<int:commentId>/updatemaincomment', views.updateMainComment),
     path('<int:postId>/<int:commentId>/deletemaincomment', views.deleteMainComment),
     
+    path('<str:subject>/studygrouplisting', views.showStudyGroupListing),
+
     path('createstudygroup', views.createStudyGroup),
     path('execcreatestudygroup', views.execCreateStudyGroup),
     path('<int:studyGroupId>/studygroup', views.showStudyGroup),

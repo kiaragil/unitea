@@ -76,38 +76,6 @@ def aboutUs(request, member):
 
 
 # ----------------------------
-#  Main Pages
-# ----------------------------
-
-#show the main forum and the study group listing
-def showForum(request):
-    mainposts = MainPost.objects.all()
-    studygroups = StudyGroup.objects.all()
-    return render(request, 'forums.html', {'mainposts': mainposts, 'studygroups': studygroups})
-
-#show a main post
-def showMainPost(request, postId):
-    mainpost = MainPost.objects.get(postId=postId)
-    comments = MainComment.objects.all()
-    form = MainCommentForm()
-    return render(request, 'mainPostPage.html', {'mainpost': mainpost, 'comments': comments, 'form':form})
-
-#show a study group page
-def showStudyGroup(request, studyGroupId):
-    studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
-    studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId)
-    return render(request, 'studyGroupPage.html', {'studygroup': studygroup, 'studygroupposts': studygroupposts})
-
-#show a study group post
-def showStudyGroupPost(request, studyGroupId, postId):
-    studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
-    studygrouppost = StudyGroupPost.objects.get(postId=postId)
-    comments = StudyGroupComment.objects.all()
-    form = StudyGroupCommentForm()
-    return render(request, 'studyGroupPage.html', {'studygroup': studygroup, 'studygrouppost': studygrouppost, 'comments': comments, 'form': form})
-
-
-# ----------------------------
 #  User
 # ----------------------------
 
@@ -244,6 +212,18 @@ def showUserProfile(request, userId):
 # ----------------------------
 #  Main Forum Post
 # ----------------------------
+
+#show main forum
+def showMainForum(request):
+    mainposts = MainPost.objects.all()
+    return render(request, 'mainforum.html', {'mainposts': mainposts})
+
+#show a main post
+def showMainPost(request, postId):
+    mainpost = MainPost.objects.get(postId=postId)
+    comments = MainComment.objects.all()
+    form = MainCommentForm()
+    return render(request, 'mainPostPage.html', {'mainpost': mainpost, 'comments': comments, 'form':form})
 
 #show the main post creation page
 def createMainPost(request):
@@ -395,6 +375,17 @@ def deleteMainComment(request, postId, commentId):
 #  Study Group
 # ----------------------------
 
+#show study group listing
+def showStudyGroupListing(request, subject):
+    studyGroups = StudyGroup.objects.filter(subject__contains=subject)
+    return render(request, 'studyGroupListing.html', {'studygroups': studyGroups})
+
+#show a study group page
+def showStudyGroup(request, studyGroupId):
+    studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
+    studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId)
+    return render(request, 'studyGroupPage.html', {'studygroup': studygroup, 'studygroupposts': studygroupposts})
+
 #show the study group creation page
 def createStudyGroup(request):
     #not logged in users must not access 
@@ -507,6 +498,14 @@ def searchStudyGroups(request):
 # ----------------------------
 #  Study Group Forum Post
 # ----------------------------
+
+#show a study group post
+def showStudyGroupPost(request, studyGroupId, postId):
+    studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
+    studygrouppost = StudyGroupPost.objects.get(postId=postId)
+    comments = StudyGroupComment.objects.all()
+    form = StudyGroupCommentForm()
+    return render(request, 'studyGroupPage.html', {'studygroup': studygroup, 'studygrouppost': studygrouppost, 'comments': comments, 'form': form})
 
 #show the study group post creation page
 def createStudyGroupPost(request, studyGroupId):
