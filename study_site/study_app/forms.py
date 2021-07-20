@@ -38,10 +38,13 @@ class UserProfileForm(forms.ModelForm):
     avatar = forms.ImageField(
         required=False
     )
+    profile = forms.CharField(
+        required=False
+    )    
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'avatar']
+        fields = ['username', 'email', 'avatar', 'profile']
 
 
 class LoginForm(forms.Form):
@@ -94,10 +97,15 @@ class StudyGroupForm(forms.ModelForm):
         max_length = 5000,
         required=True
     )
+    subject = forms.CharField(
+        label='Subject', 
+        max_length = 100, 
+        required=False
+    )
 
     class Meta:
         model = StudyGroup
-        fields = ['groupName', 'description']
+        fields = ['groupName', 'description', 'subject']
 
 
 class MainPostForm(forms.ModelForm):
