@@ -87,6 +87,7 @@ urlpatterns = [
     path('testCreateStudyPost', views.testCreateStudyPost),
     path('testCreateMainPost', views.testCreateMainPost),
     path('testEditMainPost', views.testEditMainPost),
+    path('testEditStudyGrouPost', views.testEditStudyGroupPost)
 ]
 
 if settings.DEBUG:

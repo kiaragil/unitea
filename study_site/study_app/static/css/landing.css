@@ -19,7 +19,6 @@ html {
   display: grid;
   place-self: center;
   text-align: center;
-  /* padding: 10px; */
 }
 
 .greeting-text {
