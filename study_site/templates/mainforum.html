@@ -1,26 +1,19 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
-    <div id="mainforum" class="col s12">
+    <div class="container">
         <h3>Main Forum</h3>
-    
-        <table class="table table-striped table-bordered table-sm">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Study Group Name</th>
-                    <th>Description</th>
-                    <th>Posted By</th>
-                </tr>
-            </thead>  
-            <tbody>  
-                {% for mainpost in mainposts %}  
-                <tr>  
-                    <td>{{ mainpost.postTitle }}</td>
-                    <td>{{ mainpost.post }}</td>
-                    <td>{{ mainpost.userId }}</td>
-                </tr>  
-                {% endfor %}  
-            </tbody>  
-        </table>
+
+        <div class="collection">
+            <a href="createmainpost" class="collection-item">
+            <b>+ Create a Post</b>
+            </a>
+            {% for mainpost in mainposts %} 
+            <a href="/{{ mainpost.postId }}/mainpost" class="collection-item">
+                <b>{{ mainpost.postTitle }}</b>・{{ mainpost.userId }}
+            </a>
+            {% endfor %}
+        </div>
+
     </div>
 
 {% endblock %}

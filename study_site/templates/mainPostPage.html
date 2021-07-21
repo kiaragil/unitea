@@ -1,16 +1,28 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
     <h3>{{ mainpost.postTitle }}</h3>
+    <span>{{ mainpost.userId }}</span>
     
-    {{ mainpost.post }}
+    {% if mainpost.userId == user %}
+    ・<a href="editmainpost">edit</a>
+    {% endif %}
+    <br>
 
-    <h4>Comments</h4>
+    <p>{{ mainpost.post }}</p>
+
+    <h5>Comments</h5>
     <table>
         <tbody>  
             {% for comment in comments %}  
             <tr>  
                 <td>{{ comment.comment }}</td>
-                <td>{{ comment.userId }}</td>
+                <td>
+                    {{ comment.userId }}
+                    {% if comment.userId == user %}
+                    ・<a href="{{comment.commentId}}/editmaincomment">edit</a>
+                    <br>
+                    {% endif %}
+                </td>
                 <td>{{ comment.commentDateTime }}</td>
             </tr>  
             {% endfor %}

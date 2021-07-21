@@ -1,42 +1,45 @@
- {% extends 'layouts/base.html' %} {% block content %}
+{% extends 'layouts/base.html' %} {% block content %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/editStudyGroup.css' %}">
+{% endblock %}
 
-    <h3>Edit a Study Group</h3>
-    <div class="contact-box">
-        <div class="row">
-            <form method="POST" class="col s12" enctype="multipart/form-data" action="updatestudygroup">
-                {% csrf_token %}
-                <tbody>
-                    <tr>
-                        <th>{{ form.groupName.label }}</th>
-                        <td>{{ form.groupName }}</td>
-                        <td>{{ form.groupName.errors }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ form.description.label }}</th>
-                        <td>{{ form.description }}</td>
-                        <td>{{ form.description.error }}</td>
-                    </tr>
-                    <tr>
-                        <th>{{ form.subject.label }}</th>
-                        <div class="input-field col s12">
-                            {{ form.subject }}
-                        </div>
-                        <td>{{ form.subject.error }}</td>
-                    </tr>
-                </tbody>
-                <br>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-  
-            </form>
-        </div>
+<div class="editSGP-wrapper">
+    <div class="editSGP-content">
+        <h3>Edit Study Group</h3>
+        <form method="POST" class="col s12" id="editstudygroupform" enctype="multipart/form-data" action="updatestudygroup">
+            {% csrf_token %}
+            <div class="input-field col s12" id="editSGP-text">
+                {{ form.groupName.label }}
+                {{ form.groupName }}
+                {{ form.groupName.errors }}
+            </div>
+            <div class="input-field col s12" id="editSGP-text">
+                {{ form.description.label }}
+                {{ form.description }}
+                {{ form.description.error }}
+            </div>
+            <div class="input-field col s12" id="editSGP-text">
+                {{ form.subject.label }}
+                <div class="input-field col s12">
+                    {{ form.subject }}
+                </div>
+                {{ form.subject.error }}
+            </div>
+
+            <div class="editSGP-buttons">
+                <a href="deletestudygroup" class="waves-effect waves-light btn-small" id="editSGP-button">Delete</a>
+                <a href="studygroup" class="waves-effect waves-light btn-small" id="editSGP-button">Cancel</a>
+                <a href="#" onclick="document.forms['editstudygroupform'].submit();" class="waves-effect waves-light btn-small" id="editSGP-button">Save</a>
+            </div>
+        </form>
     </div>
+</div>
         
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems, []);
-      });
-    </script>  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, []);
+  });
+</script>  
 {% endblock %}

@@ -1,24 +1,36 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
     <h3>{{ studygroup.groupName }}</h3>
+    <span>{{ studygrouppost.userId }}</span>
+
+    {% if studygrouppost.userId == user %}
+    ・<a href="editstudygrouppost">edit the post</a>
+    <br>
+    {% endif %}
     
-    {{ studygrouppost.userId }}
     {{ studygrouppost.postDateTime }}
-    {{ studygrouppost.post }}
+
+    <p>{{ studygrouppost.post }}</p>
     
-    <h4>Comments</h4>
+    <h5>Comments</h5>
     <table>
         <tbody>  
             {% for comment in comments %}  
             <tr>  
                 <td>{{ comment.comment }}</td>
-                <td>{{ comment.userId }}</td>
+                <td>
+                    {{ comment.userId }}
+                    {% if comment.userId == user %}
+                    ・<a href="{{comment.commentId}}/editstudygroupcomment">edit</a>
+                    <br>
+                    {% endif %}
+                </td>
                 <td>{{ comment.commentDateTime }}</td>
             </tr>  
             {% endfor %}
             <tr>
                 <td>
-                    <form method="POST" class="col s12" enctype="multipart/form-data" action="execstudygroupcomment">
+                    <form method="POST" class="col s12" enctype="multipart/form-data" action="execcreatestudygroupcomment">
                     {% csrf_token %}
                     {{ form.comment }}
                     <button class="btn waves-effect waves-light" type="submit" name="action">Send

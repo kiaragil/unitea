@@ -504,7 +504,7 @@ def showStudyGroupPost(request, studyGroupId, postId):
     studygrouppost = StudyGroupPost.objects.get(postId=postId)
     comments = StudyGroupComment.objects.all()
     form = StudyGroupCommentForm()
-    return render(request, 'studyGroupPage.html', {'studygroup': studygroup, 'studygrouppost': studygrouppost, 'comments': comments, 'form': form})
+    return render(request, 'studyGroupPostPage.html', {'studygroup': studygroup, 'studygrouppost': studygrouppost, 'comments': comments, 'form': form})
 
 #show the study group post creation page
 def createStudyGroupPost(request, studyGroupId):
@@ -560,7 +560,7 @@ def updateStudyGroupPost(request, studyGroupId, postId):
     form = StudyGroupPostForm(request.POST, instance=studyGroupPost)
     if form.is_valid():
         form.save()
-        return redirect(f'/{studyGroupId}/{postId}f/studygrouppost')
+        return redirect(f'/{studyGroupId}/{postId}/studygrouppost')
     else:
         messages.error(request, "Invalid form data")
     context['form'] = form
