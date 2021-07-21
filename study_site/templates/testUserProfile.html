@@ -3,3 +3,24 @@
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/userProfile.css' %}">
 {% endblock %}
+
+<h3>User Profile</h3>
+    <div class="avatar">
+        <img src="https://i.pinimg.com/236x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg" alt="..." class="avatar-img rounded-circle" />
+    </div>
+    <div class="userName">
+        <h4>User Name</h4>
+    </div>
+    <div class="bio">
+        <p style="border:3px; border-style:outset; border-color:#2ec4b6; padding: 1em;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit nisl ullamcorper, rutrum metus in, congue lectus. In hac habitasse platea dictumst. Cras urna quam, malesuada vitae risus at,
+            pretium blandit sapien.
+        </p>
+    </div>
+    <div class="edit">
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </div>
+
+
+
+{% endblock %}
