@@ -6,28 +6,40 @@
 
 <div class="editSGP-wrapper">
     <div class="editSGP-content">
-        <div class="editSGP-title"> Edit Study Group</div>
-        <form class="col s12">
+        <h3>Edit Study Group</h3>
+        <form method="POST" class="col s12" id="editstudygroupform" enctype="multipart/form-data" action="updatestudygroup">
+            {% csrf_token %}
             <div class="input-field col s12" id="editSGP-text">
-                <input id="title" type="text">
-                <label for="title">Group Name</label>
+                {{ form.groupName.label }}
+                {{ form.groupName }}
+                {{ form.groupName.errors }}
             </div>
             <div class="input-field col s12" id="editSGP-text">
-                <input id="subject" type="text">
-                <label for="subject">Subject</label>
+                {{ form.description.label }}
+                {{ form.description }}
+                {{ form.description.error }}
             </div>
             <div class="input-field col s12" id="editSGP-text">
-                <textarea id="description" class="materialize-textarea"></textarea>
-                <label for="description">Description</label>
+                {{ form.subject.label }}
+                <div class="input-field col s12">
+                    {{ form.subject }}
+                </div>
+                {{ form.subject.error }}
+            </div>
+
+            <div class="editSGP-buttons">
+                <a href="deletestudygroup" class="waves-effect waves-light btn-small" id="editSGP-button">Delete</a>
+                <a href="studygroup" class="waves-effect waves-light btn-small" id="editSGP-button">Cancel</a>
+                <a href="#" onclick="document.forms['editstudygroupform'].submit();" class="waves-effect waves-light btn-small" id="editSGP-button">Save</a>
             </div>
         </form>
-
-        <div class="editSGP-buttons">
-            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editSGP-button">Delete</a>
-            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editSGP-button">Cancel</a>
-            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editSGP-button">Save</a>
-        </div>
     </div>
 </div>
-
+        
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, []);
+  });
+</script>  
 {% endblock %}
