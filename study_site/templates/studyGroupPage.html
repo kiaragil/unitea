@@ -3,16 +3,16 @@
     <h3>{{ studygroup.groupName }}</h3>
 
     <ul>
-        <li>Host: <a href="/{{ studygroup.ownerId.userId }}/userprofile">{{ studygroup.ownerId }}</a>
+        <li>Host: <a href="/{{ studygroup.ownerId.userId }}/userprofile" class="font-blue">{{ studygroup.ownerId }}</a>
         {% if studygroup.ownerId == user %}
-        ・<a href="editstudygroup">edit the study group</a>
+        ・<a href="editstudygroup">edit study group</a>
         <br>
         {% endif %}
         </li>
         <li>Subject: {{ studygroup.subject }} </li>
         <li>Members ({{ studygroup.memberCount }}):
             {% for member in members %}
-                <a href="/{{ member.userId.userId }}/userprofile">{{ member.userId }}</a> 
+                <a href="/{{ member.userId.userId }}/userprofile" class="font-blue">{{ member.userId }}</a> 
             {% endfor %}
         </li>
         <li>Description: {{ studygroup.description }} </li>
@@ -26,6 +26,8 @@
         </li>
     </ul>
     
+    <hr>
+
     <h4>Forum</h4>
     <div class="collection">
         <a href="createstudygrouppost" class="collection-item">
