@@ -1,7 +1,19 @@
 .report-wrapper{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    justify-content: center;
+}
+
+.report-content{
+    display: grid;
+    grid-template-columns: auto;
     max-width: 400px;
+    justify-content: left;
+}
+
+.report-title{
+    font-size: 32px;
+    margin-top: 25px;
+    margin-bottom: 40px;
 }
 
 .report-text{
@@ -12,10 +24,17 @@
 #report-label{
     font-size: 24px;
     width: 400px;
+    color: black;
 }
 
 #report-text.materialize-textarea{
     margin-top: 10px;
+    margin-left: -19px;
+    font-size: 20px;
+}
+
+#report-text::placeholder{
+    color:rgb(174, 164, 164)
 }
 
 #report-button{
