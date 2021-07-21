@@ -769,7 +769,9 @@ def deleteStudyGroupComment(request, studyGroupId, postId, commentId):
 # ----------------------------
 
 def testEditStudyGroup(request):
-    return render(request, 'testEditStudyGroup.html')
+    context = {}
+    context['form'] = StudyGroupForm()
+    return render(request, 'testEditStudyGroup.html', context)
 
 
 def testCreateStudyPost(request):
@@ -777,15 +779,21 @@ def testCreateStudyPost(request):
 
 
 def testCreateMainPost(request):
-    return render(request, 'testCreateMainPost.html')
+    context = {}
+    context['form'] = MainPostForm()
+    return render(request, "testCreateMainPost.html", context)
 
 
 def testEditMainPost(request):
-    return render(request, 'testEditMainPost.html')
+    context = {}
+    context['form'] = MainPostForm()
+    return render(request, 'testEditMainPost.html', context)
 
 
 def testEditStudyGroupPost(request):
-    return render(request, 'testEditStudyGroupPost.html')
+    context = {}
+    context['form'] = StudyGroupPostForm()
+    return render(request, 'testEditStudyGroupPost.html', context)
 
 
 def report(request):
@@ -797,4 +805,6 @@ def testUserProfile(request):
 
 
 def testEditUserProfile(request):
-    return render(request, 'testEditUserProfile.html')
+    context = {}
+    context['form'] = UserProfileForm()
+    return render(request, 'testEditUserProfile.html', context)
