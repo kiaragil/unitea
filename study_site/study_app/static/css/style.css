@@ -2,6 +2,7 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #e3dcc9;
 }
 
 .landing-box {
@@ -108,6 +109,9 @@ html {
 
 /* END NAVIGATION BAR */
 
+.font-white {
+  color: white;
+}
 
 /* FORM */
 
@@ -115,20 +119,6 @@ form input, textarea, button {
   display: block;
   margin: 30px;
 }
-
-html {
-background-color: #e3dcc9;
-}
-
-a {
-color: white;
-}
-
-#center-it {
-margin-left: 33%;
-margin-right: 33%;
-}
-
 
 .contact-box {
   display: flex;
@@ -149,10 +139,6 @@ margin-right: 33%;
 /* END FORM */
 
 /* SUBMIT BUTTON */
-
-#btn-center {
-margin-left: 100%;
-}
 
 .btn {
   background-color: rgb(52, 50, 73);
