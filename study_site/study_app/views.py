@@ -777,7 +777,7 @@ def testCreateMainPost(request):
 
 def testEditMainPost(request):
     context = {}
-    context['form'] = MainPostForm(instance=mainPost)
+    context['form'] = MainPostForm()
     return render(request, 'testEditMainPost.html', context)
 
 
