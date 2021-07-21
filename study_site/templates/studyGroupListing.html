@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %} {% block content %}
+
+    {% if studygroups %}
+    <div class="collection">
+        {% for studygroup in studygroups %}
+        <a href="/{{ studygroup.studyGroupId }}/studygroup" class="collection-item">
+            <b>{{ studygroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
+            <p>{{ studygroup.description }}</p>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+        <h4>There is no study group in this section yet.</h4>
+    {% endif %}
+
+{% endblock %}

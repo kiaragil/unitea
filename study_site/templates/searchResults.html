@@ -1,16 +1,30 @@
 {% extends 'layouts/base.html' %}{% block content %}
 
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/searchResults.css' %}">
+{% endblock %}
 
-    {% if searched %}
-        <h2>Search Results for: {{ searched }}</h2>
-        <br>
-        {% for user in users %}
-            <p>{{ user.username }}</p>
-            <p></p><img class="cropped" src="./../media/{{user.avatar}}" alt="avatar"></p>
-        {% endfor %}
-        </br>
-    {% else %}
-        <h2>Search word invalid!</h2>
-    {% endif %}
+    <div class="container">
+        {% if searched %}
+        <h4>Search Results for: {{ searched }}</h4>
+
+            {% if studygroups %}
+            <div class="collection">
+                {% for studygroup in studygroups %}
+                <a href="{{ studygroup.studyGroupId }}/studygroup" class="collection-item">
+                    <b>{{ studygroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
+                    <p>{{ studygroup.description }}</p>
+                </a>
+                {% endfor %}
+            </div>
+            {% else %}
+                <h4>No study group found.</h4>
+            {% endif %}
+
+        {% else %}
+            <h4>Please input a search word</h4>
+        {% endif %}
+    </div>
 
 {% endblock%}

@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %} {% block content %}
+
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/report.css' %}">
+{% endblock %}
+
+<div class="report-wrapper">
+<div class="report-title"> We Are Here For You!</div>
+<div class="report-content">
+    
+    <div class="report-text">
+        <label for="title" id="report-label">Please Tell Us Your Concerns Below</label>
+        <form class="col s12">
+            <div class="input-field col s6">
+                <textarea class="materialize-textarea" id="report-text" placeholder="Hi, I am concerned about..." type="text"></textarea>
+            </div>
+        </form>
+    </div>    
+    <a href="/" class="waves-effect waves-light btn-small" id="report-button">Submit</a>
+</div>
+</div>
+        
+{% endblock %}

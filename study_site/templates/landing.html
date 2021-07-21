@@ -1,27 +1,89 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
-{% load static %}
-{% block styles %}
-<link rel="stylesheet" href="{% static 'css/landing.css' %}">
-{% endblock %}
 
-<div class="main" id="section1">
-    <h2>Section 1</h2>
-    <p>This is section one!</p>
-    <a href="#section2">Click Me to Smooth Scroll to Section 2 Below</a>
-    <p>Note: Remove the scroll-behavior property to remove smooth scrolling.</p>
-</div>
 
-<div class="main" id="section2">
-    <h2>Section 2</h2>
-    <p>This is section two!</p>
-    <a href="#section3">Click Me to Smooth Scroll to Section 3 Below</a>
-</div>
+    <div class="landing-box">
+        <div class="greeting-box" id="greeting-box">
+            <div class='greeting-text'>
+                Find your study group today!
+            </div>
+            <div class="landing-register-button" >
+                <a class="waves-effect waves-light btn-large" href={% url 'register' %}>Register Now!</a>
+            </div>
+            <div class="landing-login-button" >
+                <a class="waves-effect waves-light btn-large" href={% url 'login' %}>&nbsp; &nbsp; &nbsp; &nbsp;Log In&nbsp; &nbsp; &nbsp; &nbsp;</a>
+            </div>
 
-<div class="main" id="section3">
-    <h2>Section 3</h2>
-    <p>This is section three!</p>
-    <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
-</div>
+        </div>
+        <div class='landing-photo' id='landing-photo'>
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjI2MzgwMjUx&ixlib=rb-1.2.1&q=80&w=1080" alt="Study Group" class="landing-img">
+        </div>
+        <div class="landing-slogan">
+            <div class="landing-slogan1">
+                A refreshing way to study
+            </div>
+            <div class="landing-slogan2">
+                Connect with real people
+            </div>
+            <div class="landing-slogan3">
+                Drive your success together
+            </div>
+        </div>
+    </div>
+
+
+    <div class="faqs-title1">
+        <h3>What is UniTea?</h3>
+    </div>
+    <div class="faqs1">
+        <div class='faq-photo1' id='faq-photo1'>
+            <img src="https://images.squarespace-cdn.com/content/v1/55ece940e4b048d1ed401c11/1450136257542-4DATU4KRB70MDENGJXJX/X%3A++The+Unknown" alt="Study Group" class="landing-img">
+        </div>
+        <div class="faqs-slogan1">
+            <p>
+                Google News is a news aggregator service developed by Google. 
+                It presents a continuous flow of links to articles organized 
+                from thousands of publishers and magazines. Google News is available 
+                as an app on Android, iOS, and the Web. Google released a beta version in September 
+                2002 and the official app in January 2006
+            </p>
+        </div>
+    </div>
+
+    <div class="faqs-title2">
+        <h3>What does UniTea do?</h3>
+    </div>
+    <div class="faqs2">
+        <div class='faq-photo2' id='faq-photo2'>
+            <img src="https://images.squarespace-cdn.com/content/v1/55ece940e4b048d1ed401c11/1450136257542-4DATU4KRB70MDENGJXJX/X%3A++The+Unknown" alt="Study Group" class="landing-img">
+        </div>
+        <div class="faqs-slogan2">
+            <p>
+                Google News is a news aggregator service developed by Google. 
+                It presents a continuous flow of links to articles organized 
+                from thousands of publishers and magazines. Google News is available 
+                as an app on Android, iOS, and the Web. Google released a beta version in September 
+                2002 and the official app in January 2006
+            </p>
+        </div>
+    </div>
+
+    <div class="faqs-title3">
+        <h3>How do you use UniTea?</h3>
+    </div>
+    <div class="faqs3">
+        <div class='faq-photo3' id='faq-photo3'>
+            <img src="https://images.squarespace-cdn.com/content/v1/55ece940e4b048d1ed401c11/1450136257542-4DATU4KRB70MDENGJXJX/X%3A++The+Unknown" alt="Study Group" class="landing-img">
+        </div>
+        <div class="faqs-slogan3">
+            <p>
+                Google News is a news aggregator service developed by Google. 
+                It presents a continuous flow of links to articles organized 
+                from thousands of publishers and magazines. Google News is available 
+                as an app on Android, iOS, and the Web. Google released a beta version in September 
+                2002 and the official app in January 2006
+            </p>
+        </div>
+     </div> 
 
 {% endblock %}

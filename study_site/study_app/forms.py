@@ -1,5 +1,15 @@
 from django import forms
+from study_app.models import *
 
+SUBJECT_CHOICES = (
+    ('', ''),
+    ('math', 'Math'),
+    ('science', 'Science'),
+    ('languages', 'Languages'),
+    ('economics', 'Economics'),
+    ('history', 'History'),
+    ('business', 'Business'),
+)
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(
@@ -24,14 +34,24 @@ class RegistrationForm(forms.Form):
         max_length=100,
         required=True
     )
-    avatar = forms.ImageField(
-        label='Avatar',
-        required=False
-    )
     tosCheck = forms.NullBooleanField(
         label='I agree to Terms of Service',
         widget=forms.CheckboxInput()
     )
+
+
+class UserProfileForm(forms.ModelForm):
+    avatar = forms.ImageField(
+        required=False
+    )
+    profile = forms.CharField(
+        widget=forms.Textarea(),
+        required=False
+    )    
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'avatar', 'profile']
 
 
 class LoginForm(forms.Form):
@@ -72,7 +92,7 @@ class ContactForm(forms.Form):
     )
 
 
-class StudyGroupForm(forms.Form):
+class StudyGroupForm(forms.ModelForm):
     groupName = forms.CharField(
         label='Study Group Name', 
         max_length = 100, 
@@ -81,6 +101,72 @@ class StudyGroupForm(forms.Form):
     description = forms.CharField(
         label='Description',
         widget=forms.Textarea(),
-        max_length = 5000,
+        max_length=5000,
         required=True
     )
+    subject = forms.CharField(
+        label='Subject', 
+        widget=forms.Select(choices=SUBJECT_CHOICES),
+        required=False
+    )
+
+    class Meta:
+        model = StudyGroup
+        fields = ['groupName', 'description', 'subject']
+
+
+class MainPostForm(forms.ModelForm):
+    postTitle = forms.CharField(
+        label='Post Title'
+    )
+    post = forms.CharField(
+        widget=forms.Textarea(),
+    )
+
+    class Meta:
+        model = MainPost
+        fields = ['postTitle', 'post']
+
+
+class MainCommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        label='Comment',
+        widget=forms.Textarea(),
+    )
+
+    class Meta:
+        model = MainComment
+        fields = ['comment']
+
+
+class StudyGroupPostForm(forms.ModelForm):
+    postTitle = forms.CharField(
+        label='Post Title'
+    )
+    post = forms.CharField(
+        widget=forms.Textarea(),
+    )
+
+    class Meta:
+        model = StudyGroupPost
+        fields = ['postTitle', 'post']
+
+
+class StudyGroupCommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        widget=forms.Textarea(),
+    )
+
+    class Meta:
+        model = StudyGroupComment
+        fields = ['comment']
+
+
+class MessageForm(forms.ModelForm):
+    message = forms.CharField(
+        widget=forms.Textarea(),
+    )
+
+    class Meta:
+        model = Message
+        fields = ['message']

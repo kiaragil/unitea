@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %} {% block content %}
+    <h3>Create a New Post</h3>
+    <div class="contact-box">
+        <div class="row">
+            <form method="POST" class="col s12" enctype="multipart/form-data" action="/execcreatemainpost">
+                {% csrf_token %}
+                <tbody>
+                    <tr>
+                        <th>{{ form.postTitle.label }}</th>
+                        <td>{{ form.postTitle }}</td>
+                        <td>{{ form.postTitle.errors }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ form.post.label }}</th>
+                        <td>{{ form.post }}</td>
+                        <td>{{ form.post.error }}</td>
+                    </tr>
+                </tbody>
+                <br>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+  
+            </form>
+        </div>
+    </div>
+        
+        
+{% endblock %}

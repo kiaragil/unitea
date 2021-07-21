@@ -1,52 +1,46 @@
-{% extends 'layouts/base.html' %} {% block content %}
+{% extends 'layouts/base.html' %}
 
+{% block content %}
 
+<p><div id="explainer"> Click on a subject button below to browse study groups OR use the search bar above to find one.</p></div>
 
-    <div class="home-body">
-        <div class="subject-wrapper">
-            <div class="box a"><a href="construction">Math</a></div>
-            <div class="box b"><a href="construction">Science</a></div>
-            <div class="box c"><a href="construction">Languages</a></div>
-            <div class="box d"><a href="construction">Economics</a></div>
-            <div class="box e"><a href="construction">History</a></div>
-            <div class="box f"><a href="construction">Business</a></div>
-        </div>
-        <hr>
-        <div class="post-wrapper">
-            <div class="box g">Recently Added Groups</div>
-            <div class="box i"><a href="construction">Group #1</a></div>
-            <div class="box j"><a href="construction">Group #2</a></div>
-        </div>
-        <hr>
-        <div class="box k">Create Group</div>
-        <div class="create-wrapper">
-            <div class="box l"><a href="construction">+</a></div>
-        </div>
+<div class="container">
 
+    <div class="subject-wrapper">
+        <div class="box a"><a href="math/studygrouplisting" class="font-white">Math</a></div>
+        <div class="box b"><a href="science/studygrouplisting" class="font-white">Science</a></div>
+        <div class="box c"><a href="languages/studygrouplisting" class="font-white">Languages</a></div>
+        <div class="box d"><a href="economics/studygrouplisting" class="font-white">Economics</a></div>
+        <div class="box e"><a href="history/studygrouplisting" class="font-white">History</a></div>
+        <div class="box f"><a href="business/studygrouplisting" class="font-white">Business</a></div>
     </div>
+    <div class="create-wrapper">
+        <div class="boxB"><a href="/createstudygroup" class="font-white">+ Create Group</a></div>
+    </div>
+
 </div>
-    {% endblock %}
+{% endblock %}
 
 
-    <!-- Test registered user listing  -->
-<!-- <table>  
-        <thead>  
-            <tr>  
-                <th>User ID</th>  
-                <th>User Name</th>  
+<!-- Test registered user listing  -->
+<!-- <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>User Name</th>
                 <th>User Email</th>
                 <th>Role</th>
-            </tr>  
-        </thead>  
-        <tbody>  
-            {% for user in users %}  
-            <tr>  
-                <td>{{ user.userId }}</td>  
-                <td>{{ user.username }}</td>  
-                <td>{{ user.email }}</td>   
-                <td>{{ user.role }}</td>  
-            </tr>  
-            {% endfor %}  
-        </tbody>  
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.userId }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>   -->
-    <!-- Test registered user listing  -->
+<!-- Test registered user listing  -->

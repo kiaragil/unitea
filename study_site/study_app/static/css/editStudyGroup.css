@@ -1,0 +1,36 @@
+.editSGP-wrapper{
+    display: grid;
+    justify-content: center;
+}
+
+.editSGP-title{
+    font-size: 32px;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    justify-self: center;
+}
+
+.editSGP-content{
+    display: grid;
+    grid-template-columns: auto;
+    width: 100%;
+    width: 400px;
+    font-size: 20px;
+}
+
+#editSGP-text{
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.editSGP-buttons{
+    width: 400px;
+    justify-items: center;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#editSGP-button{
+    width: 100px;
+}

@@ -1,0 +1,36 @@
+ {% extends 'layouts/base.html' %} {% block content %}
+
+    <h3>Edit User Profile</h3>
+    <div class="contact-box">
+        <div class="row">
+            <form method="POST" class="col s12" enctype="multipart/form-data" action="/updateuser">
+                {% csrf_token %}
+                <tbody>
+                    <tr>
+                        <th>{{ form.username.label }}</th>
+                        <td>{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ form.email.label }}</th>
+                        <td>{{ form.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ form.profile.label }}</th>
+                        <td>{{ form.profile }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ form.avatar.label }}</th>
+                        <td>{{ form.avatar }}</td>
+                    </tr>
+                </tbody>
+                <br>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+  
+            </form>
+        </div>
+    </div>
+        
+        
+{% endblock %}

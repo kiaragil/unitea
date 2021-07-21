@@ -16,6 +16,8 @@ GROUP_TYPE_CHOICES = (
 	('educator', 'educator'),
 )
 
+STUDY_GROUP_CAPACITY = 21
+GROUP_CHAT_CAPACITY = 51
 
 class User(AbstractBaseUser):
 	userId = models.AutoField(primary_key=True, unique=True)
@@ -24,6 +26,7 @@ class User(AbstractBaseUser):
 	password = models.CharField(max_length=100)
 	role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='general')
 	avatar = models.ImageField(upload_to='images/')
+	profile = models.CharField(max_length=1000, blank=True, null=True)
 	last_login = None
 
 	USERNAME_FIELD = 'email'
@@ -66,7 +69,11 @@ class StudyGroup(models.Model):
 	description = models.CharField(max_length=5000)
 	groupType = models.CharField(max_length=10, choices=GROUP_TYPE_CHOICES, default='general')
 	memberCount = models.IntegerField(default=0)
+	subject = models.CharField(max_length=100, blank=True, null=True)
 	ownerId = models.ForeignKey(User, on_delete=models.CASCADE)
+
+	def isFull(self):
+		return True if self.memberCount >= STUDY_GROUP_CAPACITY else False
 
 	class Meta:
 		db_table = "studygroups";
@@ -105,6 +112,10 @@ class StudyGroupMember(models.Model):
 
 class ChatRoom(models.Model):
 	chatRoomId = models.AutoField(primary_key=True, unique=True)
+	memberCount = models.IntegerField(default=0)
+
+	def isFull(self):
+		return True if self.memberCount >= GROUP_CHAT_CAPACITY else False
 
 	class Meta:
 		db_table = "chatrooms";

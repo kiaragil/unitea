@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %} {% block content %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/editStudyGroup.css' %}">
+{% endblock %}
+
+<div class="editSGP-wrapper">
+    <div class="editSGP-content">
+        <h3>Edit Study Group Post</h3>
+        <form method="POST" class="col s12" id="editstudygrouppostform" enctype="multipart/form-data" action="updatestudygrouppost">
+            {% csrf_token %}
+            <div class="input-field col s12" id="editSGP-text">
+                {{ form.postTitle.label }}
+                {{ form.postTitle }}
+                {{ form.postTitle.errors }}
+            </div>
+            <div class="input-field col s12" id="editSGP-text">
+                {{ form.post.label }}
+                {{ form.post }}
+                {{ form.post.error }}
+            </div>
+
+            <div class="editSGP-buttons">
+                <a href="deletestudygrouppost" class="waves-effect waves-light btn-small" id="editSGP-button">Delete</a>
+                <a href="studygrouppost" class="waves-effect waves-light btn-small" id="editSGP-button">Cancel</a>
+                <a href="#" onclick="document.forms['editstudygrouppostform'].submit();" class="waves-effect waves-light btn-small" id="editSGP-button">Save</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

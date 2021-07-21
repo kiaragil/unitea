@@ -7,77 +7,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UniTea Home</title>
 
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+  </script>
 
-  <!-- Our own style sheet -->
+
   {% load static %}
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css"
+    integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
   {% block styles %}
   {% endblock %}
 
-  <!-- For icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- For Comfortaa font https://fonts.google.com/specimen/Comfortaa -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+
+  <!-- For Search Button-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
 <body>
 
-  <div class="topnav">
-    <a href="/" class="brand-logo right">UniTea</a>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
+  <nav>
+    <div class="nav-wrapper">
+
+      {% if user.is_authenticated %}
+      <a href="/" class="brand-logo">UniTea</a>
+      <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      {% else %}
+      <a href="/" class="brand-logo">UniTea</a>
+      <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      {% endif %}
+
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <div class="search-wrapper">
+            <form class="nav-search" method=POST action="/search">
+              {% csrf_token %}
+              <input class="nav-searchbar" name="searched" type="text" placeholder="Search for a Study Group" />
+              <button class="search-button"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </li>
+        <li><a href="/" class="font-white">Home</a></li>
+        <li><a href="/about" class="font-white">About</a></li>
+        <li><a href="/mainforum" class="font-white">Forum</a></li>
+        <li><a href="/contactus" class="font-white">Contact</a></li>
+
+        {% if user.is_authenticated %}
+        <li class="nav-username"><a href="/{{ user.userId }}/userprofile">hi, {{ user.username }}</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+
+    <li>
+      <div class="side-search-wrapper">
+        <form class="side-nav-search" method=POST action="/search">
+          {% csrf_token %}
+          <input class="side-nav-searchbar" name="searched" type="text" placeholder="Search for a Study Group" />
+          <button class="side-search-button"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </li>
+    <li><a href="/">Home</a></li>
+    <li><a href="about">About</a></li>
+    <li><a href="contactus">Contact</a></li>
     {% if user.is_authenticated %}
-      <span>Logged in as {{ user.username }}</span>
-      <a href="/logout">Logout</a>
+    <li style="margin-left: 32px;">Logged in as {{ user.username }}</li>
+    <li><a href="/logout">Logout</a></li>
     {% else %}
-      <a href="/register">Register</a>
-      <a href="/login">Login</a>
+    <li><a href="/register">Register</a></li>
+    <li><a href="/login">Login</a></li>
     {% endif %}
-    <a href="/contactus">Contact</a>
+  </ul>
+
+  {% if messages %}
+  {% for message in messages %}
+  {% if message.tags == 'success' %}
+  <script>M.toast({ html: "{{ message }}", classes: 'green rounded', displayLength: 2000 });</script>
+  {% elif message.tags == 'info' %}
+  <script>M.toast({ html: "{{ message }}", classes: 'blue rounded', displayLength: 2000 });</script>
+  {% elif message.tags == 'warning' %}
+  <script>M.toast({ html: "{{ message }}", classes: 'orange rounded', displayLength: 3000 });</script>
+  {% elif message.tags == 'error' %}
+  <script>M.toast({ html: "{{ message }}", classes: 'red rounded', displayLength: 3000 });</script>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+
+
+
+  <div class="container">
+    {% block content %} PAGE CONTENT {% endblock %}
   </div>
-
-
-
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">search</i>
-          <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-
-          <!-- <form method=POST  action="/searchusers">
-                {% csrf_token %}
-                <input type="search" placeholder="Search User" name="searched">
-                
-                </form> -->
-          <label for="icon_prefix2">Search for subjects</label>
-        </div>
-      </div>
-    </form>
-  </div>
-
-
-  {% block content %} to be replaced {% endblock %}
-
-  <div class="foot">
-    <footer class="page-footer">
-      <div class="footer-copyright">
-        <div class="container">
-          © 2021 UniTea
-          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <footer class="page-footer">
+    <div class="footer-copyright">
+      <div class="container">
+        © 2021 UniTea
+        <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>
-

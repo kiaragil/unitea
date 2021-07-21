@@ -1,29 +1,20 @@
-{% extends 'layouts/base.html' %} {% block content %}
-<!-- <div class="abt-body">
-        <div class="wrapper">
-        <header class="header">UniTea, making studying easier for you.</header>
-        <aside class="sidebar">Tea time with a kick!</aside>
-        <article class="content">
-            <h1>Welcome to UniTea</h1>
-            <p>Here at UniTea we are all about gaining knowledge and learning from one another. And Tea, yes, we love tea!</p>
-        </article>
-        <footer class="footer">Register for UniTea today!</footer>
-        </div>
-    </div><h2>THE T4 MILK TEA TEAM</h2> -->
+ {% extends 'layouts/base.html' %} {% block content %}
 
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/abt.css' %}">
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
 {% endblock %}
 
-<ul class="abt-ul">
-    <li class="abt-li"><a href="/about/kiara">Kiara</a></li>
-    <li class="abt-li"><a href="/about/ostyn">Ostyn</a></li>
-    <li class="abt-li"><a href="/about/josh">Josh</a></li>
-    <li class="abt-li"><a href="/about/cong">Cong</a></li>
-    <li class="abt-li"><a href="/about/miho">Miho</a></li>
-    <li class="abt-li"><a href="/about/vernon">Vernon</a></li>
-    <li class="abt-li"><a href="/about/melinda">Melinda</a></li>
-</ul>
+<div class="about-wrapper">
+    <div class="about-flex">
+        <div class='card-kiara'> {% include "about/kiara.html" %} </div>
+        <div class='card-josh'> {% include "about/josh.html" %} </div>
+        <div class='card-ostyn'> {% include "about/ostyn.html" %} </div>
+        <div class='card-cong'> {% include "about/cong.html" %} </div>
+        <div class='card-melinda'> {% include "about/melinda.html" %} </div>
+        <div class='card-miho'> {% include "about/miho.html" %} </div>
+        <div class='card-vernon'> {% include "about/vernon.html" %} </div>
+    </div>
+</div>
 
-{% endblock%}
+{% endblock %}

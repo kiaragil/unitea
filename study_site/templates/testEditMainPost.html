@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %} {% block content %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/editMainPost.css' %}">
+{% endblock %}
+
+<div class="editMP-wrapper">
+    <div class="editMP-content">
+        <div class="editMP-title"> Edit Main Post</div>
+        <form class="col s12">
+            <div class="input-field col s12" id="editMP-text">
+                <input id="title" type="text">
+                <label for="title">Title</label>
+            </div>
+            <div class="input-field col s12" id="editMP-text">
+                <textarea id="description" class="materialize-textarea"></textarea>
+                <label for="description">Description</label>
+            </div>
+        </form>
+
+        <div class="editMP-buttons">
+            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editMP-button">Delete</a>
+            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editMP-button">Cancel</a>
+            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editMP-button">Save</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

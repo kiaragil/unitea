@@ -1,0 +1,41 @@
+{% extends 'layouts/base.html' %} {% block content %}
+
+    <h3>{{ studygroup.groupName }}</h3>
+
+    <ul>
+        <li>Host: <a href="/{{ studygroup.ownerId.userId }}/userprofile">{{ studygroup.ownerId }}</a>
+        {% if studygroup.ownerId == user %}
+        ・<a href="editstudygroup">edit the study group</a>
+        <br>
+        {% endif %}
+        </li>
+        <li>Subject: {{ studygroup.subject }} </li>
+        <li>Members ({{ studygroup.memberCount }}):
+            {% for member in members %}
+                <a href="/{{ member.userId.userId }}/userprofile">{{ member.userId }}</a> 
+            {% endfor %}
+        </li>
+        <li>Description: {{ studygroup.description }} </li>
+        <br>
+        <li>
+            {% if isMember %}
+            <a href="leavestudygroup"class="waves-effect waves-light btn">Leave</a>
+            {% else %}
+            <a href="joinstudygroup"class="waves-effect waves-light btn red">Join</a>
+            {% endif %}
+        </li>
+    </ul>
+    
+    <h4>Forum</h4>
+    <div class="collection">
+        <a href="createstudygrouppost" class="collection-item">
+            <b>+ Create a Post</b>
+        </a>
+        {% for studygrouppost in studygroupposts %}
+        <a href="{{ studygrouppost.postId }}/studygrouppost" class="collection-item">
+            <b>{{ studygrouppost.postTitle }}</b>・{{ studygrouppost.userId }}
+        </a>
+        {% endfor %}
+    </div>
+
+{% endblock %}
