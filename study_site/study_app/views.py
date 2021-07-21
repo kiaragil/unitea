@@ -21,10 +21,6 @@ def index(request):
 def home(request):
     return render(request, 'index.html')
 
-#show the profile Page
-def profilePage(request):
-    return render(request, "profile.html")
-
 #show the contact us page
 def contactusPage(request):
     context = {}
