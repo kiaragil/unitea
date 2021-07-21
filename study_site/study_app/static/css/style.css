@@ -233,8 +233,7 @@ form input, textarea, button {
 }
 
 .box {
-  
-  background-color: #444;
+  background-color: #011627;
   color: #fff;
   border-radius: 10px;
   padding: 35px;
@@ -310,17 +309,17 @@ form input, textarea, button {
   padding: 35px;
   margin-top: 30px;
   background-color: #ccffea;
+  border-radius: 10px;
   z-index: 20;
 }
 
 .boxB {
-  background-color: #444;
+  background-color: #4ecdc4;
   color: #fff;
   border-radius: 10px;
   padding: 35px;
   font-size: 150%;
   text-align: center;
-  text-shadow: 1px 2px #2c312f;
 }
 
 /* END OF SUBJECT BUTTONS */

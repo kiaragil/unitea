@@ -4,7 +4,7 @@
     <span><a href="/{{ mainpost.userId.userId }}/userprofile" class="font-blue">{{ mainpost.userId }}</a></span>
     
     {% if mainpost.userId == user %}
-    ・<a href="editmainpost">edit the post</a>
+    ・<a href="editmainpost">edit post</a>
     {% endif %}
     <br>
 
@@ -21,7 +21,7 @@
                 <td>
                     <a href="/{{ comment.userId.userId }}/userprofile" class="font-blue">{{ comment.userId }}</a>
                     {% if comment.userId == user %}
-                    <br><a href="{{comment.commentId}}/editmaincomment">edit the comment</a>
+                    <br><a href="{{comment.commentId}}/editmaincomment">edit comment</a>
                     <br>
                     {% endif %}
                 </td>

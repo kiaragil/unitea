@@ -4,7 +4,7 @@
     <span><a href="/{{ studygrouppost.userId.userId }}/userprofile" class="font-blue">{{ studygrouppost.userId }}</a></span>
 
     {% if studygrouppost.userId == user %}
-    ・<a href="editstudygrouppost">edit the post</a>
+    ・<a href="editstudygrouppost">edit post</a>
     <br>
     {% endif %}
     
@@ -23,7 +23,7 @@
                 <td>
                     <a href="/{{ comment.userId.userId }}/userprofile" class="font-blue">{{ comment.userId }}</a>
                     {% if comment.userId == user %}
-                    ・<a href="{{comment.commentId}}/editstudygroupcomment">edit</a>
+                    ・<a href="{{comment.commentId}}/editstudygroupcomment">edit comment</a>
                     <br>
                     {% endif %}
                 </td>
