@@ -171,3 +171,27 @@ class MessageForm(forms.ModelForm):
         model = Message
         fields = ['message']
 
+
+class UserPasswordForm(forms.ModelForm):
+    oldPassword = forms.CharField(
+        label='Old Password',
+        widget=forms.PasswordInput(),
+        max_length=100,
+        required=True
+    )
+    newPassword = forms.CharField(
+        label='New Password',
+        widget=forms.PasswordInput(),
+        max_length=100,
+        required=True
+    )
+    confirmPassword = forms.CharField(
+        label='Confirm New Password',
+        widget=forms.PasswordInput(),
+        max_length=100,
+        required=True
+    )
+
+    class Meta:
+        model = User
+        fields = ['password']
