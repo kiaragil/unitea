@@ -65,7 +65,7 @@
         <li><a href="/contactus" class="font-white">Contact</a></li>
 
         {% if user.is_authenticated %}
-        <li class="nav-username"><a href="{{ user.userId }}/userprofile">hi, {{ user.username }}</a></li>
+        <li class="nav-username"><a href="/{{ user.userId }}/userprofile">hi, {{ user.username }}</a></li>
         <li><a href="/logout">Logout</a></li>
         {% else %}
         <li><a href="/register">Register</a></li>

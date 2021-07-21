@@ -106,8 +106,6 @@ body {
   grid-column: 1;
 }
 
-
-
 /* END LANDING */
 
 /* NAVIGATION BAR */
@@ -164,6 +162,24 @@ body {
 
 .font-white {
   color: white;
+}
+
+/* USER PROFILE  */
+
+.avatar {
+    margin-top: 5%;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.bio {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 55%;
 }
 
 /* FORM */

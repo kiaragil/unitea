@@ -1,27 +1,23 @@
 {% extends 'layouts/base.html' %} {% block content %}
-{% load static %}
-{% block styles %}
-<link rel="stylesheet" href="{% static 'css/userProfile.css' %}">
-{% endblock %}
 
-    <div class="avatar">
+    <div class="avatar flex-center">
         {% if userprofile.avatar %}
         <img src=MEDIA_URL+{{ user.avatar }} />
         {% else %}
         <img src="https://i.pinimg.com/236x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg" alt="..." class="avatar-img rounded-circle" />
         {% endif %}
     </div>
-    <div class="userName">
+    <div class="flex-center">
         <h4>{{ userprofile.username }}</h4>
     </div>
     {% if userprofile.profile %}
     <div class="bio">
-        <p style="border:3px; border-style:outset; border-color:#2ec4b6; padding: 1em;">{{ userprofile.profile }}</p>
+        <p class="flex-center">{{ userprofile.profile }}</p>
     </div>
     {% endif %}
     
     {% if userprofile == user %}
-    <a href="/edituser" class="edit">edit user profile</a>
+    <a href="/edituser" class="flex-center">edit user profile</a>
     {% endif %}
     <br>
 
