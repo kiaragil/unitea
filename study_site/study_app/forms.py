@@ -116,6 +116,9 @@ class StudyGroupForm(forms.ModelForm):
 
 
 class MainPostForm(forms.ModelForm):
+    postTitle = forms.CharField(
+        label='Post Title'
+    )
     post = forms.CharField(
         widget=forms.Textarea(),
     )
@@ -137,6 +140,9 @@ class MainCommentForm(forms.ModelForm):
 
 
 class StudyGroupPostForm(forms.ModelForm):
+    postTitle = forms.CharField(
+        label='Post Title'
+    )
     post = forms.CharField(
         widget=forms.Textarea(),
     )

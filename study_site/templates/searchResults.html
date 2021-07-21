@@ -8,16 +8,22 @@
     <div class="container">
         {% if searched %}
         <h4>Search Results for: {{ searched }}</h4>
-        <div class="collection">
-            {% for studygroup in studygroups %}
-            <a href="{{ studygroup.studyGroupId }}/studygroup" class="collection-item">
-                <b>{{ studygroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
-                <p>{{ studygroup.description }}</p>
-            </a>
-            {% endfor %}
-        </div>
+
+            {% if studygroups %}
+            <div class="collection">
+                {% for studygroup in studygroups %}
+                <a href="{{ studygroup.studyGroupId }}/studygroup" class="collection-item">
+                    <b>{{ studygroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
+                    <p>{{ studygroup.description }}</p>
+                </a>
+                {% endfor %}
+            </div>
+            {% else %}
+                <h4>No study group found.</h4>
+            {% endif %}
+
         {% else %}
-            <h3>Please input a search word</h3>
+            <h4>Please input a search word</h4>
         {% endif %}
     </div>
 

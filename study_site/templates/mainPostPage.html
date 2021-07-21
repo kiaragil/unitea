@@ -4,7 +4,7 @@
     <span>{{ mainpost.userId }}</span>
     
     {% if mainpost.userId == user %}
-    ・<a href="editmainpost">edit</a>
+    ・<a href="editmainpost">edit the post</a>
     {% endif %}
     <br>
 
@@ -19,7 +19,7 @@
                 <td>
                     {{ comment.userId }}
                     {% if comment.userId == user %}
-                    ・<a href="{{comment.commentId}}/editmaincomment">edit</a>
+                    ・<a href="{{comment.commentId}}/editmaincomment">edit the post</a>
                     <br>
                     {% endif %}
                 </td>
