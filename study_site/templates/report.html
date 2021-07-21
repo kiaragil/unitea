@@ -1,21 +1,14 @@
 {% extends 'layouts/base.html' %} {% block content %}
+
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/editStudyGroupPost.css' %}">
+<link rel="stylesheet" href="{% static 'css/report.css' %}">
 {% endblock %}
 
-<div class="Title"> Edit Study Group Post</div>
+<div class="Title"> Report</div>
 <div class="row">
     <form class="col s12">
       <div class="row">
-        <div class="input-field col s12">
-          <input id="title" type="text">
-          <label for="title">Title</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="subject" type="text">
-          <label for="subject">Subject</label>
-        </div>
       </div>
       <div class="row">
         <form class="col s12">
@@ -27,7 +20,7 @@
           </div>
         </form>
       </div>    
-      <a href="createMainPost.html" class="waves-effect waves-light btn-small">Save</a>
+      <a href="createMainPost.html" class="waves-effect waves-light btn-small">Submit</a>
         
         
 {% endblock %}

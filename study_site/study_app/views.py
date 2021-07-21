@@ -675,3 +675,6 @@ def testEditMainPost(request):
 
 def testEditStudyGroupPost(request):
     return render(request, 'testEditStudyGroupPost.html')
+
+def report(request):
+    return render(request, 'report.html')
