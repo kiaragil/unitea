@@ -6,23 +6,26 @@
 
 <div class="editSGP-wrapper">
     <div class="editSGP-content">
-        <div class="editSGP-title"> Edit Study Group Post</div>
-        <form class="col s12">
+        <h3>Edit Study Group Post</h3>
+        <form method="POST" class="col s12" id="editstudygrouppostform" enctype="multipart/form-data" action="updatestudygrouppost">
+            {% csrf_token %}
             <div class="input-field col s12" id="editSGP-text">
-                <input id="title" type="text">
-                <label for="title">Title</label>
+                {{ form.postTitle.label }}
+                {{ form.postTitle }}
+                {{ form.postTitle.errors }}
             </div>
             <div class="input-field col s12" id="editSGP-text">
-                <textarea id="description" class="materialize-textarea"></textarea>
-                <label for="description">Description</label>
+                {{ form.post.label }}
+                {{ form.post }}
+                {{ form.post.error }}
+            </div>
+
+            <div class="editSGP-buttons">
+                <a href="deletestudygrouppost" class="waves-effect waves-light btn-small" id="editSGP-button">Delete</a>
+                <a href="studygrouppost" class="waves-effect waves-light btn-small" id="editSGP-button">Cancel</a>
+                <a href="#" onclick="document.forms['editstudygrouppostform'].submit();" class="waves-effect waves-light btn-small" id="editSGP-button">Save</a>
             </div>
         </form>
-
-        <div class="editSGP-buttons">
-            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editSGP-button">Delete</a>
-            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editSGP-button">Cancel</a>
-            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editSGP-button">Save</a>
-        </div>
     </div>
 </div>
 

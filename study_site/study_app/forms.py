@@ -105,11 +105,14 @@ class StudyGroupForm(forms.ModelForm):
         max_length=5000,
         required=True
     )
+    description.widget.attrs.update({'class':'materialize-textarea'})
+    description.widget.attrs.update({'id':'editSGP-text'})   
     subject = forms.CharField(
         label='Subject', 
         widget=forms.Select(choices=SUBJECT_CHOICES),
         required=False
     )
+    subject.widget.attrs.update({'class':'editSGP-subject'})
 
     class Meta:
         model = StudyGroup
@@ -145,12 +148,15 @@ class MainCommentForm(forms.ModelForm):
 
 class StudyGroupPostForm(forms.ModelForm):
     postTitle = forms.CharField(
-        label='Post Title'
+        label='Title'
     )
     post = forms.CharField(
+        label='Description',
         widget=forms.Textarea(),
     )
 
+    post.widget.attrs.update({'class':'materialize-textarea'})
+    post.widget.attrs.update({'id':'editSGP-text'})   
     class Meta:
         model = StudyGroupPost
         fields = ['postTitle', 'post']
