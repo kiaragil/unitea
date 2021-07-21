@@ -204,10 +204,9 @@ form input, textarea, button {
 /* SUBJECT BUTTONS */
 .subject-wrapper {
   display: grid;
-  column-gap: 2%;
-  row-gap: 10%;
-  grid-template-columns: auto repeat(3, [col] 20%);
-  grid-template-rows: repeat(2, [row] 35%);
+  row-gap: 40px;
+  grid-template-columns:  repeat(3, [col] 25%);
+  grid-template-rows:  repeat(2, [row] 25%);
   background-color: #ccffea;
   justify-content: space-evenly;
   border-radius: 10px;
