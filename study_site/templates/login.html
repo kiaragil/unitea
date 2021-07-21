@@ -3,30 +3,25 @@
 
     <h3>Log in</h3>
     <div class="contact-box">
-        <div class="row">
-            <form method="POST" class="col s12" enctype="multipart/form-data" action="/loginaccount">
-                {% csrf_token %}
-                <tbody>
-                    <tr>
-                        <td>{{ form.email | materializecss:'s12 m6, icon=email' }}</td>
-                        <td>{{ form.email.errors }}</td>
-                    </tr>
-                    <tr>
-                        <td>{{ form.password | materializecss:'s12 m6, icon=password' }}</td>
-                        <td>{{ form.password.error }}</td>
-                    </tr>
-                </tbody>
-                
-                <div id="btm" style="clear: left;">
+        <form method="POST" class="col s12" enctype="multipart/form-data" action="/loginaccount">
+            {% csrf_token %}
+            <tbody>
+                <tr>
+                    <td>{{ form.email | materializecss:'s12 m6, icon=email' }}</td>
+                    <td>{{ form.email.errors }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password | materializecss:'s12 m6, icon=password' }}</td>
+                    <td>{{ form.password.error }}</td>
+                </tr>
+            </tbody>
+            
+            <div id="btm" style="clear: left;">
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                     <i class="material-icons right">send</i>
                 </button>
-                </div>
-        
-                </form>
-  
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
         
         

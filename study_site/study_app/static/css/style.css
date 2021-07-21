@@ -13,7 +13,8 @@ body {
 }
 
 .container {
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   justify-content: center;
 }
 
@@ -181,10 +182,8 @@ form input, textarea, button {
 }
 
 .row {
-  display: block;
+  display: flex;
   justify-content: center;
-  margin-left: 33%;
-  margin-right: 33%;
 }
 
 /* END FORM */
