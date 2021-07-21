@@ -380,3 +380,20 @@ form input, textarea, button {
   font-size: 22px;
   text-align: center;
 }
+
+/* center containers */
+.center-container {
+  /*height: 200px;*/
+  position: relative;
+  /*border: 3px solid green;*/
+  padding-left: 25%;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+

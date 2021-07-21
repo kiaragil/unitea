@@ -4,29 +4,29 @@
 <link rel="stylesheet" href="{% static 'css/editMainPost.css' %}">
 {% endblock %}
 
-<div class="editMP-wrapper">
-    <div class="editMP-content">
-        <h3>Edit Main Post</h3>
-        <form method="POST" class="col s12" id="editmainpostform" enctype="multipart/form-data" action="updatemainpost">
-            {% csrf_token %}
-            <div class="input-field col s12" id="editMP-text">
-                {{ form.postTitle.label }}
-                {{ form.postTitle }}
-                {{ form.postTitle.error }}
-            </div>
-            <div class="input-field col s12" id="editMP-text">
-                {{ form.post.label }}
-                {{ form.post }}
-                {{ form.post.error }}
-            </div>
+    <div class="editMP-wrapper" style="margin-top 10%;">
+        <div class="editMP-content">
+            <h3>Edit Main Post</h3>
+            <form method="POST" class="col s12" id="editmainpostform" enctype="multipart/form-data" action="updatemainpost">
+                {% csrf_token %}
+                <div class="input-field col s12" id="editMP-text">
+                    {{ form.postTitle.label }}
+                    {{ form.postTitle }}
+                    {{ form.postTitle.error }}
+                </div>
+                <div class="input-field col s12" id="editMP-text">
+                    {{ form.post.label }}
+                    {{ form.post }}
+                    {{ form.post.error }}
+                </div>
 
-            <div class="editMP-buttons">
-                <a href="deletemainpost" class="waves-effect waves-light btn-small" id="editMP-button">Delete</a>
-                <a href="mainpost" class="waves-effect waves-light btn-small" id="editMP-button">Cancel</a>
-                <a href="#" onclick="document.forms['editmainpostform'].submit();" class="waves-effect waves-light btn-small" id="editSGP-button">Save</a>
-            </div>
-        </form>
+                <div class="editMP-buttons">
+                    <a href="deletemainpost" class="waves-effect waves-light btn-small" id="editMP-button">Delete</a>
+                    <a href="mainpost" class="waves-effect waves-light btn-small" id="editMP-button">Cancel</a>
+                    <a href="#" onclick="document.forms['editmainpostform'].submit();" class="waves-effect waves-light btn-small" id="editSGP-button">Save</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
 {% endblock %}
