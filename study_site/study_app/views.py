@@ -141,7 +141,7 @@ def updateUserProfile(request):
     form = UserProfileForm(request.POST, instance = user)
     if form.is_valid():
         form.save()
-        return redirect('/')
+        return redirect(f'/{user.userId}/userprofile')
     else:
         messages.error(request, "Invalid form data")
     context['form'] = form
@@ -202,7 +202,7 @@ def deleteUser(request):
 #show a specified user's profile
 def showUserProfile(request, userId):
     user = User.objects.get(userId=userId)
-    return render(request, 'profile.html', {'user': user})
+    return render(request, 'userProfile.html', {'userprofile': user})
 
 
 # ----------------------------
@@ -319,7 +319,7 @@ def execCreateMainComment(request, postId):
             mainComment.userId = User.objects.get(userId=request.user.userId)
             mainComment.postId = MainPost.objects.get(postId=postId)
             try:
-                messages.success(request, "New post created")
+                messages.success(request, "Comment added")
                 mainComment.save()
                 return redirect(f'/{postId}/mainpost')
             except:
@@ -605,7 +605,7 @@ def execCreateStudyGroupComment(request, studyGroupId, postId):
             studyGroupComment.userId = User.objects.get(userId=request.user.userId)
             studyGroupComment.postId = StudyGroupPost.objects.get(postId=postId)
             try:
-                messages.success(request, "New post created")
+                messages.success(request, "Comment added")
                 studyGroupComment.save()
                 return redirect(f'/{studyGroupId}/{postId}/studygrouppost')
             except:

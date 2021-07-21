@@ -35,6 +35,7 @@ urlpatterns = [
     path('logout', views.logoutUser),
     path('deleteuser', views.deleteUser),
     path('search', views.searchStudyGroups),
+    path('<int:userId>/userprofile', views.showUserProfile),
     
     path('contactus', views.contactusPage),
     path('submitcontactus', views.submitContactus),
