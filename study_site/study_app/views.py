@@ -708,9 +708,16 @@ def createStudyGroupComment(request, studyGroupId, postId):
 # create a comment for a study group forum post
 def execCreateStudyGroupComment(request, studyGroupId, postId):
     context = {}
+    #memberCheck = StudyGroupMember.objects.filter(studyGroupId=studyGroupId, userId=request.user.userId)
+    #isMember = True if memberCheck else False
+
     if not request.user.is_authenticated:
-        messages.error(request, "You must be registered before you can post!")
-        return redirect('/register')
+        messages.error(request, "You must be login before you can post!")
+        return redirect('/login')
+
+    #elif not isMember:
+    #    messages.error(request, "You must join the group to comment!")
+    #    return redirect(f'/{studyGroupId}/studygroup')
 
     if request.method == "POST":
         form = StudyGroupCommentForm(request.POST)
