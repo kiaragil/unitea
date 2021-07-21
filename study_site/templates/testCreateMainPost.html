@@ -1,43 +1,28 @@
 {% extends 'layouts/base.html' %} {% block content %}
-
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/createMainPost.css' %}">
+<link rel="stylesheet" href="{% static 'css/editMainPost.css' %}">
 {% endblock %}
 
-<div class="Title">Create Main Post</div>
-<div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="title" type="text">
-          <label for="title">Title</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="subject" type="text">
-          <label for="subject">Subject</label>
-        </div>
-      </div>
-      <div class="row">
+<div class="editMP-wrapper">
+    <div class="editMP-content">
+        <div class="editMP-title"> Create Main Post</div>
         <form class="col s12">
-          <div class="row">
-            <div class="input-field col s12">
-              <textarea id="description" class="materialize-textarea"></textarea>
-              <label for="description">Description</label>
+            <div class="input-field col s12" id="editMP-text">
+                <input id="title" type="text">
+                <label for="title">Title</label>
             </div>
-          </div>
+            <div class="input-field col s12" id="editMP-text">
+                <textarea id="description" class="materialize-textarea"></textarea>
+                <label for="description">Description</label>
+            </div>
         </form>
-      </div>    
-      <div class="row">
-        <div class="col s12">
-          Room Capacity:
-          <div class="input-field inline">
-            <input id="capacity_inline" type="number">
-            <label for="capacity_inline">Room Capacity</label>
-          </div>
+
+        <div class="editMP-buttons">
+            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editMP-button">Cancel</a>
+            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editMP-button">Save</a>
         </div>
-      </div>
-      <a href="editMainPost.html" class="waves-effect waves-light btn-small">Submit</a>
-        
-        
+    </div>
+</div>
+
 {% endblock %}

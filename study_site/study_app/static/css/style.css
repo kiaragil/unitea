@@ -9,7 +9,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 5em;
 }
 
 .container {
@@ -55,11 +55,11 @@ body {
 }
 .landing-img{
   border-radius: 25px;
-  max-width: 100%;
+  max-height: 100%;
   height: auto;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-height: 7em) {
   #landing-photo {
       display: none;
   }
@@ -178,27 +178,30 @@ form input, textarea, button {
 
 /* SUBJECT BUTTONS */
 .subject-wrapper {
-  margin-top: 5%;
   display: grid;
-  grid-gap: 20px;
-  /* 20% * 5 = 100% */
-  grid-template-columns: repeat(3, [col] 25%) ;
-  grid-template-rows: repeat(2, [row] 25%);
+  column-gap: 2%;
+  row-gap: 10%;
+  grid-template-columns: auto repeat(3, [col] 20%);
+  grid-template-rows: repeat(2, [row] 35%);
   background-color: #ccffea;
   justify-content: space-evenly;
   border-radius: 10px;
 }
 
 .box {
+  
   background-color: #444;
   color: #fff;
   border-radius: 10px;
   padding: 35px;
   font-size: 150%;
   text-align: center;
+  text-shadow: 2px 2px #2c312f;
 }
 
 .a {
+  width: 9em;
+  height: 4.5em;
   grid-column: col 1 / span  1;
   grid-row: row 1;
   background-image: url("/static/media/Math.png");
@@ -207,6 +210,8 @@ form input, textarea, button {
   margin-top: 30px;
 }
 .b {
+  width: 9em;
+  height: 4.5em;
   grid-column: col 2 / span  1 ;
   grid-row: row 1;
   background-image: url("/static/media/Science.png");
@@ -215,6 +220,8 @@ form input, textarea, button {
   margin-top: 30px;
 }
 .c {
+  width: 9em;
+  height: 4.5em;
   grid-column: col 3 / span 1;
   grid-row: row 1;
   background-image: url("/static/media/Languages.png");
@@ -223,6 +230,8 @@ form input, textarea, button {
   margin-top: 30px;
 }
 .d {
+  width: 9em;
+  height: 4.5em;
   grid-column: col 1 / span  1 ;
   grid-row: row 2;
   background-image: url("/static/media/Economics.png");
@@ -232,6 +241,8 @@ form input, textarea, button {
 }
 
 .e {
+  width: 9em;
+  height: 4.5em;
   grid-column: col 2 / span 1;
   grid-row: row 2;
   background-image: url("/static/media/History.png");
@@ -241,6 +252,8 @@ form input, textarea, button {
 }
 
 .f {
+  width: 9em;
+  height: 4.5em;
   grid-column: col 3 / span 1;
   grid-row: row 2  ;
   background-image: url("/static/media/Business.png");
@@ -254,6 +267,16 @@ form input, textarea, button {
   margin-top: 30px;
   background-color: #ccffea;
   z-index: 20;
+}
+
+.boxB {
+  background-color: #444;
+  color: #fff;
+  border-radius: 10px;
+  padding: 35px;
+  font-size: 150%;
+  text-align: center;
+  text-shadow: 1px 2px #2c312f;
 }
 
 /* END OF SUBJECT BUTTONS */
@@ -308,3 +331,12 @@ form input, textarea, button {
 }
 
 /* END PASSWORD CHECK  */
+
+
+#explainer{
+  max-width: 100%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  font-size: 22px;
+  text-align: center;
+}
