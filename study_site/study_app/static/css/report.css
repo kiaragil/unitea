@@ -1,0 +1,23 @@
+.report-wrapper{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.report-text{
+    width: 400px; 
+    font-size: 20px;
+}
+
+#report-label{
+    font-size: 24px;
+    width: 400px;
+}
+
+#report-text.materialize-textarea{
+    margin-top: 10px;
+}
+
+#report-button{
+    width: 100px;
+}
