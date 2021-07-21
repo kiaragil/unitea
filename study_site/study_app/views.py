@@ -678,3 +678,9 @@ def testEditStudyGroupPost(request):
 
 def report(request):
     return render(request, 'report.html')
+
+def testUserProfile(request):
+    return render(request, 'testUserProfile.html')
+
+def testEditUserProfile(request):
+    return render(request, 'testEditUserProfile.html')

@@ -116,6 +116,11 @@ body {
   font-weight: bold;
 }
 
+.side-search-wrapper{
+  display: inline-flex;
+}
+
+
 /* END NAVIGATION BAR */
 
 .font-white {

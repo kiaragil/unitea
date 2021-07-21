@@ -38,7 +38,7 @@ urlpatterns = [
     
     path('contactus', views.contactusPage),
     path('submitcontactus', views.submitContactus),
-    path('profile', views.profilePage),
+    path('report', views.report),
     
     path('mainforum', views.showMainForum),
     
@@ -88,7 +88,9 @@ urlpatterns = [
     path('testCreateMainPost', views.testCreateMainPost),
     path('testEditMainPost', views.testEditMainPost),
     path('testEditStudyGroupPost', views.testEditStudyGroupPost),
-    path('report', views.report)
+    path('testUserProfile', views.testUserProfile),
+    path('testEditUserProfile', views.testEditUserProfile),
+
 ]
 
 if settings.DEBUG:
