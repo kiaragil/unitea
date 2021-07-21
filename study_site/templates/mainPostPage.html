@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
     <h3>{{ mainpost.postTitle }}</h3>
-    <span>{{ mainpost.userId }}</span>
+    <span><a href="/{{ mainpost.userId.userId }}/userprofile">{{ mainpost.userId }}</a></span>
     
     {% if mainpost.userId == user %}
     ・<a href="editmainpost">edit the post</a>
@@ -17,9 +17,9 @@
             <tr>  
                 <td>{{ comment.comment }}</td>
                 <td>
-                    {{ comment.userId }}
+                    <a href="/{{ comment.userId.userId }}/userprofile">{{ comment.userId }}</a>
                     {% if comment.userId == user %}
-                    ・<a href="{{comment.commentId}}/editmaincomment">edit the post</a>
+                    <br><a href="{{comment.commentId}}/editmaincomment">edit the comment</a>
                     <br>
                     {% endif %}
                 </td>

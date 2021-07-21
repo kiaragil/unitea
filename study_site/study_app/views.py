@@ -217,7 +217,7 @@ def showMainForum(request):
 #show a main post
 def showMainPost(request, postId):
     mainpost = MainPost.objects.get(postId=postId)
-    comments = MainComment.objects.all()
+    comments = MainComment.objects.filter(postId=postId)
     form = MainCommentForm()
     return render(request, 'mainPostPage.html', {'mainpost': mainpost, 'comments': comments, 'form':form})
 
@@ -340,7 +340,7 @@ def editMainComment(request, postId, commentId):
     mainComment = MainComment.objects.get(commentId=commentId)
     context = {}
     context['form'] = MainCommentForm(instance = mainComment)
-    return render(request, 'editMainComment.html', context)
+    return render(request, 'mainPostPage.html', context)
 
 #update a main comment
 def updateMainComment(request, postId, commentId):
@@ -380,7 +380,10 @@ def showStudyGroupListing(request, subject):
 def showStudyGroup(request, studyGroupId):
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId)
-    return render(request, 'studyGroupPage.html', {'studygroup': studygroup, 'studygroupposts': studygroupposts})
+    members = StudyGroupMember.objects.filter(studyGroupId=studyGroupId)
+    memberCheck = StudyGroupMember.objects.filter(studyGroupId=studyGroupId, userId=request.user.userId)
+    isMember = True if memberCheck else False
+    return render(request, 'studyGroupPage.html', {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members, 'isMember': isMember})
 
 #show the study group creation page
 def createStudyGroup(request):
@@ -469,6 +472,9 @@ def joinStudyGroup(request, studyGroupId):
 
         studyGroup.memberCount += 1
         studyGroup.save()
+        messages.success(request, "Joined the group!")
+    else:
+        messages.warning(request, "This group is full!")
     return redirect(f'/{studyGroupId}/studygroup')
 
 #let the logged in user leave a study group
@@ -476,9 +482,11 @@ def leaveStudyGroup(request, studyGroupId):
     studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     if studyGroup.memberCount > 0:
         studyGroup.memberCount -= 1
+        studyGroup.save()
     
     studyGroupMember = StudyGroupMember.objects.filter(userId=request.user.userId, studyGroupId=studyGroupId)
     studyGroupMember.delete()
+    messages.success(request, "Left the group!")
     return redirect(f'/{studyGroupId}/studygroup')
 
 #search study groups
@@ -502,7 +510,7 @@ def searchStudyGroups(request):
 def showStudyGroupPost(request, studyGroupId, postId):
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygrouppost = StudyGroupPost.objects.get(postId=postId)
-    comments = StudyGroupComment.objects.all()
+    comments = StudyGroupComment.objects.filter(postId=postId)
     form = StudyGroupCommentForm()
     return render(request, 'studyGroupPostPage.html', {'studygroup': studygroup, 'studygrouppost': studygrouppost, 'comments': comments, 'form': form})
 
@@ -626,7 +634,7 @@ def editStudyGroupComment(request, studyGroupId, postId, commentId):
     studyGroupComment = StudyGroupComment.objects.get(commentId=commentId)
     context = {}
     context['form'] = StudyGroupCommentForm(instance = studyGroupComment)
-    return render(request, 'editStudyGroupComment.html', context)
+    return render(request, 'studyGroupPostPage.html', context)
 
 #update a study group comment
 def updateStudyGroupComment(request, studyGroupId, postId, commentId):
