@@ -2,7 +2,19 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #e3dcc9;
+  background-color: #fdfffc;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
+.container {
+  margin: auto;
+  justify-content: center;
 }
 
 .landing-box {
@@ -10,10 +22,7 @@ html {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
 }
 
 .greeting-box {
@@ -76,7 +85,7 @@ html {
 
 /* NAVIGATION BAR */
 .nav-wrapper {
-    background-color: #94618E;
+    background-color: #2ec4b6;
 }
 
 .nav-search{
@@ -148,149 +157,94 @@ form input, textarea, button {
   background-color:rgb(43, 63, 87);
 }
 
-/* END SUBMIT BUTTON */
-  
-.subject-wrapper {
-  margin-top: 5%;
-   display: grid;
-    grid-gap: 20px;
-    /* 20% * 5 = 100% */
-    grid-template-columns: repeat(3, [col] 25%) ;
-    grid-template-rows: repeat(2, [row] 25%  );
-    background-color: #d9b787;
-    color: rgb(52, 50, 73);
-    justify-content: space-evenly;
-    margin-bottom: 30px;
-}
-
-
-.create-wrapper {
-  display: grid;
-  grid-gap: 5px;
-  /* 20% * 5 = 100% */
-  grid-template-columns: repeat(3, [col] 25%) ;
-  grid-template-rows: repeat(2, [row] 25%  );
-  background-color: #d9b787;
-  justify-content: space-evenly;
-  
-}
-
-  
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-.home-body {
-  margin: 40px;
-  font-family: 'Open Sans', 'sans-serif';
-  color: 83849c;
-  justify-content: center;
-}
+/* END SUBMIT BUTTON */  
 
 /* SUBJECT BUTTONS */
+.subject-wrapper {
+  margin-top: 5%;
+  display: grid;
+  grid-gap: 20px;
+  /* 20% * 5 = 100% */
+  grid-template-columns: repeat(3, [col] 25%) ;
+  grid-template-rows: repeat(2, [row] 25%);
+  background-color: #ccffea;
+  justify-content: space-evenly;
+  border-radius: 10px;
+}
 
 .box {
-background-color: #444;
-color: #fff;
-border-radius: 10px;
-padding: 35px;
-font-size: 150%;
-text-align: center;
+  background-color: #444;
+  color: #fff;
+  border-radius: 10px;
+  padding: 35px;
+  font-size: 150%;
+  text-align: center;
 }
 
 .a {
-  grid-column: col / span  1;
+  grid-column: col 1 / span  1;
   grid-row: row 1;
-  animation: getBigger 2s 1s ease-in;
-  margin-top: 30px;
-  margin-bottom: 30px;
   background-image: url("/static/media/Math.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  margin-top: 30px;
 }
 .b {
   grid-column: col 2 / span  1 ;
   grid-row: row 1;
-  animation: getBigger 2s 3s ease-in;
-  margin-top: 30px;
-  margin-bottom: 30px;
   background-image: url("/static/media/Science.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  margin-top: 30px;
 }
 .c {
   grid-column: col 3 / span 1;
   grid-row: row 1;
-  animation: getBigger 2s 5s ease-in;
-  margin-top: 30px;
-  margin-bottom: 30px;
   background-image: url("/static/media/Languages.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  margin-top: 30px;
 }
 .d {
-  grid-column: col / span  1 ;
+  grid-column: col 1 / span  1 ;
   grid-row: row 2;
-  animation: getBigger 2s 7s ease-in;
-  margin-top: 30px;
-  margin-bottom: 30px;
   background-image: url("/static/media/Economics.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  margin-top: 30px;
 }
 
 .e {
   grid-column: col 2 / span 1;
   grid-row: row 2;
-  animation: getBigger 2s 9s ease-in;
-  margin-top: 30px;
-  margin-bottom: 30px;
   background-image: url("/static/media/History.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  margin-top: 30px;
 }
 
 .f {
   grid-column: col 3 / span 1;
   grid-row: row 2  ;
-  animation: getBigger 2s 11s ease-in;
-  margin-top: 30px;
-  margin-bottom: 30px;
   background-image: url("/static/media/Business.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  margin-top: 30px;
+}
+
+.create-wrapper {
+  padding: 35px;
+  margin-top: 30px;
+  background-color: #ccffea;
+  z-index: 20;
 }
 
 /* END OF SUBJECT BUTTONS */
 
-.l {
-  grid-column: col 2 / span 1;
-  grid-row: row 2;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.k {
-  grid-column: col 1 / span 3;
-  grid-row: row 0  ;
-  background-color: #d9b787;
-  z-index: 20;
-  padding-left: 30px;
-  text-align: center;
-  margin-top: 50px;
-}
-
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  margin-bottom: 100px;
-}
-
 /* FOOTER */
 
 .page-footer {
-  background-color: #94618E;
+  background-color: #011627;
   position: fixed;
   bottom: 0;
   left: 0;

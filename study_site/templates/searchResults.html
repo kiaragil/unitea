@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="{% static 'css/searchResults.css' %}">
 {% endblock %}
 
-    {% if searched %}
+    <div class="container">
+        {% if searched %}
         <h4>Search Results for: {{ searched }}</h4>
         <div class="collection">
             {% for studygroup in studygroups %}
@@ -15,8 +16,9 @@
             </a>
             {% endfor %}
         </div>
-    {% else %}
-        <h3>Please input a search word</h3>
-    {% endif %}
+        {% else %}
+            <h3>Please input a search word</h3>
+        {% endif %}
+    </div>
 
 {% endblock%}
