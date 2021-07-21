@@ -463,11 +463,10 @@ def showStudyGroup(request, studyGroupId):
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId)
     members = StudyGroupMember.objects.filter(studyGroupId=studyGroupId)
-    memberCheck = StudyGroupMember.objects.filter(studyGroupId=studyGroupId, userId=request.user.userId)
-    isMember = True if memberCheck else False
+    #memberCheck = StudyGroupMember.objects.filter(studyGroupId=studyGroupId, userId=request.user.userId)
+    #isMember = True if memberCheck else False
     return render(request, 'studyGroupPage.html',
-                  {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members,
-                   'isMember': isMember})
+                  {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members})
 
 
 # show the study group creation page
@@ -555,6 +554,11 @@ def isMember(request, studyGroupId):
 # let the logged in user join a study group
 def joinStudyGroup(request, studyGroupId):
     studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
+
+    if not request.user.is_authenticated:
+        messages.error(request, "Register to Join Groups!")
+        return redirect('/register')
+
     if not studyGroup.isFull() and not isMember(request, studyGroupId):
         studyGroupMember = StudyGroupMember()
         studyGroupMember.userId = User.objects.get(userId=request.user.userId)
@@ -704,6 +708,10 @@ def createStudyGroupComment(request, studyGroupId, postId):
 # create a comment for a study group forum post
 def execCreateStudyGroupComment(request, studyGroupId, postId):
     context = {}
+    if not request.user.is_authenticated:
+        messages.error(request, "You must be registered before you can post!")
+        return redirect('/register')
+
     if request.method == "POST":
         form = StudyGroupCommentForm(request.POST)
         if form.is_valid():
