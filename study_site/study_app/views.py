@@ -620,6 +620,10 @@ def createStudyGroupPost(request, studyGroupId):
         messages.error(request, "You need to log in to create a study group")
         return redirect('/login')
 
+    if not isMember(request, studyGroupId):
+        messages.error(request, "You must join the group to create a post!")
+        return redirect(f'/{studyGroupId}/studygroup')
+
     context = {}
     context['form'] = StudyGroupPostForm()
     return render(request, "createStudyGroupPost.html", context)
@@ -628,6 +632,15 @@ def createStudyGroupPost(request, studyGroupId):
 # create a study group forum post
 def execCreateStudyGroupPost(request, studyGroupId):
     context = {}
+
+    if not request.user.is_authenticated:
+        messages.error(request, "You must be login before you can post!")
+        return redirect('/login')
+
+    if not isMember(request, studyGroupId):
+        messages.error(request, "You must join the group to create a post!")
+        return redirect(f'/{studyGroupId}/studygroup')
+
     if request.method == "POST":
         form = StudyGroupPostForm(request.POST)
         if form.is_valid():
@@ -708,16 +721,14 @@ def createStudyGroupComment(request, studyGroupId, postId):
 # create a comment for a study group forum post
 def execCreateStudyGroupComment(request, studyGroupId, postId):
     context = {}
-    #memberCheck = StudyGroupMember.objects.filter(studyGroupId=studyGroupId, userId=request.user.userId)
-    #isMember = True if memberCheck else False
 
     if not request.user.is_authenticated:
         messages.error(request, "You must be login before you can post!")
         return redirect('/login')
 
-    #elif not isMember:
-    #    messages.error(request, "You must join the group to comment!")
-    #    return redirect(f'/{studyGroupId}/studygroup')
+    if not isMember(request, studyGroupId):
+        messages.error(request, "You must join the group to comment!")
+        return redirect(f'/{studyGroupId}/studygroup')
 
     if request.method == "POST":
         form = StudyGroupCommentForm(request.POST)
