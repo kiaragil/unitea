@@ -388,6 +388,10 @@ def createMainComment(request, postId):
 # create a comment for a main post
 def execCreateMainComment(request, postId):
     context = {}
+    if not request.user.is_authenticated:
+        messages.error(request, "You need to log in to comment on a Post!")
+        return redirect('/login')
+
     if request.method == "POST":
         form = MainCommentForm(request.POST)
         if form.is_valid():
@@ -620,6 +624,7 @@ def createStudyGroupPost(request, studyGroupId):
         messages.error(request, "You need to log in to create a study group")
         return redirect('/login')
 
+# Host(ownerId) needs to be able to create studygroup posts and comments
     if not isMember(request, studyGroupId):
         messages.error(request, "You must join the group to create a post!")
         return redirect(f'/{studyGroupId}/studygroup')
