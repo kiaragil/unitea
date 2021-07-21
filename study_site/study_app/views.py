@@ -187,6 +187,12 @@ def logoutUser(request):
     logout(request)
     return redirect('/')
 
+#show the confirm delete user page
+def confirmDeleteUser(request):
+    context = {}
+    context['form'] = ContactForm()
+    return render(request, "deleteAccountActionPage.html", context)
+
 #delete a user account
 def deleteUser(request):
     #logged in users must not access 
