@@ -149,7 +149,7 @@ def updateUserProfile(request):
 
 #show the login page
 def loginPage(request):
-    #logged in users must not access 
+    #logged in users must not access
     if request.user.is_authenticated:
         print("user is already logged in")
         return redirect('/')
@@ -187,15 +187,34 @@ def logoutUser(request):
     logout(request)
     return redirect('/')
 
+#show the change password page
+def changePassword(request):
+    #not logged in users must not access
+    context = {}
+    if not request.user.is_authenticated:
+        messages.error(request, "You're not logged in")
+        return redirect('/login')
+    return render(request, "updatePassword.html", context)
+
+#update password
+def updatePassword(request):
+    context = {}
+    return render(request, "updatePassword.html", context)
+##
+
 #show the confirm delete user page
 def confirmDeleteUser(request):
+    # not logged in users must not access
+    if not request.user.is_authenticated:
+        print("You're not logged in")
+        return redirect('/login')
+
     context = {}
-    context['form'] = ContactForm()
     return render(request, "deleteAccountActionPage.html", context)
 
 #delete a user account
 def deleteUser(request):
-    #logged in users must not access 
+    # not logged in users must not access
     if not request.user.is_authenticated:
         print("You're not logged in")
         return redirect('/login')
