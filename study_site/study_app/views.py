@@ -340,7 +340,7 @@ def editMainComment(request, postId, commentId):
     mainComment = MainComment.objects.get(commentId=commentId)
     context = {}
     context['form'] = MainCommentForm(instance = mainComment)
-    return render(request, 'mainPostPage.html', context)
+    return render(request, 'editMainComment.html', context)
 
 #update a main comment
 def updateMainComment(request, postId, commentId):
@@ -496,7 +496,7 @@ def searchStudyGroups(request):
         if not searched:
             messages.info(request, "Please enter a search word")
             return redirect('/home')
-        studyGroups = StudyGroup.objects.filter(groupName__contains=searched)
+        studyGroups = StudyGroup.objects.filter(groupName__icontains=searched)
         return render(request, 'searchResults.html', {'searched': searched, 'studygroups': studyGroups})
     else:
         return redirect('/home')
@@ -634,7 +634,7 @@ def editStudyGroupComment(request, studyGroupId, postId, commentId):
     studyGroupComment = StudyGroupComment.objects.get(commentId=commentId)
     context = {}
     context['form'] = StudyGroupCommentForm(instance = studyGroupComment)
-    return render(request, 'studyGroupPostPage.html', context)
+    return render(request, 'editStudyGroupComment.html', context)
 
 #update a study group comment
 def updateStudyGroupComment(request, studyGroupId, postId, commentId):
