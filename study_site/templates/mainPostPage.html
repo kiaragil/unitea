@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
     <h3>{{ mainpost.postTitle }}</h3>
-    <span><a href="/{{ mainpost.userId.userId }}/userprofile">{{ mainpost.userId }}</a></span>
+    <span><a href="/{{ mainpost.userId.userId }}/userprofile" class="font-blue">{{ mainpost.userId }}</a></span>
     
     {% if mainpost.userId == user %}
     ・<a href="editmainpost">edit the post</a>
@@ -10,6 +10,8 @@
 
     <p>{{ mainpost.post }}</p>
 
+    <hr>
+
     <h5>Comments</h5>
     <table>
         <tbody>  
@@ -17,7 +19,7 @@
             <tr>  
                 <td>{{ comment.comment }}</td>
                 <td>
-                    <a href="/{{ comment.userId.userId }}/userprofile">{{ comment.userId }}</a>
+                    <a href="/{{ comment.userId.userId }}/userprofile" class="font-blue">{{ comment.userId }}</a>
                     {% if comment.userId == user %}
                     <br><a href="{{comment.commentId}}/editmaincomment">edit the comment</a>
                     <br>

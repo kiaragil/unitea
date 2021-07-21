@@ -496,7 +496,7 @@ def searchStudyGroups(request):
         if not searched:
             messages.info(request, "Please enter a search word")
             return redirect('/home')
-        studyGroups = StudyGroup.objects.filter(groupName__contains=searched)
+        studyGroups = StudyGroup.objects.filter(groupName__icontains=searched)
         return render(request, 'searchResults.html', {'searched': searched, 'studygroups': studyGroups})
     else:
         return redirect('/home')

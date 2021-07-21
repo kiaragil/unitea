@@ -18,6 +18,14 @@ body {
   justify-content: center;
 }
 
+.font-white {
+  color: #fdfffc;
+}
+
+.font-blue {
+  color: #1a535c;
+}
+
 .landing-box{
   font-family: 'Comfortaa', sans-serif;
   display: grid;
@@ -159,10 +167,6 @@ body {
 }
 
 /* END NAVIGATION BAR */
-
-.font-white {
-  color: white;
-}
 
 /* USER PROFILE  */
 
