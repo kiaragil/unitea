@@ -116,10 +116,22 @@ body {
   font-weight: bold;
 }
 
-.side-search-wrapper{
+.side-nav-search{
   display: inline-flex;
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: -30px;
 }
 
+.side-search-button{
+  background: transparent;
+  color: black;
+  border: transparent;
+  height: 43px;
+  width: 63px;
+  margin-top: 0px;
+  margin-left: -1px;
+}
 
 /* END NAVIGATION BAR */
 
