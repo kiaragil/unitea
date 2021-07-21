@@ -250,7 +250,7 @@ def execCreateMainPost(request):
             try:
                 messages.success(request, "New post created")
                 mainPost.save()
-                return redirect('/forum')
+                return redirect('/mainforum')
             except:
                 pass
         else:
@@ -278,7 +278,7 @@ def updateMainPost(request, postId):
     form = MainPostForm(request.POST, instance=mainPost)
     if form.is_valid():
         form.save()
-        return redirect('/postId/mainpost')
+        return redirect(f'/{postId}/mainpost')
     else:
         messages.error(request, "Invalid form data")
     context['form'] = form
@@ -293,7 +293,7 @@ def deleteMainPost(request, postId):
 
     mainPost = MainPost.objects.get(postId=postId)
     mainPost.delete()
-    return redirect('/forum')
+    return redirect('/mainforum')
 
 
 # ----------------------------
@@ -325,7 +325,7 @@ def execCreateMainComment(request, postId):
             try:
                 messages.success(request, "New post created")
                 mainComment.save()
-                return redirect('/postId/mainpost')
+                return redirect(f'/{postId}/mainpost')
             except:
                 pass
         else:
@@ -353,7 +353,7 @@ def updateMainComment(request, postId, commentId):
     form = MainCommentForm(request.POST, instance=mainComment)
     if form.is_valid():
         form.save()
-        return redirect('/postId/mainpost')
+        return redirect(f'/{postId}/mainpost')
     else:
         messages.error(request, "Invalid form data")
     context['form'] = form
@@ -368,7 +368,7 @@ def deleteMainComment(request, postId, commentId):
 
     mainComment = MainComment.objects.get(commentId=commentId)
     mainComment.delete()
-    return redirect('/postId/mainpost')
+    return redirect(f'/{postId}/mainpost')
 
 
 # ----------------------------
@@ -412,7 +412,7 @@ def execCreateStudyGroup(request):
             try:
                 messages.success(request, "New study group created")
                 studyGroup.save()
-                return redirect('/forum')
+                return redirect(f'/{studyGroup.studyGroupId}/studygroup')
             except:
                 pass
         else:
@@ -439,7 +439,7 @@ def updateStudyGroup(request, studyGroupId):
     form = StudyGroupForm(request.POST, instance=studygroup)
     if form.is_valid():
         form.save()
-        return redirect('/studyGroupId/studygroup')
+        return redirect(f'/{studyGroupId}/studygroup')
     else:
         messages.error(request, "Invalid form data")
     context = {}
@@ -455,7 +455,7 @@ def deleteStudyGroup(request, studyGroupId):
 
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygroup.delete()
-    return redirect('/forum')
+    return redirect('/home')
 
 #check if the logged in user is a member of the study group
 def isMember(request, studyGroupId):
@@ -473,7 +473,7 @@ def joinStudyGroup(request, studyGroupId):
 
         studyGroup.memberCount += 1
         studyGroup.save()
-    return redirect('/studyGroupId/studygroup')
+    return redirect(f'/{studyGroupId}/studygroup')
 
 #let the logged in user leave a study group
 def leaveStudyGroup(request, studyGroupId):
@@ -483,7 +483,7 @@ def leaveStudyGroup(request, studyGroupId):
     
     studyGroupMember = StudyGroupMember.objects.filter(userId=request.user.userId, studyGroupId=studyGroupId)
     studyGroupMember.delete()
-    return redirect('/studyGroupId/studygroup')
+    return redirect(f'/{studyGroupId}/studygroup')
 
 #search study groups
 def searchStudyGroups(request):
@@ -536,7 +536,7 @@ def execCreateStudyGroupPost(request, studyGroupId):
             try:
                 messages.success(request, "New post created")
                 studyGroupPost.save()
-                return redirect('/studyGroupId/studygroup')
+                return redirect(f'/{studyGroupId}/studygroup')
             except:
                 pass
         else:
@@ -564,7 +564,7 @@ def updateStudyGroupPost(request, studyGroupId, postId):
     form = StudyGroupPostForm(request.POST, instance=studyGroupPost)
     if form.is_valid():
         form.save()
-        return redirect('/studyGroupId/postId/studygrouppost')
+        return redirect(f'/{studyGroupId}/{postId}f/studygrouppost')
     else:
         messages.error(request, "Invalid form data")
     context['form'] = form
@@ -579,7 +579,7 @@ def deleteStudyGroupPost(request, studyGroupId, postId):
 
     studyGroupPost = StudyGroupPost.objects.get(postId=postId)
     studyGroupPost.delete()
-    return redirect('/studyGroupId/studygroup')
+    return redirect(f'/{studyGroupId}/studygroup')
 
 
 # ----------------------------
@@ -611,7 +611,7 @@ def execCreateStudyGroupComment(request, studyGroupId, postId):
             try:
                 messages.success(request, "New post created")
                 studyGroupComment.save()
-                return redirect('/studyGroupId/postId/studygrouppost')
+                return redirect(f'/{studyGroupId}/{postId}/studygrouppost')
             except:
                 pass
         else:
@@ -639,7 +639,7 @@ def updateStudyGroupComment(request, studyGroupId, postId, commentId):
     form = StudyGroupCommentForm(request.POST, instance=studyGroupComment)
     if form.is_valid():
         form.save()
-        return redirect('/studyGroupId/postId/studygrouppost')
+        return redirect(f'/{studyGroupId}/{postId}/studygrouppost')
     else:
         messages.error(request, "Invalid form data")
     context['form'] = form
@@ -654,7 +654,7 @@ def deleteStudyGroupComment(request, studyGroupId, postId, commentId):
 
     studyGroupComment = StudyGroupComment.objects.get(commentId=commentId)
     studyGroupComment.delete()
-    return redirect('/studyGroupId/postId/studygrouppost')
+    return redirect(f'/{studyGroupId}/{postId}/studygrouppost')
 
 
 # ----------------------------
