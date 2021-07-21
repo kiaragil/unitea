@@ -11,6 +11,7 @@ SUBJECT_CHOICES = (
     ('business', 'Business'),
 )
 
+
 class RegistrationForm(forms.Form):
     username = forms.CharField(
         label='Username',
@@ -172,9 +173,9 @@ class MessageForm(forms.ModelForm):
         fields = ['message']
 
 
-class UserPasswordForm(forms.ModelForm):
-    oldPassword = forms.CharField(
-        label='Old Password',
+class UserPasswordForm(forms.Form):
+    currentPassword = forms.CharField(
+        label='Current Password',
         widget=forms.PasswordInput(),
         max_length=100,
         required=True
@@ -191,7 +192,3 @@ class UserPasswordForm(forms.ModelForm):
         max_length=100,
         required=True
     )
-
-    class Meta:
-        model = User
-        fields = ['password']

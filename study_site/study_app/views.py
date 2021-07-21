@@ -201,6 +201,11 @@ def logoutUser(request):
 
 # show the confirm delete user page
 def confirmDeleteUser(request):
+    # not logged in users must not access
+    if not request.user.is_authenticated:
+        print("You're not logged in")
+        return redirect('/login')
+
     context = {}
     context['form'] = ContactForm()
     return render(request, "deleteAccountActionPage.html", context)
@@ -225,40 +230,44 @@ def editPassword(request):
         print("You're not logged in")
         return redirect('/login')
 
-    user = User.objects.get(userId=request.user.userId)
     context = {}
-    context['form'] = UserPasswordForm(instance=user)
+    context['form'] = UserPasswordForm()
     return render(request, "updatePassword.html", context)
 
 #update password
 def updatePassword(request):
     context = {}
-    user = User.objects.get(userId=request.user.userId)
-    form = UserProfileForm(request.POST, instance=user)
-    if form.is_valid():
-        oldPassword = form.cleaned_data['oldPassword']
-        user = authenticate(password=oldPassword)
-        if user is not None:
-            if user.newPassword == user.confirmPassword:
-                try:
-                    # hash password
-                    user.password = make_password(user.newPassword)
-                    # register a user
-                    messages.success(request, "New Password Updated!")
-                    user.save()
-                    return redirect(f'/{user.userId}/userprofile')
-                except:
-                    pass
+    if request.method == "POST":
+        form = UserPasswordForm(request.POST)
+        if form.is_valid():
+            user = User.objects.get(userId=request.user.userId)
+            currentPassword = form.cleaned_data['currentPassword']
+            newPassword = form.cleaned_data['newPassword']
+            confirmPassword = form.cleaned_data['confirmPassword']
+            auth = authenticate(email=user.email, password=currentPassword)
+            if auth is not None:
+                if newPassword == confirmPassword:
+                    try:
+                        # hash password
+                        user.password = make_password(newPassword)
+                        # register a user
+                        messages.success(request, "New Password Updated!")
+                        user.save()
+                        return redirect('/login')
+                    except:
+                        pass
+                else:
+                    messages.error(request, "Passwords do not match")
+                    context['form'] = form
+                return redirect('/editpassword')
             else:
-                messages.error(request, "Confirm password doesn't match")
+                messages.error(request, "Current Password is incorrect")
                 context['form'] = form
-            return redirect('/')
         else:
-            messages.error(request, "Old Password is incorrect")
+            messages.error(request, "Invalid form data")
             context['form'] = form
     else:
-        messages.error(request, "Invalid form data")
-    context['form'] = form
+        context['form'] = UserPasswordForm()
     return render(request, "updatePassword.html", context)
 
 # show a specified user's profile
