@@ -34,6 +34,7 @@ urlpatterns = [
     path('loginaccount', views.loginUser),
     path('logout', views.logoutUser),
     path('deleteuser', views.deleteUser),
+    path('confirmdeleteuser', views.confirmDeleteUser),
     path('search', views.searchStudyGroups),
     path('<int:userId>/userprofile', views.showUserProfile),
     
