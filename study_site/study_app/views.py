@@ -556,8 +556,8 @@ def joinStudyGroup(request, studyGroupId):
     studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
 
     if not request.user.is_authenticated:
-        messages.error(request, "Register to Join Groups!")
-        return redirect('/register')
+        messages.error(request, "Login to Join Groups!")
+        return redirect('/login')
 
     if not studyGroup.isFull() and not isMember(request, studyGroupId):
         studyGroupMember = StudyGroupMember()
