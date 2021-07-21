@@ -117,11 +117,14 @@ class StudyGroupForm(forms.ModelForm):
 
 class MainPostForm(forms.ModelForm):
     postTitle = forms.CharField(
-        label='Post Title'
+        label='Title'
     )
     post = forms.CharField(
+        label='Description',
         widget=forms.Textarea(),
     )
+    post.widget.attrs.update({'class':'materialize-textarea'})
+    post.widget.attrs.update({'id':'editMP-text'})    
 
     class Meta:
         model = MainPost

@@ -188,9 +188,8 @@ body {
 
 /* FORM */
 
-form input, textarea, button {
+form input, button {
   display: block;
-  margin: 30px;
 }
 
 .contact-box {
@@ -199,7 +198,7 @@ form input, textarea, button {
 }
 
 .input-field {
-  margin: 20px;
+  /* margin: 20px; */
 }
 
 .row {

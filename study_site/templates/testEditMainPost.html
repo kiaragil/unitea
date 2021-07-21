@@ -1,29 +1,45 @@
 {% extends 'layouts/base.html' %} {% block content %}
 {% load static %}
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/editMainPost.css' %}">
+<link rel="stylesheet" href="{% static 'css/editStudyGroup.css' %}">
 {% endblock %}
 
-<div class="editMP-wrapper">
-    <div class="editMP-content">
-        <div class="editMP-title"> Edit Main Post</div>
-        <form class="col s12">
-            <div class="input-field col s12" id="editMP-text">
-                <input id="title" type="text">
-                <label for="title">Title</label>
+<div class="editSGP-wrapper">
+    <div class="editSGP-content">
+        <h3>Edit Study Group</h3>
+        <form method="POST" class="col s12" id="editstudygroupform" enctype="multipart/form-data" action="updatestudygroup">
+            {% csrf_token %}
+            <div class="input-field col s12" id="editSGP-text">
+                {{ form.groupName.label }}
+                {{ form.groupName }}
+                {{ form.groupName.errors }}
             </div>
-            <div class="input-field col s12" id="editMP-text">
-                <textarea id="description" class="materialize-textarea"></textarea>
-                <label for="description">Description</label>
+            <div class="input-field col s12" id="editSGP-text">
+                {{ form.description.label }}
+                {{ form.description }}
+                {{ form.description.error }}
+            </div>
+            <div class="input-field col s12" id="editSGP-text">
+                {{ form.subject.label }}
+                <div class="input-field col s12">
+                    {{ form.subject }}
+                </div>
+                {{ form.subject.error }}
+            </div>
+
+            <div class="editSGP-buttons">
+                <a href="deletestudygroup" class="waves-effect waves-light btn-small" id="editSGP-button">Delete</a>
+                <a href="studygroup" class="waves-effect waves-light btn-small" id="editSGP-button">Cancel</a>
+                <a href="#" onclick="document.forms['editstudygroupform'].submit();" class="waves-effect waves-light btn-small" id="editSGP-button">Save</a>
             </div>
         </form>
-
-        <div class="editMP-buttons">
-            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editMP-button">Delete</a>
-            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editMP-button">Cancel</a>
-            <a href="createMainPost.html" class="waves-effect waves-light btn-small" id="editMP-button">Save</a>
-        </div>
     </div>
 </div>
-
+        
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, []);
+  });
+</script>  
 {% endblock %}
