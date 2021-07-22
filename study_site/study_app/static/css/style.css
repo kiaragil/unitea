@@ -127,6 +127,10 @@ body {
   margin-right: -10px !important;
 }
 
+.nav-searchbar::placeholder{
+  color: whitesmoke;
+}
+
 .nav-searchbar{
   color: white;
 }
@@ -405,3 +409,10 @@ form input, button {
   transform: translateY(-50%);
 }
 
+/* REGISTER BUTTON */
+#reg-button{
+  width: 130px;
+  height: 50px;
+  line-height: 50px;
+}
+/* END REGISTER BUTTON */
