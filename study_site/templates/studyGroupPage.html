@@ -18,7 +18,8 @@
         <li>Description: {{ studygroup.description }} </li>
         <br>
         <li>
-            {% if isMember %}
+            {% if isHost %}
+            {% elif isMember %}
             <a href="leavestudygroup"class="waves-effect waves-light btn">Leave</a>
             {% else %}
             <a href="joinstudygroup"class="waves-effect waves-light btn red">Join</a>

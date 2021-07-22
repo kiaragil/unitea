@@ -467,11 +467,12 @@ def showStudyGroup(request, studyGroupId):
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId)
     members = StudyGroupMember.objects.filter(studyGroupId=studyGroupId)
-    #memberCheck = StudyGroupMember.objects.filter(studyGroupId=studyGroupId, userId=request.user.userId)
-    #isMember = True if memberCheck else False
+    # memberCheck = StudyGroupMember.objects.filter(studyGroupId=studyGroupId, userId=request.user.userId)
+    checkMem = isMember(request, studyGroupId)
+    checkHost = isHost(request, studyGroupId)
     return render(request, 'studyGroupPage.html',
-                  {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members})
-
+                  {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members, 'isHost': checkHost, 'isMember': checkMem})
+    # , 'isMember': checkMem
 
 # show the study group creation page
 def createStudyGroup(request):
@@ -554,6 +555,9 @@ def isMember(request, studyGroupId):
     studyGroupMember = StudyGroupMember.objects.filter(userId=request.user.userId, studyGroupId=studyGroupId)
     return True if studyGroupMember else False
 
+def isHost(request, studyGroupId):
+    studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
+    return True if request.user == studyGroup.ownerId else False
 
 # let the logged in user join a study group
 def joinStudyGroup(request, studyGroupId):
@@ -594,14 +598,10 @@ def leaveStudyGroup(request, studyGroupId):
 def searchStudyGroups(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        if not searched:
-            messages.info(request, "Please enter a search word")
-            return redirect('/home')
+        # if not searched:
+            # messages.info(request, "Please enter a search word")
         studyGroups = StudyGroup.objects.filter(groupName__icontains=searched)
         return render(request, 'searchResults.html', {'searched': searched, 'studygroups': studyGroups})
-    else:
-        return redirect('/home')
-
 
 # ----------------------------
 #  Study Group Forum Post
@@ -621,11 +621,11 @@ def showStudyGroupPost(request, studyGroupId, postId):
 def createStudyGroupPost(request, studyGroupId):
     # not logged in users must not access
     if not request.user.is_authenticated:
-        messages.error(request, "You need to log in to create a study group")
+        messages.error(request, "You must log in to create a post!")
         return redirect('/login')
 
 # Host(ownerId) needs to be able to create studygroup posts and comments
-    if not isMember(request, studyGroupId):
+    if not (isMember(request, studyGroupId) or isHost(request, studyGroupId)):
         messages.error(request, "You must join the group to create a post!")
         return redirect(f'/{studyGroupId}/studygroup')
 
@@ -642,7 +642,7 @@ def execCreateStudyGroupPost(request, studyGroupId):
         messages.error(request, "You must be login before you can post!")
         return redirect('/login')
 
-    if not isMember(request, studyGroupId):
+    if not (isMember(request, studyGroupId) or isHost(request, studyGroupId)):
         messages.error(request, "You must join the group to create a post!")
         return redirect(f'/{studyGroupId}/studygroup')
 
@@ -731,7 +731,7 @@ def execCreateStudyGroupComment(request, studyGroupId, postId):
         messages.error(request, "You must be login before you can post!")
         return redirect('/login')
 
-    if not isMember(request, studyGroupId):
+    if not (isMember(request, studyGroupId) or isHost(request, studyGroupId)):
         messages.error(request, "You must join the group to comment!")
         return redirect(f'/{studyGroupId}/studygroup')
 
