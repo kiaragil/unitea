@@ -168,6 +168,12 @@ body {
 
 /* END NAVIGATION BAR */
 
+/* LOGIN REGISTER BUTTONS */
+.material-icons {
+  left: 0 !important;
+}
+/* END LOGIN REGISTER BUTTONS */
+
 /* USER PROFILE  */
 
 .avatar {
@@ -398,3 +404,4 @@ form input, button {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
