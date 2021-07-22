@@ -5,29 +5,25 @@
                 <form method="POST" class="col s12" enctype="multipart/form-data" action="/execcreatemainpost">
                     {% csrf_token %}
                     <tbody>
-                        <tr>
+                        <div class="editMP-title" id="editMP-title">
                             <th>{{ form.postTitle.label }}</th>
                             <td>{{ form.postTitle }}</td>
                             <td>{{ form.postTitle.errors }}</td>
-                        </tr>
-                        <br>
-                        <tr>
+                        </div>
+                        <div class="input-field col s12" id="editMP-post">
                             <th>{{ form.post.label }}</th>
                             <td>{{ form.post }}</td>
                             <td>{{ form.post.error }}</td>
-                        </tr>
+                        </div>
                     </tbody>
                     <br>
-                    <div class="center-container">
-                        <div class="vertical-center">
+                    <div class="editMP-buttons">
                             <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                                 <i class="material-icons right">send</i>
                             </button>
-                        </div>
                     </div>
                 </form>
             </div>
         </div>
-        
         
 {% endblock %}

@@ -146,6 +146,10 @@ body {
   margin-right: -10px !important;
 }
 
+.nav-searchbar::placeholder{
+  color: whitesmoke;
+}
+
 .nav-searchbar{
   color: white;
 }
@@ -187,6 +191,12 @@ body {
 
 /* END NAVIGATION BAR */
 
+/* LOGIN REGISTER BUTTONS */
+.material-icons {
+  left: 0 !important;
+}
+/* END LOGIN REGISTER BUTTONS */
+
 /* USER PROFILE  */
 
 .avatar {
@@ -209,12 +219,20 @@ body {
 
 form input, button {
   display: block;
+  display: grid;
+  grid-template-rows: 1;
 }
 
+
+/* CONTACT US */
+
 .contact-box {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1;
+  max-width: 400px;
+  margin: auto;
 }
+
 
 .input-field {
   /* margin: 20px; */
@@ -417,3 +435,11 @@ form input, button {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
+/* REGISTER BUTTON */
+#reg-button{
+  width: 130px;
+  height: 50px;
+  line-height: 50px;
+}
+/* END REGISTER BUTTON */

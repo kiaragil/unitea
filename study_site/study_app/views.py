@@ -388,6 +388,10 @@ def createMainComment(request, postId):
 # create a comment for a main post
 def execCreateMainComment(request, postId):
     context = {}
+    if not request.user.is_authenticated:
+        messages.error(request, "You need to log in to comment on a Post!")
+        return redirect('/login')
+
     if request.method == "POST":
         form = MainCommentForm(request.POST)
         if form.is_valid():
@@ -556,8 +560,8 @@ def joinStudyGroup(request, studyGroupId):
     studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
 
     if not request.user.is_authenticated:
-        messages.error(request, "Register to Join Groups!")
-        return redirect('/register')
+        messages.error(request, "Login to Join Groups!")
+        return redirect('/login')
 
     if not studyGroup.isFull() and not isMember(request, studyGroupId):
         studyGroupMember = StudyGroupMember()
@@ -620,6 +624,7 @@ def createStudyGroupPost(request, studyGroupId):
         messages.error(request, "You need to log in to create a study group")
         return redirect('/login')
 
+# Host(ownerId) needs to be able to create studygroup posts and comments
     if not isMember(request, studyGroupId):
         messages.error(request, "You must join the group to create a post!")
         return redirect(f'/{studyGroupId}/studygroup')
@@ -801,7 +806,9 @@ def testEditStudyGroup(request):
 
 
 def testCreateStudyPost(request):
-    return render(request, 'testCreateStudyPost.html')
+    context = {}
+    context['form'] = StudyGroupPostForm()
+    return render(request, "testCreateStudyPost.html", context)
 
 
 def testCreateMainPost(request):
