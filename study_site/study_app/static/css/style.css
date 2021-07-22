@@ -32,6 +32,8 @@ body {
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   padding: 10px;
+  padding-top: 40px;
+  padding-bottom: 50px;
 }
 
 .greeting-box {
@@ -93,6 +95,23 @@ body {
 
 .faqs-title1, .faqs-title2, .faqs-title3 {
   text-align: center;
+  padding-top: 25px;
+  padding-bottom: 40px;
+}
+
+#faq-q1 {
+  text-align: right;
+  padding-right: 150px;
+}
+
+#faq-q2 {
+  text-align: left;
+  padding-left: 80px;
+}
+
+#faq-q3 {
+  text-align: right;
+  padding-right: 80px;
 }
 
 .faqs1, .faqs2, .faqs3 {
@@ -101,7 +120,9 @@ body {
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: auto;
   padding: 10px;
+  padding-bottom: 50px;
   align-items: center;
+  text-align: left;
 }
 
 .faqs-photo2 {
@@ -110,8 +131,21 @@ body {
 }
 
 .faqs-slogan2 {
+  font-size: 155%;
   grid-row: 1;
   grid-column: 1;
+  padding-right: 6px;
+}
+
+.faqs-slogan1, .faqs-slogan3 {
+  font-size: 155%;
+  padding-left: 25px;
+}
+
+.landing-join-button {
+  z-index: 0;
+  padding-top: 25px;
+  position: relative;
 }
 
 /* END LANDING */
@@ -125,6 +159,10 @@ body {
   display: inline-flex;
   width: 290px !important;
   margin-right: -10px !important;
+}
+
+.nav-searchbar::placeholder{
+  color: whitesmoke;
 }
 
 .nav-searchbar{
@@ -196,12 +234,20 @@ body {
 
 form input, button {
   display: block;
+  display: grid;
+  grid-template-rows: 1;
 }
 
+
+/* CONTACT US */
+
 .contact-box {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1;
+  max-width: 400px;
+  margin: auto;
 }
+
 
 .input-field {
   /* margin: 20px; */
@@ -405,3 +451,10 @@ form input, button {
   transform: translateY(-50%);
 }
 
+/* REGISTER BUTTON */
+#reg-button{
+  width: 130px;
+  height: 50px;
+  line-height: 50px;
+}
+/* END REGISTER BUTTON */
