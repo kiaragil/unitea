@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %} {% block content %}
-
+<div class="bio">
     <div class="avatar flex-center">
         {% if userprofile.avatar %}
         <img src=MEDIA_URL+{{ user.avatar }} />
@@ -11,7 +11,7 @@
         <h4>{{ userprofile.username }}</h4>
     </div>
     {% if userprofile.profile %}
-    <div class="bio">
+    <div>
         <p class="flex-center">{{ userprofile.profile }}</p>
     </div>
     {% endif %}
@@ -20,5 +20,5 @@
     <a href="/edituser" class="flex-center">edit user profile</a>
     {% endif %}
     <br>
-
+</div>
 {% endblock %}
