@@ -200,12 +200,20 @@ body {
 
 form input, button {
   display: block;
+  display: grid;
+  grid-template-rows: 1;
 }
 
+
+/* CONTACT US */
+
 .contact-box {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1;
+  max-width: 400px;
+  margin: auto;
 }
+
 
 .input-field {
   /* margin: 20px; */
