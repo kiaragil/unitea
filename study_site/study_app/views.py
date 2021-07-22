@@ -806,7 +806,9 @@ def testEditStudyGroup(request):
 
 
 def testCreateStudyPost(request):
-    return render(request, 'testCreateStudyPost.html')
+    context = {}
+    context['form'] = StudyGroupPostForm()
+    return render(request, "testCreateStudyPost.html", context)
 
 
 def testCreateMainPost(request):
