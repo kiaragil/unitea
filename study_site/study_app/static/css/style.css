@@ -551,3 +551,7 @@ form input, button {
 .materialize-textarea{
   width: 400px !important;
 }
+
+#text-comment{
+  display: inline-flex;
+}
