@@ -24,5 +24,5 @@
 | Vernon Xie      | vxie1@mail.sfsu.edu               | vxie123                | Team Member |
 | Melinda Yee     | myee4@mail.sfsu.edu               | melinda15              | Team Member |
 
-Home page URL: http://ec2-54-177-222-205.us-west-1.compute.amazonaws.com/
+Home page URL: http://ec2-54-219-170-81.us-west-1.compute.amazonaws.com/
 ## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
