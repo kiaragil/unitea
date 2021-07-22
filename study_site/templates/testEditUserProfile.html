@@ -1,28 +1,35 @@
 {% extends 'layouts/base.html' %} {% block content %}
-{% load static %}
-{% block styles %}
-<link rel="stylesheet" href="{% static 'css/userProfile.css' %}">
-{% endblock %}
 
-<h3>User Profile</h3>
-    <div class="avatar">
-        <img src="https://i.pinimg.com/236x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg" alt="..." class="avatar-img rounded-circle" />
-    </div>
-    <div class="userName">
-        <h4>User Name</h4>
-    </div>
-    <div class="bio">
-            <div class="row">
-                <form class="col s12" style="border:3px; border-style:outset; border-color:#2ec4b6; padding: 1em;">
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <textarea id="textarea1" class="materialize-textarea"></textarea>
-                      <label for="textarea1">Edit Bio</label>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary" style="margin: auto;"><a href="testUserProfile">Save Change</a></button>
-                </form>
-              </div>
-    </div>
+<h3>Edit User Profile</h3>
+<div class="profile-box">
+  <form method="POST" class="col s12" enctype="multipart/form-data" action="/updateuser">
+  {% csrf_token %}
+
+  <div class="avatar">
+    <img src="https://i.pinimg.com/236x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg" alt="..." class="avatar-img rounded-circle" />
+  </div>
+  <div class="avatar-input">
+    <td>{{ form.avatar }}</td>
+  </div>
+  <div class="input-field col s12">
+    <th>{{ form.username.label }}</th>
+    <td>{{ form.username }}</td>
+  </div>
+  <div class="input-field col s12">
+    <th> Edit Biography </th>
+    <td>{{ form.profile }}</td>
+  </div>
+  <div id="profile-button1">
+    <button class="waves-effect waves-light btn-small" type="submit" name="action">Save Changes
+      <i class="material-icons right">send</i>
+    </button>
+  </div>
+  <div>
+    <a href="editpassword" class="waves-effect waves-light btn-small" id="profile-button">Change Password</a>
+    <a href="confirmdeleteuser" class="waves-effect waves-light btn-small" id="profile-button">Delete Account</a>
+  </div>
+  </form>
+</div>
+
 
 {% endblock %}

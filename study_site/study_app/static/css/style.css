@@ -203,6 +203,13 @@ body {
     margin-top: 5%;
 }
 
+.avatar-input{
+  margin: auto;
+  text-align: center;
+  width: 201px !important;
+  padding-top:5px
+}
+
 .flex-center {
     display: flex;
     justify-content: center;
@@ -212,7 +219,24 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 55%;
+    width: 400px;
+}
+
+.profile-box{
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  width: 400px;
+  margin: auto;
+  padding: 10px;
+}
+
+#profile-button1{
+  padding-bottom: 10px;
+}
+
+#profile-button{
+  width: 172px;
 }
 
 /* FORM */
@@ -443,3 +467,7 @@ form input, button {
   line-height: 50px;
 }
 /* END REGISTER BUTTON */
+
+.waves-effect{
+  z-index: 0;
+}

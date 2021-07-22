@@ -43,12 +43,15 @@ class RegistrationForm(forms.Form):
 
 class UserProfileForm(forms.ModelForm):
     avatar = forms.ImageField(
-        required=False
+        required=False,
+        # add attribute for id:avatar-input
     )
+    # avatar.widget.attrs({'class':'materialize-textarea'})   
     profile = forms.CharField(
         widget=forms.Textarea(),
         required=False
-    )    
+    )
+    profile.widget.attrs.update({'class':'materialize-textarea'})
 
     class Meta:
         model = User
