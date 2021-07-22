@@ -484,5 +484,11 @@ form input, button {
 /* END REGISTER BUTTON */
 
 .waves-effect{
+  margin-top: 10px;
+  min-width: 100px;
   z-index: 0;
+}
+
+.materialize-textarea{
+  width: 400px !important;
 }

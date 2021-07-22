@@ -143,6 +143,7 @@ class MainCommentForm(forms.ModelForm):
         label='Comment',
         widget=forms.Textarea(),
     )
+    comment.widget.attrs.update({'class':'materialize-textarea'})
 
     class Meta:
         model = MainComment
