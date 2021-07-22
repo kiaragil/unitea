@@ -11,6 +11,7 @@ SUBJECT_CHOICES = (
     ('business', 'Business'),
 )
 
+
 class RegistrationForm(forms.Form):
     username = forms.CharField(
         label='Username',
@@ -104,11 +105,14 @@ class StudyGroupForm(forms.ModelForm):
         max_length=5000,
         required=True
     )
+    description.widget.attrs.update({'class':'materialize-textarea'})
+    description.widget.attrs.update({'id':'editSGP-text'})   
     subject = forms.CharField(
         label='Subject', 
         widget=forms.Select(choices=SUBJECT_CHOICES),
         required=False
     )
+    subject.widget.attrs.update({'class':'editSGP-subject'})
 
     class Meta:
         model = StudyGroup
@@ -117,11 +121,14 @@ class StudyGroupForm(forms.ModelForm):
 
 class MainPostForm(forms.ModelForm):
     postTitle = forms.CharField(
-        label='Post Title'
+        label='Title'
     )
     post = forms.CharField(
+        label='Description',
         widget=forms.Textarea(),
     )
+    post.widget.attrs.update({'class':'materialize-textarea'})
+    post.widget.attrs.update({'id':'editMP-text'})    
 
     class Meta:
         model = MainPost
@@ -141,12 +148,15 @@ class MainCommentForm(forms.ModelForm):
 
 class StudyGroupPostForm(forms.ModelForm):
     postTitle = forms.CharField(
-        label='Post Title'
+        label='Title'
     )
     post = forms.CharField(
+        label='Description',
         widget=forms.Textarea(),
     )
 
+    post.widget.attrs.update({'class':'materialize-textarea'})
+    post.widget.attrs.update({'id':'editSGP-text'})   
     class Meta:
         model = StudyGroupPost
         fields = ['postTitle', 'post']
@@ -170,3 +180,24 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ['message']
+
+
+class UserPasswordForm(forms.Form):
+    currentPassword = forms.CharField(
+        label='Current Password',
+        widget=forms.PasswordInput(),
+        max_length=100,
+        required=True
+    )
+    newPassword = forms.CharField(
+        label='New Password',
+        widget=forms.PasswordInput(),
+        max_length=100,
+        required=True
+    )
+    confirmPassword = forms.CharField(
+        label='Confirm New Password',
+        widget=forms.PasswordInput(),
+        max_length=100,
+        required=True
+    )

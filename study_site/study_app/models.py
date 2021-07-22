@@ -40,7 +40,6 @@ class User(AbstractBaseUser):
 	class Meta:
 		db_table = "users";
 
-
 class MainPost(models.Model):
 	postId = models.AutoField(primary_key=True, unique=True)
 	postTitle = models.CharField(max_length=100)

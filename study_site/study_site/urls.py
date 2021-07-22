@@ -36,6 +36,9 @@ urlpatterns = [
     path('deleteuser', views.deleteUser),
     path('confirmdeleteuser', views.confirmDeleteUser),
     path('search', views.searchStudyGroups),
+    path('editpassword', views.editPassword),
+    path('updatepassword', views.updatePassword),
+
     path('<int:userId>/userprofile', views.showUserProfile),
     
     path('contactus', views.contactusPage),

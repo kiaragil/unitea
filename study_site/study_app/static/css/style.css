@@ -7,7 +7,7 @@ html {
 
 body {
   display: flex;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   flex-direction: column;
   margin-bottom: 5em;
 }
@@ -15,7 +15,7 @@ body {
 .container {
   margin-left: auto;
   margin-right: auto;
-  justify-content: center;
+  text-align: center;
 }
 
 .font-white {
@@ -168,6 +168,12 @@ body {
 
 /* END NAVIGATION BAR */
 
+/* LOGIN REGISTER BUTTONS */
+.material-icons {
+  left: 0 !important;
+}
+/* END LOGIN REGISTER BUTTONS */
+
 /* USER PROFILE  */
 
 .avatar {
@@ -188,9 +194,8 @@ body {
 
 /* FORM */
 
-form input, textarea, button {
+form input, button {
   display: block;
-  margin: 30px;
 }
 
 .contact-box {
@@ -199,7 +204,7 @@ form input, textarea, button {
 }
 
 .input-field {
-  margin: 20px;
+  /* margin: 20px; */
 }
 
 .row {
@@ -328,8 +333,8 @@ form input, textarea, button {
 
 .page-footer {
   background-color: #011627;
-  position: relative;
-  bottom: -100px;
+  position: fixed;
+  bottom: 0;
   left: 0;
   width: 100%;
   padding-top: 0px;

@@ -4,10 +4,10 @@
 }
 
 .editMP-title{
-    font-size: 32px;
-    margin-top: 25px;
+    /* font-size: 32px; */
+    margin-top: 35px;
     margin-bottom: 40px;
-    justify-self: center;
+    justify-self: left;
 }
 
 .editMP-content{
@@ -21,6 +21,7 @@
 #editMP-text{
     margin-top: 10px;
     font-size: 20px;
+    min-height: max-content;
 }
 
 .editMP-buttons{
@@ -32,5 +33,6 @@
 }
 
 #editMP-button{
+    /* margin-top: 50px; */
     width: 100px;
 }
