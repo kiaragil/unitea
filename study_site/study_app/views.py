@@ -475,21 +475,27 @@ def showStudyGroupListing(request, subject):
     studyGroups = StudyGroup.objects.filter(subject__contains=subject)
     return render(request, 'studyGroupListing.html', {'studygroups': studyGroups})
 
+# show a main post
+def showMainPost(request, postId):
+    mainpost = MainPost.objects.get(postId=postId)
+    comments = MainComment.objects.filter(postId=postId)
+    form = MainCommentForm()
+    return render(request, 'mainPostPage.html', {'mainpost': mainpost, 'comments': comments, 'form': form})
+
 
 # show a study group page
 def showStudyGroup(request, studyGroupId):
-    if not request.user.is_authenticated:
-        messages.error(request, "You must first log in!")
-        return redirect('/login')
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId)
     members = StudyGroupMember.objects.filter(studyGroupId=studyGroupId)
     # memberCheck = StudyGroupMember.objects.filter(studyGroupId=studyGroupId, userId=request.user.userId)
+    if not request.user.is_authenticated:
+        return render(request, 'studyGroupPage.html',
+                  {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members, 'isHost': False, 'isMember': False, 'isUnreg': True})
     checkMem = isMember(request, studyGroupId)
     checkHost = isHost(request, studyGroupId)
     return render(request, 'studyGroupPage.html',
                   {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members, 'isHost': checkHost, 'isMember': checkMem})
-    # , 'isMember': checkMem
 
 # show the study group creation page
 def createStudyGroup(request):
