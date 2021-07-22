@@ -144,7 +144,6 @@ class MainCommentForm(forms.ModelForm):
         widget=forms.Textarea(),
     )
     comment.widget.attrs.update({'class':'materialize-textarea'})
-    # comment.widget.attrs.update({'id':'text-comment'})
 
 
     class Meta:
@@ -172,6 +171,7 @@ class StudyGroupCommentForm(forms.ModelForm):
     comment = forms.CharField(
         widget=forms.Textarea(),
     )
+    comment.widget.attrs.update({'class':'materialize-textarea'})
 
     class Meta:
         model = StudyGroupComment
