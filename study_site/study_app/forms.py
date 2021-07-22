@@ -55,7 +55,7 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'avatar', 'profile']
+        fields = ['username', 'avatar', 'profile']
 
 
 class LoginForm(forms.Form):
