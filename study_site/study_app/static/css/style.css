@@ -32,6 +32,8 @@ body {
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   padding: 10px;
+  padding-top: 40px;
+  padding-bottom: 50px;
 }
 
 .greeting-box {
@@ -93,6 +95,8 @@ body {
 
 .faqs-title1, .faqs-title2, .faqs-title3 {
   text-align: center;
+  padding-top: 25px;
+  padding-bottom: 40px;
 }
 
 .faqs1, .faqs2, .faqs3 {
@@ -101,7 +105,9 @@ body {
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: auto;
   padding: 10px;
+  padding-bottom: 50px;
   align-items: center;
+  text-align: left;
 }
 
 .faqs-photo2 {
@@ -110,8 +116,21 @@ body {
 }
 
 .faqs-slogan2 {
+  font-size: 155%;
   grid-row: 1;
   grid-column: 1;
+  padding-right: 6px;
+}
+
+.faqs-slogan1, .faqs-slogan3 {
+  font-size: 155%;
+  padding-left: 25px;
+}
+
+.landing-join-button {
+  z-index: 0;
+  padding-top: 25px;
+  position: relative;
 }
 
 /* END LANDING */
