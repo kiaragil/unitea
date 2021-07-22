@@ -106,18 +106,28 @@ def createUser(request):
             user.email = form.cleaned_data['email']
             user.password = form.cleaned_data['password']
             user.confirmPassword = form.cleaned_data['confirmPassword']
-
             # password and confirm password must match
             if user.password == user.confirmPassword:
-                try:
-                    # hash password
-                    user.password = make_password(user.password)
-                    # register a user
-                    messages.success(request, "New account created!")
-                    user.save()
-                    return redirect('/login')
-                except:
-                    pass
+                username_exist = User.objects.filter(username=form.cleaned_data['username'])
+                email_exist = User.objects.filter(email=form.cleaned_data['email'])
+                # username must not match!
+                if username_exist:
+                    messages.error(request, "Username already exist!")
+                    context['form'] = form
+                # email must not match
+                elif email_exist:
+                    messages.error(request, "Email already exist!")
+                    context['form'] = form
+                else:
+                    try:
+                        # hash password
+                        user.password = make_password(user.password)
+                        # register a user
+                        messages.success(request, "New account created!")
+                        user.save()
+                        return redirect('/login')
+                    except:
+                        pass
             else:
                 messages.error(request, "Confirm password doesn't match")
                 context['form'] = form
@@ -142,7 +152,7 @@ def editUserProfile(request):
     user = User.objects.get(userId=request.user.userId)
     context = {}
     context['form'] = UserProfileForm(instance=user)
-    return render(request, 'edituserprofile.html', context)
+    return render(request, 'editUserProfile.html', context)
 
 
 # update user profile
@@ -301,7 +311,7 @@ def showMainPost(request, postId):
 def createMainPost(request):
     # not logged in users must not access
     if not request.user.is_authenticated:
-        messages.error(request, "You need to log in to create a study group")
+        messages.error(request, "You need to log in to create a Forum Post!")
         return redirect('/login')
 
     context = {}
@@ -353,6 +363,7 @@ def updateMainPost(request, postId):
     form = MainPostForm(request.POST, instance=mainPost)
     if form.is_valid():
         form.save()
+        messages.success(request, "Post edited!")
         return redirect(f'/{postId}/mainpost')
     else:
         messages.error(request, "Invalid form data")
@@ -467,6 +478,9 @@ def showStudyGroupListing(request, subject):
 
 # show a study group page
 def showStudyGroup(request, studyGroupId):
+    if not request.user.is_authenticated:
+        messages.error(request, "You must first log in!")
+        return redirect('/login')
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId)
     members = StudyGroupMember.objects.filter(studyGroupId=studyGroupId)
@@ -481,7 +495,7 @@ def showStudyGroup(request, studyGroupId):
 def createStudyGroup(request):
     # not logged in users must not access
     if not request.user.is_authenticated:
-        messages.error(request, "You need to log in to create a study group")
+        messages.error(request, "You need to log in to create a Study Group")
         return redirect('/login')
 
     context = {}
@@ -545,11 +559,12 @@ def updateStudyGroup(request, studyGroupId):
 def deleteStudyGroup(request, studyGroupId):
     # logged in users must not access
     if not request.user.is_authenticated:
-        print("You're not logged in")
+        messages.error(request, "You must first log in!")
         return redirect('/login')
 
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     studygroup.delete()
+    messages.success(request, "Your Study Group was deleted!")
     return redirect('/home')
 
 
@@ -691,6 +706,7 @@ def updateStudyGroupPost(request, studyGroupId, postId):
     form = StudyGroupPostForm(request.POST, instance=studyGroupPost)
     if form.is_valid():
         form.save()
+        messages.success(request, "Post edited")
         return redirect(f'/{studyGroupId}/{postId}/studygrouppost')
     else:
         messages.error(request, "Invalid form data")
