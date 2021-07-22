@@ -38,6 +38,7 @@ urlpatterns = [
     path('search', views.searchStudyGroups),
     path('editpassword', views.editPassword),
     path('updatepassword', views.updatePassword),
+    path('termsofservice', views.tos),
 
     path('<int:userId>/userprofile', views.showUserProfile),
     
