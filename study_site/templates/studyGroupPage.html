@@ -21,6 +21,8 @@
             {% if isHost %}
             {% elif isMember %}
             <a href="leavestudygroup"class="waves-effect waves-light btn">Leave</a>
+            {% elif isUnreg %}
+            <a href="joinstudygroup" class="waves-effect waves-light btn red">Join</a>
             {% else %}
             <a href="joinstudygroup"class="waves-effect waves-light btn red">Join</a>
             {% endif %}
