@@ -152,7 +152,7 @@ def editUserProfile(request):
     user = User.objects.get(userId=request.user.userId)
     context = {}
     context['form'] = UserProfileForm(instance=user)
-    return render(request, 'edituserprofile.html', context)
+    return render(request, 'editUserProfile.html', context)
 
 
 # update user profile
