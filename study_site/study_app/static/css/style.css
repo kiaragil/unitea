@@ -558,3 +558,13 @@ form input, button {
 #text-comment{
   display: inline-flex;
 }
+
+/* Terms of Service */
+.tos-title{
+  padding-top: 30px;
+}
+
+.tos-p{
+  font-size: 20px;
+  text-align: left;
+}

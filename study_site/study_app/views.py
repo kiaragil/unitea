@@ -75,6 +75,9 @@ def aboutUs(request, member):
     context = {}
     return HttpResponse(template.render(context, request))
 
+#shows terms of service
+def tos(request):
+    return render(request, 'termsofservice.html')
 
 # ----------------------------
 #  User
