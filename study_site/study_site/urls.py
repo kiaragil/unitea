@@ -88,13 +88,13 @@ urlpatterns = [
     # ----------------------------
     #  Front End Testing 
     # ----------------------------
-    path('testEditStudyGroup', views.testEditStudyGroup),
-    path('testCreateStudyPost', views.testCreateStudyPost),
-    path('testCreateMainPost', views.testCreateMainPost),
-    path('testEditMainPost', views.testEditMainPost),
-    path('testEditStudyGroupPost', views.testEditStudyGroupPost),
-    path('testUserProfile', views.testUserProfile),
-    path('testEditUserProfile', views.testEditUserProfile),
+    # path('testEditStudyGroup', views.testEditStudyGroup),
+    # path('testCreateStudyPost', views.testCreateStudyPost),
+    # path('testCreateMainPost', views.testCreateMainPost),
+    # path('testEditMainPost', views.testEditMainPost),
+    # path('testEditStudyGroupPost', views.testEditStudyGroupPost),
+    # path('testUserProfile', views.testUserProfile),
+    # path('testEditUserProfile', views.testEditUserProfile),
 
 ]
 
