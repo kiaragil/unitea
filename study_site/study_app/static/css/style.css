@@ -117,7 +117,8 @@ body {
 }
 
 .faqs-title1 {
-  height: 0px;
+  margin-top: -27px; 
+  padding-left: 40px;
 }
 
 .faqs-slogan1 {
@@ -151,7 +152,8 @@ body {
 }
 
 .faqs-title2 {
-  height: 0px;
+  margin-top: -27px; 
+  padding-left: 10px;
   text-align: left;
 }
 
@@ -185,7 +187,7 @@ body {
 }
 
 .faqs-title3 {
-  height: 0px;
+  margin-top: -27px;
   padding-left: 50px;
 }
 
