@@ -5,6 +5,8 @@ from study_app.models import *
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
+import django.contrib.auth.password_validation as validation
+from django.core.exceptions import ValidationError
 from django.contrib import messages
 
 
@@ -108,6 +110,18 @@ def createUser(request):
             user.confirmPassword = form.cleaned_data['confirmPassword']
             # password and confirm password must match
             if user.password == user.confirmPassword:
+
+                #----
+                # VALIDATION
+                #----
+                try:
+                    validation.validate_password(user.password, user)
+                except ValidationError as val_err:
+                    #does not submit form - makes it form blank? can this be fixed?
+                    messages.error(request,  val_err.messages)
+                    context['form'] = form
+                    return redirect('/register')
+              
                 username_exist = User.objects.filter(username=form.cleaned_data['username'])
                 email_exist = User.objects.filter(email=form.cleaned_data['email'])
                 # username must not match!
