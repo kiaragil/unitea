@@ -64,6 +64,7 @@ body {
 .landing-photo {
   grid-column: 3 / -1;
 }
+
 .landing-img{
   border-radius: 25px;
   height: auto;
@@ -226,11 +227,12 @@ body {
 }
 
 .nav-searchbar::placeholder{
-  color: whitesmoke;
+  color: gray !important;
 }
 
 .nav-searchbar{
-  color: white;
+  background-color: white !important;
+  padding-left: 10px !important;
 }
 
 .search-button{

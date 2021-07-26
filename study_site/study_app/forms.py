@@ -2,7 +2,7 @@ from django import forms
 from study_app.models import *
 
 SUBJECT_CHOICES = (
-    ('', ''),
+    ('', 'Select subject'),
     ('math', 'Math'),
     ('science', 'Science'),
     ('languages', 'Languages'),
