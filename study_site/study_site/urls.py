@@ -46,7 +46,7 @@ urlpatterns = [
     path('submitcontactus', views.submitContactus),
     path('report', views.report),
 
-    # path('FAQ', views.FAQ),
+    path('FAQ', views.FAQ),
     
     path('mainforum', views.showMainForum),
     

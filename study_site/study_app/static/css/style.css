@@ -598,8 +598,10 @@ details {
 }
 
 summary {
-  list-style: none
+  font-size: 20px;
+  list-style: none;
 }
+
 details summary::before { 
   content:"🡒"; 
   color: red; 

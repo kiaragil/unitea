@@ -32,6 +32,10 @@ def contactusPage(request):
     context['form'] = ContactForm()
     return render(request, "contactus.html", context)
 
+# show the FAQ page
+def FAQ(request):
+    return render(request, 'FAQ.html')
+
 
 # submits the contact us form
 def submitContactus(request):
