@@ -5,9 +5,8 @@ from study_app.models import *
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
-import django.contrib.auth.password_validation as validation
-from django.core.exceptions import ValidationError
 from django.contrib import messages
+import re
 
 
 # Create your views here.
@@ -96,6 +95,31 @@ def register(request):
     context['form'] = RegistrationForm()
     return render(request, "register.html", context)
 
+# to validate a password; measuring the strength of a password
+def validationfunction(password):
+    regUpperCase = "(?=.*[A-Z])"
+    regNumbers = "(?=.*\d)"
+    regSymbols = "(?=.*[!@#$%^&*()-_=+[{]}\|;:\'\",<.>/?])"
+    validation = True
+
+    # compiling regex
+    pat1 = re.compile(regUpperCase)
+    pat2 = re.compile(regNumbers)
+    pat3 = re.compile(regSymbols)
+
+    # compare with regex
+    matchUpperCase = re.search(pat1, password)
+    matchNumber = re.search(pat2, password)
+    matchSymbols = re.search(pat3, password)
+
+    # if any criteria does not match, the password is a poor password
+    if len(password) < 8 or not matchUpperCase or not matchNumber or not matchSymbols:
+        validation = False
+        return validation
+    # else it's good password
+    else:
+        return validation
+
 
 # create a user account
 def createUser(request):
@@ -111,27 +135,19 @@ def createUser(request):
             # password and confirm password must match
             if user.password == user.confirmPassword:
 
-                #----
-                # VALIDATION
-                #----
-                try:
-                    validation.validate_password(user.password, user)
-                except ValidationError as val_err:
-                    #does not submit form - makes it form blank? can this be fixed?
-                    messages.error(request,  val_err.messages)
+                # validate password; password needs to be 8 characters long, has numbers, and at least one capitalized letter or at least one symbol
+                if not validationfunction(user.password):
                     context['form'] = form
-                    return redirect('/register')
+                    return render(request, 'register.html', {'form': form, 'poorPassword': True})
               
                 username_exist = User.objects.filter(username=form.cleaned_data['username'])
                 email_exist = User.objects.filter(email=form.cleaned_data['email'])
-                # username must not match!
+                # username must not match
                 if username_exist:
                     messages.error(request, "Username already exist!")
-                    context['form'] = form
                 # email must not match
                 elif email_exist:
                     messages.error(request, "Email already exist!")
-                    context['form'] = form
                 else:
                     try:
                         # hash password
@@ -209,7 +225,7 @@ def loginUser(request):
                 login(request, user)
                 return redirect('/')
             else:
-                messages.error(request, "Authentication failed")
+                messages.error(request, "Email or Password incorrect!")
                 context['form'] = form
         else:
             messages.error(request, "Invalid form data")

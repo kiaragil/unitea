@@ -118,7 +118,7 @@ body {
 }
 
 .faqs-title1 {
-  margin-top: -27px; 
+  margin-top: -27px;
   padding-left: 40px;
 }
 
@@ -150,11 +150,11 @@ body {
   display: grid;
   grid-column: 1 / 3;
   grid-row: 1;
-  
+
 }
 
 .faqs-title2 {
-  margin-top: -27px; 
+  margin-top: -27px;
   padding-left: 10px;
   text-align: left;
 }
@@ -366,7 +366,7 @@ form input, button {
   /* background-color:rgb(43, 63, 87); */
 }
 
-/* END SUBMIT BUTTON */  
+/* END SUBMIT BUTTON */
 
 /* SUBJECT BUTTONS */
 .subject-wrapper {
@@ -486,38 +486,21 @@ form input, button {
 
 /* PASSWORD CHECK  */
 
-#message {
-  display:none;
-  background: #f1f1f1;
-  color: #000;
-  position: relative;
-  padding: 20px;
-  margin-top: 10px;
+.poor-password-box{
+  border-radius: 25px;
+  border: 2px solid #f8d7da;
+  background: #f8d7da;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 400px;
+  margin: auto;
 }
 
-#message p {
-  padding: 10px 35px;
-  font-size: 15px;
-}
-
-/* Add a green text color and a checkmark when the requirements are right */
-.valid {
-  color: green;
-}
-
-.valid:before {
-  position: relative;
-  left: -35px;
-}
-
-/* Add a red text color and an "x" icon when the requirements are wrong */
-.invalid {
-  color: red;
-}
-
-.invalid:before {
-  position: relative;
-  left: -35px;
+.poor-password-message{
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: bold;
+  color: #862954;
+  text-align: left;
 }
 
 /* END PASSWORD CHECK  */
@@ -570,7 +553,7 @@ form input, button {
   display: inline-flex;
 }
 
-/* Terms of Service */
+/* TERMS OF SERVICE */
 .tos-title{
   padding-top: 30px;
 }
@@ -579,3 +562,6 @@ form input, button {
   font-size: 20px;
   text-align: left;
 }
+
+/* END OF TERMS OF SERVICE */
+
