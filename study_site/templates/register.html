@@ -4,9 +4,19 @@
     <h3>Sign up</h3>
     {% if poorPassword %}
         <div class="poor-password-box">
-            <p class="poor-password-message">Password must contain more than 8 characters, a capitalized letter, a number, and a symbol</p>
+            <p class="poor-password-message">
+                {% if valMessages %}
+                {% for message in valMessages %}
+                    {{message}}
+
+                {% endfor %}
+                {% endif%}
+                
+            </p>
         </div>
     {% endif %}
+
+    
     <div class="contact-box">
         <form method="POST" class="col s12" enctype="multipart/form-data" action="/createuser">
             {% csrf_token %}

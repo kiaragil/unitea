@@ -121,9 +121,9 @@ def createUser(request):
                 try:
                     validation.validate_password(user.password, user)
                 except ValidationError as val_err:
-                    messages.error(request,  val_err.messages)
+                    # messages.add_message(request,messages.INFO, val_err.messages)
                     context['form'] = form
-                    return render(request, 'register.html', context)
+                    return render(request, 'register.html', {'form': form, 'poorPassword': True, 'valMessages': val_err.messages})
                     
               
                 username_exist = User.objects.filter(username=form.cleaned_data['username'])

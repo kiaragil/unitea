@@ -7,55 +7,54 @@ class NumberValidator(object):
     def validate(self, password, user=None):
         if not re.findall('\d', password):
             raise ValidationError(
-                _("The password must contain at least 1 digit, 0-9."),
+                _("The password must contain at least 1 digit."),
                 code='password_no_number',
             )
 
-    def get_help_text(self):
-        return _(
-            "Your password must contain at least 1 digit, 0-9."
-        )
+    # def get_help_text(self):
+    #     return _(
+    #         "Your password must contain at least 1 digit, 0-9."
+    #     )
 
 
 class UppercaseValidator(object):
     def validate(self, password, user=None):
         if not re.findall('[A-Z]', password):
             raise ValidationError(
-                _("The password must contain at least 1 uppercase letter, A-Z."),
+                _("The password must contain at least 1 uppercase letter."),
                 code='password_no_upper',
             )
 
-    def get_help_text(self):
-        return _(
-            "Your password must contain at least 1 uppercase letter, A-Z."
-        )
+    # def get_help_text(self):
+    #     return _(
+    #         "Your password must contain at least 1 uppercase letter, A-Z."
+    #     )
 
 
 class LowercaseValidator(object):
     def validate(self, password, user=None):
         if not re.findall('[a-z]', password):
             raise ValidationError(
-                _("The password must contain at least 1 lowercase letter, a-z."),
+                _("The password must contain at least 1 lowercase letter."),
                 code='password_no_lower',
             )
 
-    def get_help_text(self):
-        return _(
-            "Your password must contain at least 1 lowercase letter, a-z."
-        )
+    # def get_help_text(self):
+    #     return _(
+    #         "Your password must contain at least 1 lowercase letter, a-z."
+    #     )
 
 
 class SymbolValidator(object):
     def validate(self, password, user=None):
         if not re.findall('[()[\]{}|\\`~!@#$%^&*_\-+=;:\'",<>./?]', password):
             raise ValidationError(
-                _("The password must contain at least 1 symbol: " +
-                  "()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?"),
+                _("The password must contain at least 1 symbol."),
                 code='password_no_symbol',
             )
 
-    def get_help_text(self):
-        return _(
-            "Your password must contain at least 1 symbol: " +
-            "()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?"
-        )
+    # def get_help_text(self):
+    #     return _(
+    #         "Your password must contain at least 1 symbol: " +
+    #         "()[]{}|\`~!@#$%^&*_-+=;:'\",<>./?"
+    #     )
