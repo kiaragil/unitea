@@ -566,11 +566,11 @@ form input, button {
 /* END OF TERMS OF SERVICE */
 
 /* Help / FAQ */
-.FAQ-head {
+#FAQ-head {
   padding-top: 4em;
 }
 
-.FAQ-circle {
+#FAQ-circle {
   text-align: center;
   font-size: xxx-large;
   padding: 1em;
@@ -583,7 +583,7 @@ form input, button {
   margin-right: auto;
 }
 
-.FAQ-box {
+#FAQ-box {
   margin-top: 16px;
   padding: 10px 20px;
   margin-right: 40px;
