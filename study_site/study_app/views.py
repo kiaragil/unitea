@@ -5,6 +5,8 @@ from study_app.models import *
 from django.http import HttpResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
+import django.contrib.auth.password_validation as validation
+from django.core.exceptions import ValidationError
 from django.contrib import messages
 
 
@@ -29,6 +31,10 @@ def contactusPage(request):
     context = {}
     context['form'] = ContactForm()
     return render(request, "contactus.html", context)
+
+# show the FAQ page
+def FAQ(request):
+    return render(request, 'FAQ.html')
 
 
 # submits the contact us form
@@ -108,6 +114,18 @@ def createUser(request):
             user.confirmPassword = form.cleaned_data['confirmPassword']
             # password and confirm password must match
             if user.password == user.confirmPassword:
+
+                #----
+                # VALIDATION
+                #----
+                try:
+                    validation.validate_password(user.password, user)
+                except ValidationError as val_err:
+                    # messages.add_message(request,messages.INFO, val_err.messages)
+                    context['form'] = form
+                    return render(request, 'register.html', {'form': form, 'poorPassword': True, 'valMessages': val_err.messages})
+                    
+              
                 username_exist = User.objects.filter(username=form.cleaned_data['username'])
                 email_exist = User.objects.filter(email=form.cleaned_data['email'])
                 # username must not match!

@@ -63,6 +63,7 @@
         <li><a href="/about" class="font-white">About</a></li>
         <li><a href="/mainforum" class="font-white">Forum</a></li>
         <li><a href="/contactus" class="font-white">Contact</a></li>
+        <li><a href="/FAQ" class="font-white">FAQ</a></li>
 
         {% if user.is_authenticated %}
         <li class="nav-username"><a href="/{{ user.userId }}/userprofile">Hi, {{ user.username }}!</a></li>
@@ -89,7 +90,9 @@
     </li>
     <li><a href="/">Home</a></li>
     <li><a href="about">About</a></li>
+    <li><a href="/mainforum" class="font-white">Forum</a></li>
     <li><a href="contactus">Contact</a></li>
+    <li><a href="/FAQ" class="font-white">FAQ</a></li>
     {% if user.is_authenticated %}
     <li style="margin-left: 32px;">Logged in as {{ user.username }}</li>
     <li><a href="/logout">Logout</a></li>

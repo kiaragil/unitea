@@ -2,7 +2,7 @@ from django import forms
 from study_app.models import *
 
 SUBJECT_CHOICES = (
-    ('', ''),
+    ('', 'Select subject'),
     ('math', 'Math'),
     ('science', 'Science'),
     ('languages', 'Languages'),
@@ -13,21 +13,22 @@ SUBJECT_CHOICES = (
 
 
 class RegistrationForm(forms.Form):
+
     username = forms.CharField(
         label='Username',
         max_length=40,
-        required=True
+        required=True,
     )
     email = forms.EmailField(
         label='Email',
         max_length=100,
-        required=True
+        required=True,
     )
     password = forms.CharField(
         label='Password',
         widget=forms.PasswordInput(),
         max_length=100,
-        required=True
+        required=True,
     )
     confirmPassword = forms.CharField(
         label='Confirm Password',
@@ -98,8 +99,8 @@ class ContactForm(forms.Form):
 
 class StudyGroupForm(forms.ModelForm):
     groupName = forms.CharField(
-        label='Study Group Name', 
-        max_length = 100, 
+        label='Study Group Name',
+        max_length = 100,
         required=True
     )
     description = forms.CharField(
@@ -109,9 +110,9 @@ class StudyGroupForm(forms.ModelForm):
         required=True
     )
     description.widget.attrs.update({'class':'materialize-textarea'})
-    description.widget.attrs.update({'id':'editSGP-text'})   
+    description.widget.attrs.update({'id':'editSGP-text'})
     subject = forms.CharField(
-        label='Subject', 
+        label='Subject',
         widget=forms.Select(choices=SUBJECT_CHOICES),
         required=False
     )
@@ -131,7 +132,7 @@ class MainPostForm(forms.ModelForm):
         widget=forms.Textarea(),
     )
     post.widget.attrs.update({'class':'materialize-textarea'})
-    post.widget.attrs.update({'id':'editMP-text'})    
+    post.widget.attrs.update({'id':'editMP-text'})
 
     class Meta:
         model = MainPost
@@ -161,7 +162,7 @@ class StudyGroupPostForm(forms.ModelForm):
     )
 
     post.widget.attrs.update({'class':'materialize-textarea'})
-    post.widget.attrs.update({'id':'editSGP-text'})   
+    post.widget.attrs.update({'id':'editSGP-text'})
     class Meta:
         model = StudyGroupPost
         fields = ['postTitle', 'post']
