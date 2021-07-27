@@ -117,7 +117,6 @@ def createUser(request):
                 try:
                     validation.validate_password(user.password, user)
                 except ValidationError as val_err:
-                    #does not submit form - makes it blank? can this be fixed?
                     messages.error(request,  val_err.messages)
                     context['form'] = form
                     return render(request, 'register.html', context)

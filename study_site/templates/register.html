@@ -2,6 +2,11 @@
  {% load materializecss %} {% block content %}
 
     <h3>Sign up</h3>
+    {% if poorPassword %}
+        <div class="poor-password-box">
+            <p class="poor-password-message">Password must contain more than 8 characters, a capitalized letter, a number, and a symbol</p>
+        </div>
+    {% endif %}
     <div class="contact-box">
         <form method="POST" class="col s12" enctype="multipart/form-data" action="/createuser">
             {% csrf_token %}
@@ -34,13 +39,4 @@
         </form>
     </div>
 
-    <div id="message">
-        <h5>Password must contain the following:</h5>
-              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-              <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-              <p id="number" class="invalid">A <b>number</b></p>
-              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-      </div>
-        
-        
 {% endblock %}
