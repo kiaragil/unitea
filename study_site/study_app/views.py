@@ -849,6 +849,12 @@ def deleteStudyGroupComment(request, studyGroupId, postId, commentId):
     studyGroupComment.delete()
     return redirect(f'/{studyGroupId}/{postId}/studygrouppost')
 
+#---------------
+#   FAQ Page
+#---------------
+def FAQ(request):
+    return render(request, 'FAQ.html')
+
 
 # ----------------------------
 #  Front End Testing 

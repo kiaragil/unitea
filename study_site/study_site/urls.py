@@ -45,6 +45,8 @@ urlpatterns = [
     path('contactus', views.contactusPage),
     path('submitcontactus', views.submitContactus),
     path('report', views.report),
+
+    path('FAQ', views.FAQ),
     
     path('mainforum', views.showMainForum),
     
