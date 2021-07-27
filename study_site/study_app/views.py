@@ -655,8 +655,8 @@ def searchStudyGroups(request):
                     maybe = True
 
     if not found and not maybe:
-        #no search word was inputted. suggest popular groups
-        suggestStudyGroups = StudyGroup.objects.order_by('memberCount')[:10]
+        #no search word was inputted. suggest not-full popular groups
+        suggestStudyGroups = StudyGroup.objects.filter(memberCount__lt=20).order_by('memberCount').reverse()[:10]
 
     return render(request, 'searchResults.html', {'searched': searched, 'foundStudyGroups': foundStudyGroups, 'maybeStudyGroups': maybeStudyGroups, 'suggestStudyGroups': suggestStudyGroups})
 
