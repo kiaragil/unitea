@@ -104,8 +104,6 @@ def register(request):
 # create a user account
 def createUser(request):
     context = {}
-    user_error = False
-    email_error = False
     if request.method == "POST":
         form = RegistrationForm(request.POST, request.FILES)
         if form.is_valid() and form.cleaned_data['tosCheck']:

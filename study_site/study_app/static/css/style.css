@@ -486,7 +486,7 @@ form input, button {
 
 /* PASSWORD CHECK  */
 
-.poor-password-box{
+.registration-error-box{
   border-radius: 10px;
   border: 2px solid #f8d7da;
   background: #f8d7da;
@@ -496,7 +496,7 @@ form input, button {
   margin: auto;
 }
 
-.poor-password-message{
+.registration-error-message{
   font-family: 'Comfortaa', sans-serif;
   font-weight: bold;
   color: #862954;

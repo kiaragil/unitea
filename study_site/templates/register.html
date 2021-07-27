@@ -3,15 +3,15 @@
 
     <h3>Sign up</h3>
     {% if error %}
-        <div class="poor-password-box">
+        <div class="registration-error-box">
             {% if user_error %}
-            <p class="poor-password-message">Username already exist.</p>
+            <p class="registration-error-message">Username already exist.</p>
             {% endif %}
             {% if email_error %}
-            <p class="poor-password-message">Email already exist.</p>
+            <p class="registration-error-message">Email already exist.</p>
             {% endif %}
             {% if valMessages %}
-            <ul class="poor-password-message">
+            <ul class="registration-error-message">
                 {% for message in valMessages %}
                 <li> {{message}} </li>
                 {% endfor %}
