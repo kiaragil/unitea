@@ -487,12 +487,12 @@ form input, button {
 /* PASSWORD CHECK  */
 
 .poor-password-box{
-  border-radius: 25px;
+  border-radius: 10px;
   border: 2px solid #f8d7da;
   background: #f8d7da;
   padding-left: 10px;
   padding-right: 10px;
-  max-width: 400px;
+  max-width: 450px;
   margin: auto;
 }
 
