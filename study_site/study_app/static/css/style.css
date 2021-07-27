@@ -587,16 +587,24 @@ form input, button {
   padding: 10px 20px;
   margin-right: 40px;
   margin-left: 40px;
-  border: outset;
 }
 
 details {
-  background-color: rgb(245, 240, 236);
   padding: 10px;
   border-radius: 7px;
   margin-top: 20px;
   font-size: 14px;
   letter-spacing: 1px;
+}
+
+summary {
+  list-style: none
+}
+details summary::before { 
+  content:"🡒"; 
+  color: red; 
+  vertical-align: middle;
+  float: left;
 }
 
 details summary {
