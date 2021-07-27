@@ -343,9 +343,7 @@ form input, button {
 }
 
 
-.input-field {
-  /* margin: 20px; */
-}
+
 
 .row {
   display: flex;
@@ -362,9 +360,7 @@ form input, button {
 
 }
 
-.btn:hover {
-  /* background-color:rgb(43, 63, 87); */
-}
+
 
 /* END SUBMIT BUTTON */
 
@@ -486,7 +482,7 @@ form input, button {
 
 /* PASSWORD CHECK  */
 
-.registration-error-box{
+#registration-error-box{
   border-radius: 10px;
   border: 2px solid #f8d7da;
   background: #f8d7da;
