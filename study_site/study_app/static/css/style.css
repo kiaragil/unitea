@@ -565,3 +565,42 @@ form input, button {
 
 /* END OF TERMS OF SERVICE */
 
+/* Help / FAQ */
+.FAQ-head {
+  padding-top: 4em;
+}
+
+.FAQ-circle {
+  text-align: center;
+  padding: 1em;
+  border: 7px groove orangered;
+  width: 110px;
+  height: 110px;
+  border-radius: 100%;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.FAQ-box {
+  margin-top: 16px;
+  padding: 10px 20px;
+  margin-right: 40px;
+  margin-left: 40px;
+  border: outset;
+}
+
+details {
+  background-color: rgb(245, 240, 236);
+  padding: 10px;
+  border-radius: 7px;
+  margin-top: 20px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+details summary {
+  outline: none;
+}
+
+
