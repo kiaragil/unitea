@@ -113,6 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "study_app.validators.SymbolValidator",
     },
+    {
+        "NAME": "study_app.validators.NumberValidator",
+    },
 ]
 
 

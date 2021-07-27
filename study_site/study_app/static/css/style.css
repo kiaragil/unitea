@@ -486,17 +486,17 @@ form input, button {
 
 /* PASSWORD CHECK  */
 
-.poor-password-box{
-  border-radius: 25px;
+.registration-error-box{
+  border-radius: 10px;
   border: 2px solid #f8d7da;
   background: #f8d7da;
   padding-left: 10px;
   padding-right: 10px;
-  max-width: 400px;
+  max-width: 450px;
   margin: auto;
 }
 
-.poor-password-message{
+.registration-error-message{
   font-family: 'Comfortaa', sans-serif;
   font-weight: bold;
   color: #862954;
@@ -572,11 +572,12 @@ form input, button {
 
 .FAQ-circle {
   text-align: center;
+  font-size: xxx-large;
   padding: 1em;
-  border: 7px groove orangered;
+  /* border: 7px groove orangered;
   width: 110px;
   height: 110px;
-  border-radius: 100%;
+  border-radius: 100%; */
   align-content: center;
   margin-left: auto;
   margin-right: auto;
@@ -593,22 +594,28 @@ details {
   padding: 10px;
   border-radius: 7px;
   margin-top: 20px;
-  font-size: 14px;
+  font-size: large;
   letter-spacing: 1px;
 }
-
+details p {
+  text-align: left;
+}
 summary {
-  font-size: 20px;
+  font-size: x-large;
   list-style: none;
 }
 
 details summary::before { 
-  content:"🡒"; 
-  color: red; 
+  /* content:"🡒";  */
+  content: '\25C0';
+  color: black; 
   vertical-align: middle;
-  float: left;
+  float: right;
 }
 
+details[open] summary::before {
+  content: '\25BC';
+}
 details summary {
   outline: none;
 }

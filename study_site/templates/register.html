@@ -2,21 +2,23 @@
  {% load materializecss %} {% block content %}
 
     <h3>Sign up</h3>
-    {% if poorPassword %}
-        <div class="poor-password-box">
-            <p class="poor-password-message">
-                {% if valMessages %}
+    {% if error %}
+        <div class="registration-error-box">
+            {% if user_error %}
+            <p class="registration-error-message">Username already exist.</p>
+            {% endif %}
+            {% if email_error %}
+            <p class="registration-error-message">Email already exist.</p>
+            {% endif %}
+            {% if valMessages %}
+            <ul class="registration-error-message">
                 {% for message in valMessages %}
-                    {{message}}
-
+                <li> {{message}} </li>
                 {% endfor %}
-                {% endif%}
-                
-            </p>
+            </ul>
+            {% endif %}
         </div>
     {% endif %}
-
-    
     <div class="contact-box">
         <form method="POST" class="col s12" enctype="multipart/form-data" action="/createuser">
             {% csrf_token %}

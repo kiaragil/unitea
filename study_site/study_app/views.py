@@ -114,28 +114,26 @@ def createUser(request):
             user.confirmPassword = form.cleaned_data['confirmPassword']
             # password and confirm password must match
             if user.password == user.confirmPassword:
-
-                #----
-                # VALIDATION
-                #----
+                username_exist = User.objects.filter(username=form.cleaned_data['username'])
+                email_exist = User.objects.filter(email=form.cleaned_data['email'])
+                # validate password
                 try:
                     validation.validate_password(user.password, user)
                 except ValidationError as val_err:
-                    # messages.add_message(request,messages.INFO, val_err.messages)
-                    context['form'] = form
-                    return render(request, 'register.html', {'form': form, 'poorPassword': True, 'valMessages': val_err.messages})
-                    
-              
-                username_exist = User.objects.filter(username=form.cleaned_data['username'])
-                email_exist = User.objects.filter(email=form.cleaned_data['email'])
-                # username must not match!
-                if username_exist:
-                    messages.error(request, "Username already exist!")
-                    context['form'] = form
-                # email must not match
-                elif email_exist:
-                    messages.error(request, "Email already exist!")
-                    context['form'] = form
+                    return render(request, 'register.html',
+                                  {'form': form,
+                                   'error': True,
+                                   'valMessages': val_err.messages,
+                                   'user_error': username_exist,
+                                   'email_error': email_exist})
+                # if make it here, means password is good, but either username/email is taken
+                if username_exist or email_exist:
+                    return render(request, 'register.html',
+                                  {'form': form,
+                                   'error': True,
+                                   'valMessages': False,
+                                   'user_error': username_exist,
+                                   'email_error': email_exist})
                 else:
                     try:
                         # hash password
@@ -156,7 +154,7 @@ def createUser(request):
         messages.error(request, "Something is wrong")
         context['form'] = RegistrationForm()
 
-    # user creation failed
+    # user creation failed (this should never be called, but exist as precaution
     return render(request, 'register.html', context)
 
 
@@ -635,15 +633,34 @@ def leaveStudyGroup(request, studyGroupId):
     messages.success(request, "Left the group!")
     return redirect(f'/{studyGroupId}/studygroup')
 
-
 # search study groups
 def searchStudyGroups(request):
+    found = False
+    maybe = False
+    foundStudyGroups = None
+    maybeStudyGroups = None
+    suggestStudyGroups = None
+
     if request.method == "POST":
         searched = request.POST['searched']
-        # if not searched:
-            # messages.info(request, "Please enter a search word")
-        studyGroups = StudyGroup.objects.filter(groupName__icontains=searched)
-        return render(request, 'searchResults.html', {'searched': searched, 'studygroups': studyGroups})
+        if searched:
+            #find groups whose name contains the searched word
+            foundStudyGroups = StudyGroup.objects.filter(groupName__icontains=searched)
+            if foundStudyGroups:
+                found = True
+            else:
+                #find groups whose description contains the searched word
+                maybeStudyGroups = StudyGroup.objects.filter(description__icontains=searched)
+                if len(maybeStudyGroups) > 10:
+                    maybe = True
+
+    if not found and not maybe:
+        #no search word was inputted. suggest not-full popular groups
+        suggestStudyGroups = StudyGroup.objects.filter(memberCount__lt=20).order_by('memberCount').reverse()[:10]
+
+    return render(request, 'searchResults.html', {'searched': searched, 'foundStudyGroups': foundStudyGroups, 'maybeStudyGroups': maybeStudyGroups, 'suggestStudyGroups': suggestStudyGroups})
+
+
 
 # ----------------------------
 #  Study Group Forum Post
