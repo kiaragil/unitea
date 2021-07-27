@@ -633,15 +633,34 @@ def leaveStudyGroup(request, studyGroupId):
     messages.success(request, "Left the group!")
     return redirect(f'/{studyGroupId}/studygroup')
 
-
 # search study groups
 def searchStudyGroups(request):
+    found = False
+    maybe = False
+    foundStudyGroups = None
+    maybeStudyGroups = None
+    suggestStudyGroups = None
+
     if request.method == "POST":
         searched = request.POST['searched']
-        # if not searched:
-            # messages.info(request, "Please enter a search word")
-        studyGroups = StudyGroup.objects.filter(groupName__icontains=searched)
-        return render(request, 'searchResults.html', {'searched': searched, 'studygroups': studyGroups})
+        if searched:
+            #find groups whose name contains the searched word
+            foundStudyGroups = StudyGroup.objects.filter(groupName__icontains=searched)
+            if foundStudyGroups:
+                found = True
+            else:
+                #find groups whose description contains the searched word
+                maybeStudyGroups = StudyGroup.objects.filter(description__icontains=searched)
+                if len(maybeStudyGroups) > 10:
+                    maybe = True
+
+    if not found and not maybe:
+        #no search word was inputted. suggest popular groups
+        suggestStudyGroups = StudyGroup.objects.order_by('memberCount')[:10]
+
+    return render(request, 'searchResults.html', {'searched': searched, 'foundStudyGroups': foundStudyGroups, 'maybeStudyGroups': maybeStudyGroups, 'suggestStudyGroups': suggestStudyGroups})
+
+
 
 # ----------------------------
 #  Study Group Forum Post

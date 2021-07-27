@@ -7,27 +7,78 @@
 
     <div class="container">
         {% if searched %}
-        <h4>Search Results for: {{ searched }}</h4>
+        <h5>Search Results for: {{ searched }}</h5>
 
-            {% if studygroups %}
-            <div class="collection">
-                {% for studygroup in studygroups %}
-                <a href="{{ studygroup.studyGroupId }}/studygroup" class="collection-item">
-                    <b>{{ studygroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
-                    <p>{{ studygroup.description }}</p>
-                </a>
-                {% endfor %}
-            </div>
-            {% else %}
-                <h4>No study group found.</h4>
+            {% if foundStudyGroups %}
+
+                <div class="collection">
+                    {% for foundStudyGroup in foundStudyGroups %}
+                    <a href="{{ foundStudyGroup.studyGroupId }}/studygroup" class="collection-item">
+                        <b>{{ foundStudyGroup.groupName }}</b>・{{ foundStudyGroup.ownerId }}<br>
+                        <p>{{ foundStudyGroup.description }}</p>
+                    </a>
+                    {% endfor %}
+                </div>
+
+            {% elif maybeStudyGroups %}
+
+                <h5>You might be looking for these groups.</h5>
+                <div class="collection">
+                    {% for maybeStudyGroup in maybeStudyGroups %}
+                    <a href="{{ maybeStudyGroup.studyGroupId }}/studygroup" class="collection-item">
+                        <b>{{ maybeStudyGroup.groupName }}</b>・{{ maybeStudyGroup.ownerId }}<br>
+                        <p>{{ maybeStudyGroup.description }}</p>
+                    </a>
+                    {% endfor %}
+                </div>
+                <h5>Start a New Group!</h5>
                 <div class="create-wrapper">
                     <div class="boxB"><a href="/createstudygroup" class="font-white">+ Create Group</a></div>
                 </div>
+                <br>
+                <h5>You might be interested in these groups.</h5>
+                <div class="collection">
+                {% for suggestStudyGroup in suggestStudyGroups %}
+                <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
+                    <b>{{ suggestStudyGroup.groupName }}</b>・{{ suggestStudyGroup.ownerId }}<br>
+                    <p>{{ suggestStudyGroup.description }}</p>
+                </a>
+                {% endfor %}
+                </div>
+
+            {% else %}
+
+                <h6>No study group found.</h6>
+                <h5>Start a New Group!</h5>
+                <div class="create-wrapper">
+                    <div class="boxB"><a href="/createstudygroup" class="font-white">+ Create Group</a></div>
+                </div>
+                <br>
+                <h5>You might be interested in these groups.</h5>
+                <div class="collection">
+                {% for suggestStudyGroup in suggestStudyGroups %}
+                <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
+                    <b>{{ suggestStudyGroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
+                    <p>{{ suggestStudyGroup.description }}</p>
+                </a>
+                {% endfor %}
+                </div>
+
             {% endif %}
 
         {% else %}
-<!--        Make this pretty-->
-            <h4>Please input a search word</h4>
+
+            <h5>Please input a search word.</h5>
+            <br>
+            <h5>You might be interested in these groups.</h5>
+            <div class="collection">
+            {% for suggestStudyGroup in suggestStudyGroups %}
+            <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
+                <b>{{ suggestStudyGroup.groupName }}</b>・{{ suggestStudyGroup.ownerId }}<br>
+                <p>{{ suggestStudyGroup.description }}</p>
+            </a>
+            {% endfor %}
+
         {% endif %}
     </div>
 
