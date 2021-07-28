@@ -62,6 +62,7 @@ urlpatterns = [
     path('<int:postId>/<int:commentId>/updatemaincomment', views.updateMainComment),
     path('<int:postId>/<int:commentId>/deletemaincomment', views.deleteMainComment),
     
+    path('userstudygrouplisting', views.userStudyGroupListing),
     path('<str:subject>/studygrouplisting', views.showStudyGroupListing),
 
     path('createstudygroup', views.createStudyGroup),

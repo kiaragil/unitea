@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %} {% block content %}
+
+<div class="col s12 user-list-section">
+    <ul class="tabs" id="tabs">
+        <li class="tab col s6 user-list-tab"><a href="#your-group" class="active" >Groups You Joined</a></li>
+        <li class="tab col s6 user-list-tab"><a href="#host-group">Groups Hosted by You</a></li>
+    </ul>
+</div>
+<div id="your-group" class="col s12">
+    <div class="collection">
+        {% for studyGroupAsMember in studyGroupsAsMember %}
+        <a href="/{{ studyGroupAsMember.studyGroupId }}/studygroup" class="collection-item">
+            <b>{{ studyGroupAsMember.groupName }}</b>・{{ studyGroupAsMember.ownerId }}<br>
+            <p>{{ studyGroupAsMember.description }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+<div id="host-group" class="col s12">
+    <div class="collection">
+        {% for studyGroupAsHost in studyGroupsAsHost %}
+        <a href="/{{ studyGroupAsHost.studyGroupId }}/studygroup" class="collection-item">
+            <b>{{ studyGroupAsHost.groupName }}</b>・{{ studyGroupAsHost.ownerId }}<br>
+            <p>{{ studyGroupAsHost.description }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<script type="text/javascript">
+    var instance = M.Tabs.init(document.getElementById('tabs'))
+</script>
+{% endblock %}
