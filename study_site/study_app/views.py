@@ -6,7 +6,7 @@ GitHub Name: KiaraGil, OstynSy, JoshLikesToCode, CleGuren, simicity, vxie123, me
 
 File Name: views.py
 
-Description:
+Description: All functions used for the website.
 """
 
 from django.shortcuts import render, redirect
