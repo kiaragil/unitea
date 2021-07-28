@@ -1,47 +1,44 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-
-<div class="dash-section">
-    <h5>Your Groups</h5>
-    <div class="dash-row">
-        {% for studyGroupAsMember in studyGroupsAsMember %}
-        <div class="dash-col">
-            <a href="/{{ studyGroupAsMember.studyGroupId }}/studygroup">
-                <div class="card dash-card">
-                    <div class="card-content">
-                        <span><b>{{ studyGroupAsMember.groupName }}</b></span>
-                        <hr>
-                        <p>{{ studyGroupAsMember.description }}</p>
+{% if studyGroupsAsMember or studyGroupsAsHost %}
+    <div class="dash-section">
+        <h5>Your Groups</h5>
+        <div class="dash-row">
+            {% for studyGroupAsMember in studyGroupsAsMember %}
+            <div class="dash-col">
+                <a href="/{{ studyGroupAsMember.studyGroupId }}/studygroup">
+                    <div class="card dash-card">
+                        <div class="card-content">
+                            <span><b>{{ studyGroupAsMember.groupName }}</b></span>
+                            <hr>
+                            <p>{{ studyGroupAsMember.description }}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-        {% endfor %}
-        {% for studyGroupAsHost in studyGroupsAsHost %}
-        <div class="dash-col">
-            <a href="/{{ studyGroupAsHost.studyGroupId }}/studygroup">
-                <div class="card dash-card">
-                    <div class="card-content">
-                        <span class="new badge" data-badge-caption="Host"></span>
-                        <br>
-                        <span><b>{{ studyGroupAsHost.groupName }}</b></span>
-                        <hr>
-                        <p>{{ studyGroupAsHost.description }}</p>
+                </a>
+            </div>
+            {% endfor %}
+            {% for studyGroupAsHost in studyGroupsAsHost %}
+            <div class="dash-col">
+                <a href="/{{ studyGroupAsHost.studyGroupId }}/studygroup">
+                    <div class="card dash-card">
+                        <div class="card-content">
+                            <span class="new badge" data-badge-caption="Host"></span>
+                            <br>
+                            <span><b>{{ studyGroupAsHost.groupName }}</b></span>
+                            <hr>
+                            <p>{{ studyGroupAsHost.description }}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <a href="/userstudygrouplisting">See All Groups</a>
     </div>
-    <a href="/userstudygrouplisting">See All Groups</a>
-</div>
+{% endif %}
 
-<h5>
-    <div id="explainer" class="area"> Click on a subject button below to browse study groups <br> OR <br> use the search
-        bar above to find one.</div>
-</h5>
-
+<h5><div id="explainer" class="area"> Click on a subject button below to browse study groups <br> OR <br> use the search bar above to find one.</div></h5>
 
 <div class="subject-wrapper">
     <a href="math/studygrouplisting" class="font-white">
