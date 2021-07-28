@@ -276,6 +276,37 @@ body {
 
 /* END NAVIGATION BAR */
 
+/* DASHBOARDS */
+
+.dash-section {
+  margin-top: 50px;
+}
+
+.dash-row {
+  display: flex;
+  justify-content: left;
+}
+
+.dash-col{
+  width: 25%;
+  padding: 0 .75rem;
+}
+
+.dash-card {
+  height: 200px;
+  overflow: hidden;
+}
+
+.user-list-section {
+  margin-top: 10px;
+}
+
+.user-list-tab {
+  width: 50%;
+}
+
+/* END DASHBOARDS */
+
 /* LOGIN REGISTER BUTTONS */
 .material-icons {
   left: 0 !important;
