@@ -1,3 +1,15 @@
+"""
+Class: CSC648-848 SW Engineering SU21
+Team: Team 4
+Name: Kiara Gil, Ostyn Sy, Joshua Stone, Cong Le, Miho Shimizu, Vernon Xie, Melinda Yee
+GitHub Name: KiaraGil, OstynSy, JoshLikesToCode, CleGuren, simicity, vxie123, melinda15
+
+File Name: forms.py
+
+Description: This file includes all forms on the website
+ex. Login, Register, contact, studygroup, etc
+"""
+
 from django import forms
 from study_app.models import *
 
@@ -12,6 +24,7 @@ SUBJECT_CHOICES = (
 )
 
 
+# Form for registration
 class RegistrationForm(forms.Form):
 
     username = forms.CharField(

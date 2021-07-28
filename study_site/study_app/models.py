@@ -1,6 +1,16 @@
+"""
+Class: CSC648-848 SW Engineering SU21
+Team: Team 4
+Name: Kiara Gil, Ostyn Sy, Joshua Stone, Cong Le, Miho Shimizu, Vernon Xie, Melinda Yee
+GitHub Name: KiaraGil, OstynSy, JoshLikesToCode, CleGuren, simicity, vxie123, melinda15
+
+File Name: models.py
+
+Description:
+"""
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-from django.utils.translation import gettext_lazy as _
 from .managers import UserManager
 
 # Create your models here.
