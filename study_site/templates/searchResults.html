@@ -5,51 +5,81 @@
 <link rel="stylesheet" href="{% static 'css/searchResults.css' %}">
 {% endblock %}
 
-    <div class="container">
-        {% if searched %}
-        <h5>Search Results for: {{ searched }}</h5>
+<div class="container">
+    {% if searched %}
+    <br>
+    <br>
+    <h5>Search Results for: {{ searched }}</h5>
+    <br>
+    <br>
+    <hr class="solid">
+    <br>
+    
+    <!-- if found -->
+    {% if foundStudyGroups %}
 
-            {% if foundStudyGroups %}
+    <div class="collection">
+        {% for foundStudyGroup in foundStudyGroups %}
+        <a href="{{ foundStudyGroup.studyGroupId }}/studygroup" class="collection-item">
+            <b>{{ foundStudyGroup.groupName }}</b>・{{ foundStudyGroup.ownerId }}<br>
+            <p>{{ foundStudyGroup.description }}</p>
+        </a>
+        {% endfor %}
+    </div>
 
-                <div class="collection">
-                    {% for foundStudyGroup in foundStudyGroups %}
-                    <a href="{{ foundStudyGroup.studyGroupId }}/studygroup" class="collection-item">
-                        <b>{{ foundStudyGroup.groupName }}</b>・{{ foundStudyGroup.ownerId }}<br>
-                        <p>{{ foundStudyGroup.description }}</p>
-                    </a>
-                    {% endfor %}
-                </div>
+    <br>
+    <br>
+    <h5>Start a New Group!</h5>
+    <a href="/createstudygroup" class="font-white">
+        <div class="box-search">+ Create Group</div>
+    </a>
+    <br>
+  
 
-            {% elif maybeStudyGroups %}
+    <!-- partially found -->
+    {% elif maybeStudyGroups %}
 
-                <h5>You might be looking for these groups.</h5>
-                <div class="collection">
-                    {% for maybeStudyGroup in maybeStudyGroups %}
-                    <a href="{{ maybeStudyGroup.studyGroupId }}/studygroup" class="collection-item">
-                        <b>{{ maybeStudyGroup.groupName }}</b>・{{ maybeStudyGroup.ownerId }}<br>
-                        <p>{{ maybeStudyGroup.description }}</p>
-                    </a>
-                    {% endfor %}
-                </div>
-                <h5>Start a New Group!</h5>
-                <a href="/createstudygroup" class="font-white"><div class="box-search">+ Create Group</div></a>
-                <br>
-                <h5>You might be interested in these groups.</h5>
-                <div class="collection">
-                {% for suggestStudyGroup in suggestStudyGroups %}
-                <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
-                    <b>{{ suggestStudyGroup.groupName }}</b>・{{ suggestStudyGroup.ownerId }}<br>
-                    <p>{{ suggestStudyGroup.description }}</p>
-                </a>
-                {% endfor %}
-                </div>
+    <h5>You might be looking for these groups.</h5>
+    <br>
+    
+    <div class="collection">
+        {% for maybeStudyGroup in maybeStudyGroups %}
+        <a href="{{ maybeStudyGroup.studyGroupId }}/studygroup" class="collection-item">
+            <b>{{ maybeStudyGroup.groupName }}</b>・{{ maybeStudyGroup.ownerId }}<br>
+            <p>{{ maybeStudyGroup.description }}</p>
+        </a>
+        {% endfor %}
+    </div>
+    <br>
+    <br>
+    <h5>Start a New Group!</h5>
+    <a href="/createstudygroup" class="font-white">
+        <div class="box-search">+ Create Group</div>
+    </a>
+    <br>
+    <br>
+    <hr class="solid">
+    <br>
+    <br>
+    <h5>You might be interested in these groups.</h5>
+    <div class="collection">
+        {% for suggestStudyGroup in suggestStudyGroups %}
+        <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
+            <b>{{ suggestStudyGroup.groupName }}</b>・{{ suggestStudyGroup.ownerId }}<br>
+            <p>{{ suggestStudyGroup.description }}</p>
+        </a>
+        {% endfor %}
+    </div>
 
-            {% else %}
-
+<<<<<<< HEAD
+    {% else %}
+=======
                 <h6>No study group found.</h6>
                 <h5>Start a New Group!</h5>
                 <a href="/createstudygroup" class="font-white"><div class="box-search">+ Create Group</div></a>
                 <br>
+
+                {% if suggestStudyGroups %}
                 <h5>You might be interested in these groups.</h5>
                 <div class="collection">
                 {% for suggestStudyGroup in suggestStudyGroups %}
@@ -59,23 +89,54 @@
                 </a>
                 {% endfor %}
                 </div>
+                {% endif %}
+>>>>>>> 38771f85d575efea22b2c03028d6f9da1825828a
 
-            {% endif %}
+    <h5>No study group found.</h5>
+  
+    <br>
+    <br>
+    <h5>Start a New Group!</h5>
+    <a href="/createstudygroup" class="font-white">
+        <div class="box-search">+ Create Group</div>
+    </a>
+    <br>
+    <br>
+    <hr class="solid">
+    <br>
+    <br>
+    <h5>You might be interested in these groups.</h5>
+    <div class="collection">
+        {% for suggestStudyGroup in suggestStudyGroups %}
+        <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
+            <b>{{ suggestStudyGroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
+            <p>{{ suggestStudyGroup.description }}</p>
+        </a>
+        {% endfor %}
+    </div>
 
-        {% else %}
+    {% endif %}
 
-            <h5>Please input a search word.</h5>
-            <br>
-            <h5>You might be interested in these groups.</h5>
-            <div class="collection">
-            {% for suggestStudyGroup in suggestStudyGroups %}
-            <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
-                <b>{{ suggestStudyGroup.groupName }}</b>・{{ suggestStudyGroup.ownerId }}<br>
-                <p>{{ suggestStudyGroup.description }}</p>
-            </a>
-            {% endfor %}
+    <!-- no search term -->
+    {% else %}
+    <br>
+    <br>
+    <h5>Please input a search word.</h5>
+    <br>
+    <br>
+    <hr class="solid">
+    <br>
+    <br>
+    <h5>You might be interested in these groups.</h5>
+    <div class="collection">
+        {% for suggestStudyGroup in suggestStudyGroups %}
+        <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
+            <b>{{ suggestStudyGroup.groupName }}</b>・{{ suggestStudyGroup.ownerId }}<br>
+            <p>{{ suggestStudyGroup.description }}</p>
+        </a>
+        {% endfor %}
 
         {% endif %}
     </div>
 
-{% endblock%}
+    {% endblock%}

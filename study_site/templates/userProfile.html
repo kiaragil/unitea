@@ -31,44 +31,60 @@
     </ul>
 </div>
 <div id="your-group" class="col s12">
-    <div class="collection">
-        {% for studyGroupAsMember in studyGroupsAsMember %}
-        <a href="/{{ studyGroupAsMember.studyGroupId }}/studygroup" class="collection-item">
-            <b>{{ studyGroupAsMember.groupName }}</b>・{{ studyGroupAsMember.ownerId }}<br>
-            <p>{{ studyGroupAsMember.description }}</p>
-        </a>
-        {% endfor %}
-    </div>
+    {% if studyGroupsAsMember %}
+        <div class="collection">
+            {% for studyGroupAsMember in studyGroupsAsMember %}
+            <a href="/{{ studyGroupAsMember.studyGroupId }}/studygroup" class="collection-item">
+                <b>{{ studyGroupAsMember.groupName }}</b>・{{ studyGroupAsMember.ownerId }}<br>
+                <p>{{ studyGroupAsMember.description }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h6>You have not joined any group.</h6>
+    {% endif %}
 </div>
 <div id="host-group" class="col s12">
-    <div class="collection">
-        {% for studyGroupAsHost in studyGroupsAsHost %}
-        <a href="/{{ studyGroupAsHost.studyGroupId }}/studygroup" class="collection-item">
-            <b>{{ studyGroupAsHost.groupName }}</b>・{{ studyGroupAsHost.ownerId }}<br>
-            <p>{{ studyGroupAsHost.description }}</p>
-        </a>
-        {% endfor %}
-    </div>
+    {% if studyGroupsAsHost %}
+        <div class="collection">
+            {% for studyGroupAsHost in studyGroupsAsHost %}
+            <a href="/{{ studyGroupAsHost.studyGroupId }}/studygroup" class="collection-item">
+                <b>{{ studyGroupAsHost.groupName }}</b>・{{ studyGroupAsHost.ownerId }}<br>
+                <p>{{ studyGroupAsHost.description }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h6>You have not hosted any group.</h6>
+    {% endif %}
 </div>
 <div id="main-post" class="col s12">
-    <div class="collection">
-        {% for mainPost in mainPosts %}
-        <a href="/{{ mainPost.postId }}/mainpost" class="collection-item">
-            <b>{{ mainPost.postTitle }}</b>・{{ mainPost.userId }}<br>
-            <p>{{ mainPost.post }}</p>
-        </a>
-        {% endfor %}
-    </div>
+    {% if mainPosts %}
+        <div class="collection">
+            {% for mainPost in mainPosts %}
+            <a href="/{{ mainPost.postId }}/mainpost" class="collection-item">
+                <b>{{ mainPost.postTitle }}</b>・{{ mainPost.userId }}<br>
+                <p>{{ mainPost.post }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h6>You have not posted to Forum.</h6>
+    {% endif %}
 </div>
 <div id="study-group-post" class="col s12">
-    <div class="collection">
-        {% for studyGroupPost in studyGroupPosts %}
-        <a href="/{{ studyGroupPost.studyGroupId.studyGroupId }}/{{ studyGroupPost.postId }}/studygrouppost" class="collection-item">
-            <b>{{ studyGroupPost.postTitle }}</b>・{{ studyGroupPost.userId }}<br>
-            <p>{{ studyGroupPost.post }}</p>
-        </a>
-        {% endfor %}
-    </div>
+    {% if mainPosts %}
+        <div class="collection">
+            {% for studyGroupPost in studyGroupPosts %}
+            <a href="/{{ studyGroupPost.studyGroupId.studyGroupId }}/{{ studyGroupPost.postId }}/studygrouppost" class="collection-item">
+                <b>{{ studyGroupPost.postTitle }}</b>・{{ studyGroupPost.userId }}<br>
+                <p>{{ studyGroupPost.post }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h6>You have not posted to Study Group Forum.</h6>
+    {% endif %}
 </div>
 
 <script type="text/javascript">
