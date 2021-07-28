@@ -179,16 +179,6 @@ class StudyGroupCommentForm(forms.ModelForm):
         fields = ['comment']
 
 
-class MessageForm(forms.ModelForm):
-    message = forms.CharField(
-        widget=forms.Textarea(),
-    )
-
-    class Meta:
-        model = Message
-        fields = ['message']
-
-
 class UserPasswordForm(forms.Form):
     currentPassword = forms.CharField(
         label='Current Password',

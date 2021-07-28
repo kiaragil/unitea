@@ -17,7 +17,7 @@ GROUP_TYPE_CHOICES = (
 )
 
 STUDY_GROUP_CAPACITY = 21
-GROUP_CHAT_CAPACITY = 51
+EDUCATOR_STUDY_GROUP_CAPACITY = 51
 
 class User(AbstractBaseUser):
 	userId = models.AutoField(primary_key=True, unique=True)
@@ -64,7 +64,7 @@ class MainComment(models.Model):
 
 class StudyGroup(models.Model):
 	studyGroupId = models.AutoField(primary_key=True, unique=True)
-	groupName = models.CharField(max_length=100)
+	groupName = models.CharField(max_length=100, unique=True)
 	description = models.CharField(max_length=5000)
 	groupType = models.CharField(max_length=10, choices=GROUP_TYPE_CHOICES, default='general')
 	memberCount = models.IntegerField(default=0)
@@ -107,36 +107,6 @@ class StudyGroupMember(models.Model):
 
 	class Meta:
 		db_table = "studygroupmembers";
-
-
-class ChatRoom(models.Model):
-	chatRoomId = models.AutoField(primary_key=True, unique=True)
-	memberCount = models.IntegerField(default=0)
-
-	def isFull(self):
-		return True if self.memberCount >= GROUP_CHAT_CAPACITY else False
-
-	class Meta:
-		db_table = "chatrooms";
-
-
-class Message(models.Model):
-	messageId = models.AutoField(primary_key=True, unique=True)
-	message = models.CharField(max_length=5000)
-	messageDateTime = models.DateTimeField(auto_now=True)
-	userId = models.ForeignKey(User, on_delete=models.CASCADE)
-	chatRoomId = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
-
-	class Meta:
-		db_table = "messages";
-
-
-class ChatMember(models.Model):
-	userId = models.ForeignKey(User, on_delete=models.CASCADE)
-	chatRoomId = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
-
-	class Meta:
-		db_table = "chatmembers";
 
 
 class Contact(models.Model):
