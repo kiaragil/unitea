@@ -590,12 +590,15 @@ def execCreateStudyGroup(request):
             studyGroup.subject = form.cleaned_data['subject']
             # owner is the currently logged in user
             studyGroup.ownerId = User.objects.get(userId=request.user.userId)
-            try:
-                messages.success(request, "New study group created")
-                studyGroup.save()
-                return redirect(f'/{studyGroup.studyGroupId}/studygroup')
-            except:
-                pass
+
+            if studyGroup.subject is not None:
+
+                try:
+                    messages.success(request, "New study group created")
+                    studyGroup.save()
+                    return redirect(f'/{studyGroup.studyGroupId}/studygroup')
+                except:
+                    pass
         else:
             messages.error(request, "Invalid form data")
 
