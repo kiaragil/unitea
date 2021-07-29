@@ -365,7 +365,6 @@ form input, button {
 
 
 /* CONTACT US */
-
 .contact-box {
   display: grid;
   grid-template-columns: 1;
@@ -373,6 +372,12 @@ form input, button {
   margin: auto;
 }
 
+.register-text {
+  text-align: left;
+  margin-top: -10px;
+  padding-left: 50px;
+  font-size: smaller;
+}
 
 .input-field {
   /* margin: 20px; */

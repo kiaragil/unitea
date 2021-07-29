@@ -17,6 +17,9 @@
                 {% endfor %}
             </ul>
             {% endif %}
+            {% if different_pw_error %}
+            <p class="registration-error-message">Confirm password does not match.</p>
+            {% endif %}
         </div>
     {% endif %}
     <div class="contact-box">
@@ -24,17 +27,17 @@
             {% csrf_token %}
             <tbody>
                 <tr>
-                    <td>{{ form.username | materializecss:'s12 m6, icon=person' }}</td>
+                    <td class="tooltip">{{ form.username | materializecss:'s12 m6, icon=person' }}</td>
                 </tr>
+                <p class="register-text">*Username must be unique.</p>
                 <tr>
                     <td>{{ form.email | materializecss:'s12 m6, icon=email' }}</td>
                 </tr>
-                
                 <tr>
                     <td>{{ form.password | materializecss:'s12 m6, icon=password'}}</td>
                 </tr>
+                <p class="register-text">*Password must be at least 8 characters long, 1 uppercase letter, 1 symbol, and 1 number.</p>
                 <tr>
-                    
                     <td>{{ form.confirmPassword | materializecss:'s12 m6, icon=password' }}</td>
                 </tr>
                 <tr>
@@ -48,6 +51,8 @@
                     </button>
                 </tr>
             </tbody>
+            <p><br>Already have an account? Click below to login!</p>
+            <a href="login" class="waves-effect waves-light btn-small" id="reg-button">Login</a>
         </form>
     </div>
 

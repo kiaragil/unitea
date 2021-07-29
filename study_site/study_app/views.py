@@ -147,10 +147,10 @@ def createUser(request):
             user.email = form.cleaned_data['email']
             user.password = form.cleaned_data['password']
             user.confirmPassword = form.cleaned_data['confirmPassword']
+            username_exist = User.objects.filter(username=form.cleaned_data['username'])
+            email_exist = User.objects.filter(email=form.cleaned_data['email'])
             # password and confirm password must match
             if user.password == user.confirmPassword:
-                username_exist = User.objects.filter(username=form.cleaned_data['username'])
-                email_exist = User.objects.filter(email=form.cleaned_data['email'])
                 # validate password
                 try:
                     validation.validate_password(user.password, user)
@@ -160,15 +160,19 @@ def createUser(request):
                                    'error': True,
                                    'valMessages': val_err.messages,
                                    'user_error': username_exist,
-                                   'email_error': email_exist})
-                # if make it here, means password is good, but either username/email is taken
+                                   'email_error': email_exist,
+                                   'different_pw_error': False})
+
                 if username_exist or email_exist:
+                    # if make it here, means password is good, but either username/email is taken
                     return render(request, 'register.html',
                                   {'form': form,
                                    'error': True,
                                    'valMessages': False,
                                    'user_error': username_exist,
-                                   'email_error': email_exist})
+                                   'email_error': email_exist,
+                                   'different_pw_error': False})
+                # no sign up error
                 else:
                     try:
                         # hash password
@@ -179,9 +183,16 @@ def createUser(request):
                         return redirect('/login')
                     except:
                         pass
+            # confirm password does not match, throw error
             else:
-                messages.error(request, "Confirm password doesn't match")
                 context['form'] = form
+                return render(request, 'register.html',
+                              {'form': form,
+                               'error': True,
+                               'valMessages': False,
+                               'user_error': username_exist,
+                               'email_error': email_exist,
+                               'different_pw_error': True})
         else:
             messages.error(request, "Invalid form data")
             context['form'] = form
