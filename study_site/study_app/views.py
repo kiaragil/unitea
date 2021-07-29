@@ -1,3 +1,14 @@
+"""
+Class: CSC648-848 SW Engineering SU21
+Team: Team 4
+Name: Kiara Gil, Ostyn Sy, Joshua Stone, Cong Le, Miho Shimizu, Vernon Xie, Melinda Yee
+GitHub Name: KiaraGil, OstynSy, JoshLikesToCode, CleGuren, simicity, vxie123, melinda15
+
+File Name: views.py
+
+Description: All functions used for the website.
+"""
+
 from django.shortcuts import render, redirect
 from django.template import loader
 from study_app.forms import *
@@ -27,14 +38,14 @@ def home(request):
     studyGroupIds = []
     for studyGroupMember in studyGroupMembers:
         studyGroupIds.append(studyGroupMember.studyGroupId.studyGroupId)
-    studyGroupsAsMember = StudyGroup.objects.filter(studyGroupId__in=studyGroupIds) 
+    studyGroupsAsMember = StudyGroup.objects.filter(studyGroupId__in=studyGroupIds).order_by('-studyGroupId')
 
     #fetch groups whose host is the user
     if len(studyGroupIds) > 3:
-        studyGroupsAsHost = StudyGroup.objects.filter(ownerId=request.user)[:2]
+        studyGroupsAsHost = StudyGroup.objects.filter(ownerId=request.user).order_by('-studyGroupId')[:2]
         studyGroupsAsMember = studyGroupsAsMember[:(5-len(studyGroupsAsHost))]
     else:
-        studyGroupsAsHost = StudyGroup.objects.filter(ownerId=request.user)[:(5-len(studyGroupIds))]
+        studyGroupsAsHost = StudyGroup.objects.filter(ownerId=request.user).order_by('-studyGroupId')[:(5-len(studyGroupIds))]
 
     return render(request, 'index.html', {'studyGroupsAsMember': studyGroupsAsMember, 'studyGroupsAsHost': studyGroupsAsHost})
 
@@ -44,9 +55,9 @@ def userStudyGroupListing(request):
     studyGroupIds = []
     for studyGroupMember in studyGroupMembers:
         studyGroupIds.append(studyGroupMember.studyGroupId.studyGroupId)
-    studyGroupsAsMember = StudyGroup.objects.filter(studyGroupId__in=studyGroupIds)
+    studyGroupsAsMember = StudyGroup.objects.filter(studyGroupId__in=studyGroupIds).order_by('-studyGroupId')
 
-    studyGroupsAsHost = StudyGroup.objects.filter(ownerId=request.user)
+    studyGroupsAsHost = StudyGroup.objects.filter(ownerId=request.user).order_by('-studyGroupId')
     return render(request, 'userStudyGroupListing.html', {'studyGroupsAsMember': studyGroupsAsMember, 'studyGroupsAsHost': studyGroupsAsHost})
 
 
@@ -333,16 +344,16 @@ def showUserProfile(request, userId):
     studyGroupIds = []
     for studyGroupMember in studyGroupMembers:
         studyGroupIds.append(studyGroupMember.studyGroupId.studyGroupId)
-    studyGroupsAsMember = StudyGroup.objects.filter(studyGroupId__in=studyGroupIds)
+    studyGroupsAsMember = StudyGroup.objects.filter(studyGroupId__in=studyGroupIds).order_by('-studyGroupId')
 
     #fetch information of groups hosted by the user
-    studyGroupsAsHost = StudyGroup.objects.filter(ownerId=user)
+    studyGroupsAsHost = StudyGroup.objects.filter(ownerId=user).order_by('-studyGroupId')
     
     #fetch information of the user's main forum posts
-    mainPosts = MainPost.objects.filter(userId=user)
+    mainPosts = MainPost.objects.filter(userId=user).order_by('-postDateTime')
 
     #fetch information of the user's study group forum posts
-    studyGroupPosts = StudyGroupPost.objects.filter(userId=userId)
+    studyGroupPosts = StudyGroupPost.objects.filter(userId=userId).order_by('-postDateTime')
 
     return render(request, 'userProfile.html', {'userprofile': user, 'studyGroupsAsMember': studyGroupsAsMember, 'studyGroupsAsHost': studyGroupsAsHost, 'mainPosts': mainPosts, 'studyGroupPosts': studyGroupPosts})
 
@@ -578,12 +589,15 @@ def execCreateStudyGroup(request):
             studyGroup.subject = form.cleaned_data['subject']
             # owner is the currently logged in user
             studyGroup.ownerId = User.objects.get(userId=request.user.userId)
-            try:
-                messages.success(request, "New study group created")
-                studyGroup.save()
-                return redirect(f'/{studyGroup.studyGroupId}/studygroup')
-            except:
-                pass
+
+            if studyGroup.subject is not None:
+
+                try:
+                    messages.success(request, "New study group created")
+                    studyGroup.save()
+                    return redirect(f'/{studyGroup.studyGroupId}/studygroup')
+                except:
+                    pass
         else:
             messages.error(request, "Invalid form data")
 
@@ -697,7 +711,7 @@ def searchStudyGroups(request):
 
     if not found and not maybe:
         #no search word was inputted. suggest not-full popular groups
-        suggestStudyGroups = StudyGroup.objects.filter(memberCount__lt=20).order_by('memberCount').reverse()[:10]
+        suggestStudyGroups = StudyGroup.objects.filter(memberCount__lt=20).order_by('-memberCount')[:10]
 
     return render(request, 'searchResults.html', {'searched': searched, 'foundStudyGroups': foundStudyGroups, 'maybeStudyGroups': maybeStudyGroups, 'suggestStudyGroups': suggestStudyGroups})
 

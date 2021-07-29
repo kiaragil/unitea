@@ -1,24 +1,39 @@
+"""
+Class: CSC648-848 SW Engineering SU21
+Team: Team 4
+Name: Kiara Gil, Ostyn Sy, Joshua Stone, Cong Le, Miho Shimizu, Vernon Xie, Melinda Yee
+GitHub Name: KiaraGil, OstynSy, JoshLikesToCode, CleGuren, simicity, vxie123, melinda15
+
+File Name: models.py
+
+Description: Creates models of objects that connect variables to our database.
+"""
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-from django.utils.translation import gettext_lazy as _
 from .managers import UserManager
 
 # Create your models here.
 
+# User Roles
 ROLE_CHOICES = (
 	('general', 'general'),
 	('educator', 'educator'),
 	('admin', 'admin')
 )
 
+# Roles for Group Type
 GROUP_TYPE_CHOICES = (
 	('general', 'general'),
 	('educator', 'educator'),
 )
 
+# Group Capacities
 STUDY_GROUP_CAPACITY = 21
-GROUP_CHAT_CAPACITY = 51
+EDUCATOR_STUDY_GROUP_CAPACITY = 51
 
+
+# User Model
 class User(AbstractBaseUser):
 	userId = models.AutoField(primary_key=True, unique=True)
 	username = models.CharField(max_length=40, unique=True)
@@ -40,6 +55,8 @@ class User(AbstractBaseUser):
 	class Meta:
 		db_table = "users";
 
+
+# Main Post Model
 class MainPost(models.Model):
 	postId = models.AutoField(primary_key=True, unique=True)
 	postTitle = models.CharField(max_length=100)
@@ -51,6 +68,7 @@ class MainPost(models.Model):
 		db_table = "mainposts";
 
 
+# Main Comment Model
 class MainComment(models.Model):
 	commentId = models.AutoField(primary_key=True, unique=True)
 	comment = models.CharField(max_length=5000)
@@ -62,6 +80,7 @@ class MainComment(models.Model):
 		db_table = "maincomments";
 
 
+# Study Group Model
 class StudyGroup(models.Model):
 	studyGroupId = models.AutoField(primary_key=True, unique=True)
 	groupName = models.CharField(max_length=100)
@@ -78,6 +97,7 @@ class StudyGroup(models.Model):
 		db_table = "studygroups";
 
 
+# Study Group Post Model
 class StudyGroupPost(models.Model):
 	postId = models.AutoField(primary_key=True, unique=True)
 	postTitle = models.CharField(max_length=100)
@@ -90,6 +110,7 @@ class StudyGroupPost(models.Model):
 		db_table = "studygroupposts";
 
 
+# Study Group Comment Model
 class StudyGroupComment(models.Model):
 	commentId = models.AutoField(primary_key=True, unique=True)
 	comment = models.CharField(max_length=5000)
@@ -101,6 +122,7 @@ class StudyGroupComment(models.Model):
 		db_table = "studygroupcomments";
 
 
+# Study Group Member Model
 class StudyGroupMember(models.Model):
 	userId = models.ForeignKey(User, on_delete=models.CASCADE)
 	studyGroupId = models.ForeignKey(StudyGroup, on_delete=models.CASCADE)
@@ -109,36 +131,7 @@ class StudyGroupMember(models.Model):
 		db_table = "studygroupmembers";
 
 
-class ChatRoom(models.Model):
-	chatRoomId = models.AutoField(primary_key=True, unique=True)
-	memberCount = models.IntegerField(default=0)
-
-	def isFull(self):
-		return True if self.memberCount >= GROUP_CHAT_CAPACITY else False
-
-	class Meta:
-		db_table = "chatrooms";
-
-
-class Message(models.Model):
-	messageId = models.AutoField(primary_key=True, unique=True)
-	message = models.CharField(max_length=5000)
-	messageDateTime = models.DateTimeField(auto_now=True)
-	userId = models.ForeignKey(User, on_delete=models.CASCADE)
-	chatRoomId = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
-
-	class Meta:
-		db_table = "messages";
-
-
-class ChatMember(models.Model):
-	userId = models.ForeignKey(User, on_delete=models.CASCADE)
-	chatRoomId = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
-
-	class Meta:
-		db_table = "chatmembers";
-
-
+# Contact Model
 class Contact(models.Model):
 	fullname = models.CharField(max_length=45)
 	telephone = models.CharField(max_length=15)
