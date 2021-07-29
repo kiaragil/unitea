@@ -6,7 +6,7 @@ GitHub Name: KiaraGil, OstynSy, JoshLikesToCode, CleGuren, simicity, vxie123, me
 
 File Name: settings.py
 
-Description:
+Description: All settings for the template of the website and settings to connect to other sources (AWS hosting/ database).
 """
 
 """

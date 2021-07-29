@@ -674,4 +674,20 @@ details summary {
   outline: none;
 }
 
+/* EDIT COMMENT PAGE */
+.edit-comment-wrapper{
+  display: grid;
+  justify-content: center;
+}
+
+.edit-comment-buttons {
+  width: 400px;
+  justify-items: center;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* END EDIT COMMENT PAGE */
+
 

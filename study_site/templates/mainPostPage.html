@@ -21,8 +21,7 @@
                 <td>
                     <a href="/{{ comment.userId.userId }}/userprofile" class="font-blue">{{ comment.userId }}</a>
                     {% if comment.userId == user %}
-                    <br><a href="{{comment.commentId}}/editmaincomment">edit comment</a>
-                    <br>
+                    ・<a href="{{comment.commentId}}/editmaincomment">edit comment</a>
                     {% endif %}
                 </td>
                 <td>{{ comment.commentDateTime }}</td>

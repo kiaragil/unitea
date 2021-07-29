@@ -55,6 +55,7 @@ class RegistrationForm(forms.Form):
     )
 
 
+# Edit User Profile Form
 class UserProfileForm(forms.ModelForm):
     avatar = forms.ImageField(
         required=False,
@@ -72,6 +73,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ['username', 'avatar', 'profile']
 
 
+# Login Form
 class LoginForm(forms.Form):
     email = forms.EmailField(
         label='Email',
@@ -86,6 +88,7 @@ class LoginForm(forms.Form):
     )
 
 
+# Contact Form
 class ContactForm(forms.Form):
     fullname = forms.CharField(
         label='Full Name',
@@ -110,10 +113,11 @@ class ContactForm(forms.Form):
     )
 
 
+# Study Group Form
 class StudyGroupForm(forms.ModelForm):
     groupName = forms.CharField(
         label='Study Group Name',
-        max_length = 100,
+        max_length=100,
         required=True
     )
     description = forms.CharField(
@@ -127,7 +131,7 @@ class StudyGroupForm(forms.ModelForm):
     subject = forms.CharField(
         label='Subject',
         widget=forms.Select(choices=SUBJECT_CHOICES),
-        required=False
+        required=True
     )
     subject.widget.attrs.update({'class':'editSGP-subject'})
 
@@ -136,6 +140,7 @@ class StudyGroupForm(forms.ModelForm):
         fields = ['groupName', 'description', 'subject']
 
 
+# Main Forum Post Form
 class MainPostForm(forms.ModelForm):
     postTitle = forms.CharField(
         label='Title'
@@ -152,6 +157,7 @@ class MainPostForm(forms.ModelForm):
         fields = ['postTitle', 'post']
 
 
+# Main Forum Commenting Form
 class MainCommentForm(forms.ModelForm):
     comment = forms.CharField(
         label='Comment',
@@ -165,6 +171,7 @@ class MainCommentForm(forms.ModelForm):
         fields = ['comment']
 
 
+# Create Study Group Post Form
 class StudyGroupPostForm(forms.ModelForm):
     postTitle = forms.CharField(
         label='Title'
@@ -181,6 +188,7 @@ class StudyGroupPostForm(forms.ModelForm):
         fields = ['postTitle', 'post']
 
 
+# Study Group Comment Form
 class StudyGroupCommentForm(forms.ModelForm):
     comment = forms.CharField(
         widget=forms.Textarea(),
@@ -192,6 +200,7 @@ class StudyGroupCommentForm(forms.ModelForm):
         fields = ['comment']
 
 
+# Change User Password Form
 class UserPasswordForm(forms.Form):
     currentPassword = forms.CharField(
         label='Current Password',

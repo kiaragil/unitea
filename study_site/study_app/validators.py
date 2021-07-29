@@ -6,7 +6,7 @@ GitHub Name: KiaraGil, OstynSy, JoshLikesToCode, CleGuren, simicity, vxie123, me
 
 File Name: validators.py
 
-Description:
+Description: Validation checks for Registration.
 """
 
 import re

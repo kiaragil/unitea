@@ -6,7 +6,7 @@ GitHub Name: KiaraGil, OstynSy, JoshLikesToCode, CleGuren, simicity, vxie123, me
 
 File Name: forms.py
 
-Description:
+Description: The routing page/ pathing of urls to functions.
 """
 
 """study_site URL Configuration
