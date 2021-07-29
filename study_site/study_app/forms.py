@@ -117,7 +117,7 @@ class ContactForm(forms.Form):
 class StudyGroupForm(forms.ModelForm):
     groupName = forms.CharField(
         label='Study Group Name',
-        max_length = 100,
+        max_length=100,
         required=True
     )
     description = forms.CharField(
@@ -131,7 +131,7 @@ class StudyGroupForm(forms.ModelForm):
     subject = forms.CharField(
         label='Subject',
         widget=forms.Select(choices=SUBJECT_CHOICES),
-        required=False
+        required=True
     )
     subject.widget.attrs.update({'class':'editSGP-subject'})
 

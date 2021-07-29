@@ -83,7 +83,7 @@ class MainComment(models.Model):
 # Study Group Model
 class StudyGroup(models.Model):
 	studyGroupId = models.AutoField(primary_key=True, unique=True)
-	groupName = models.CharField(max_length=100, unique=True)
+	groupName = models.CharField(max_length=100)
 	description = models.CharField(max_length=5000)
 	groupType = models.CharField(max_length=10, choices=GROUP_TYPE_CHOICES, default='general')
 	memberCount = models.IntegerField(default=0)
