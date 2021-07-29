@@ -424,7 +424,7 @@ def updateMainPost(request, postId):
         messages.success(request, "Post edited!")
         return redirect(f'/{postId}/mainpost')
     else:
-        messages.error(request, "Invalid form data")
+        messages.error(request, "Title or Description cannot be left blank")
     context['form'] = form
     return render(request, 'editMainPost.html', context)
 
@@ -493,9 +493,8 @@ def editMainComment(request, postId, commentId):
         return redirect('/login')
 
     mainComment = MainComment.objects.get(commentId=commentId)
-    context = {}
-    context['form'] = MainCommentForm(instance=mainComment)
-    return render(request, 'editMainComment.html', context)
+    form = MainCommentForm(instance=mainComment)
+    return render(request, 'editMainComment.html', {'form': form, 'mainpostId': postId})
 
 
 # update a main comment
@@ -507,16 +506,16 @@ def updateMainComment(request, postId, commentId):
         form.save()
         return redirect(f'/{postId}/mainpost')
     else:
-        messages.error(request, "Invalid form data")
+        messages.error(request, "Edited comment cannot be left blank")
     context['form'] = form
-    return render(request, 'editMainComment.html', context)
+    return render(request, 'editMainComment.html', {'form': form, 'mainpostId': postId})
 
 
 # delete a main comment
 def deleteMainComment(request, postId, commentId):
     # logged in users must not access
     if not request.user.is_authenticated:
-        print("You're not logged in")
+        messages.error(request, "You are not logged in")
         return redirect('/login')
 
     mainComment = MainComment.objects.get(commentId=commentId)
@@ -613,7 +612,7 @@ def updateStudyGroup(request, studyGroupId):
         form.save()
         return redirect(f'/{studyGroupId}/studygroup')
     else:
-        messages.error(request, "Invalid form data")
+        messages.error(request, "Title, Description, and Subject cannot be empty")
     context = {}
     context['form'] = form
     return render(request, 'editStudyGroup.html', context)
@@ -792,7 +791,7 @@ def updateStudyGroupPost(request, studyGroupId, postId):
         messages.success(request, "Post edited")
         return redirect(f'/{studyGroupId}/{postId}/studygrouppost')
     else:
-        messages.error(request, "Invalid form data")
+        messages.error(request, "Title or Description cannot be left blank")
     context['form'] = form
     return render(request, 'editStudyGroupPost.html', context)
 
@@ -862,13 +861,12 @@ def execCreateStudyGroupComment(request, studyGroupId, postId):
 def editStudyGroupComment(request, studyGroupId, postId, commentId):
     # not logged in users must not access
     if not request.user.is_authenticated:
-        messages.error(request, "You're not logged in")
+        messages.error(request, "You are not logged in")
         return redirect('/login')
 
     studyGroupComment = StudyGroupComment.objects.get(commentId=commentId)
-    context = {}
-    context['form'] = StudyGroupCommentForm(instance=studyGroupComment)
-    return render(request, 'editStudyGroupComment.html', context)
+    form = StudyGroupCommentForm(instance=studyGroupComment)
+    return render(request, 'editStudyGroupComment.html', {'form': form, 'studygroupID': studyGroupId, 'studygrouppostID': postId})
 
 
 # update a study group comment
@@ -878,12 +876,13 @@ def updateStudyGroupComment(request, studyGroupId, postId, commentId):
     form = StudyGroupCommentForm(request.POST, instance=studyGroupComment)
     if form.is_valid():
         form.save()
+        messages.success(request, "Comment edited")
         return redirect(f'/{studyGroupId}/{postId}/studygrouppost')
     else:
-        messages.error(request, "Invalid form data")
+        messages.error(request, "Edited comment cannot be left blank")
     context['form'] = form
-    return render(request, 'editStudyGroupComment.html', context)
-
+    # return render(request, 'editStudyGroupComment.html', context)
+    return render(request, 'editStudyGroupComment.html', {'form': form, 'studygroupID': studyGroupId, 'studygrouppostID': postId})
 
 # delete a study group comment
 def deleteStudyGroupComment(request, studyGroupId, postId, commentId):
@@ -895,7 +894,6 @@ def deleteStudyGroupComment(request, studyGroupId, postId, commentId):
     studyGroupComment = StudyGroupComment.objects.get(commentId=commentId)
     studyGroupComment.delete()
     return redirect(f'/{studyGroupId}/{postId}/studygrouppost')
-
 
 # ----------------------------
 #  Front End Testing 
