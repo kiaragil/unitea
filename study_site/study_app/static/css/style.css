@@ -398,24 +398,19 @@ form input, button {
 /* SUBMIT BUTTON */
 
 .btn {
-  /* background-color: rgb(52, 50, 73); */
   background-color: #26a69a;
-
 }
 
-.btn:hover {
-  /* background-color:rgb(43, 63, 87); */
-}
 
 /* END SUBMIT BUTTON */
 
 /* SUBJECT BUTTONS */
 .subject-wrapper {
-  display: grid;
-  row-gap: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 782px;
   padding-left: 40px;
-  grid-template-columns:  repeat(3, [col] 25%);
-  grid-template-rows:  repeat(2, [row] 34%);
   background-color: #ccffea;
   justify-content: space-evenly;
   border-radius: 10px;
