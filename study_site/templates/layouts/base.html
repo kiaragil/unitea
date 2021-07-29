@@ -61,7 +61,7 @@
         <li><a href="/" class="font-white">Home</a></li>
         <li><a href="/about" class="font-white">About</a></li>
         <li><a href="/mainforum" class="font-white">Forum</a></li>
-        <li><a href="/contactus" class="font-white">Contact</a></li>
+        <!-- <li><a href="/contactus" class="font-white">Contact</a></li> -->
         <li><a href="/FAQ" class="font-white">FAQ</a></li>
 
         {% if user.is_authenticated %}
@@ -90,7 +90,7 @@
     <li><a href="/">Home</a></li>
     <li><a href="about">About</a></li>
     <li><a href="/mainforum" class="font-white">Forum</a></li>
-    <li><a href="contactus">Contact</a></li>
+    <!-- <li><a href="contactus">Contact</a></li> -->
     <li><a href="/FAQ" class="font-white">FAQ</a></li>
     {% if user.is_authenticated %}
     <li style="margin-left: 32px;">Logged in as {{ user.username }}</li>
@@ -125,11 +125,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <footer class="page-footer">
     <div class="footer-copyright">
-      <div class="container">
+      
+      <div class="footer-container">
         © 2021 UniTea
         <!-- <a class="grey-text text-lighten-4 right" href="#!">More Links</a> -->
       </div>
-    </div>
+
+      <div class="footer-links">
+        <a class="grey-text text-lighten-4" id="footer-link1" href="contactus">Contact Us</a>
+        <a class="grey-text text-lighten-4" id="footer-link2" href="/termsofservice">Terms of Service</a>
+      </div>
   </footer>
 </body>
 
