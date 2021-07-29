@@ -408,8 +408,9 @@ form input, button {
 .subject-wrapper {
   display: grid;
   row-gap: 40px;
+  padding-left: 40px;
   grid-template-columns:  repeat(3, [col] 25%);
-  grid-template-rows:  repeat(2, [row] 25%);
+  grid-template-rows:  repeat(2, [row] 34%);
   background-color: #ccffea;
   justify-content: space-evenly;
   border-radius: 10px;
@@ -519,6 +520,10 @@ form input, button {
 
 /* FOOTER */
 
+.footer-container {
+  margin-right: auto;
+  padding-left: 40px;
+}
 .page-footer {
   background-color: #011627;
   position: fixed;
@@ -528,7 +533,15 @@ form input, button {
   padding-top: 0px;
   color: white;
 }
+#footer-link1 {
+  padding-right: 30px;
+}
 
+#footer-link2 {
+  padding-right: 40px;
+}
+
+/* ENF OF FOOTER */
 
 /* PASSWORD CHECK  */
 

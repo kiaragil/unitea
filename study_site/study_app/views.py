@@ -221,7 +221,7 @@ def editUserProfile(request):
 def updateUserProfile(request):
     context = {}
     user = User.objects.get(userId=request.user.userId)
-    form = UserProfileForm(request.POST, instance=user)
+    form = UserProfileForm(request.POST, request.FILES, instance=user)
     if form.is_valid():
         form.save()
         return redirect(f'/{user.userId}/userprofile')
