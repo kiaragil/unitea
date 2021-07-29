@@ -453,7 +453,7 @@ def showUserProfile(request, userId):
 
 # show main forum
 def showMainForum(request):
-    mainposts = MainPost.objects.all()
+    mainposts = MainPost.objects.all().order_by('-postDateTime')
     return render(request, 'mainforum.html', {'mainposts': mainposts})
 
 
@@ -643,7 +643,7 @@ def showMainPost(request, postId):
 # show a study group page
 def showStudyGroup(request, studyGroupId):
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
-    studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId)
+    studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId).order_by('-postDateTime')
     members = StudyGroupMember.objects.filter(studyGroupId=studyGroupId)
     sizeLimit = EDUCATOR_STUDY_GROUP_CAPACITY if studygroup.ownerId.role == "educator" else STUDY_GROUP_CAPACITY
     if not request.user.is_authenticated:
