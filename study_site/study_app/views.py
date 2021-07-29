@@ -40,10 +40,11 @@ def home(request):
         studyGroupIds.append(studyGroupMember.studyGroupId.studyGroupId)
     studyGroupsAsMember = StudyGroup.objects.filter(studyGroupId__in=studyGroupIds).order_by('-studyGroupId')
 
-    #fetch groups whose host is the user
+    #if the user belongs to more than 3 groups, display the 3 most recent groups, then 2 most recent they host 
     if len(studyGroupIds) > 3:
         studyGroupsAsHost = StudyGroup.objects.filter(ownerId=request.user).order_by('-studyGroupId')[:2]
         studyGroupsAsMember = studyGroupsAsMember[:(5-len(studyGroupsAsHost))]
+    #else display up to the 5 most recent groups they host
     else:
         studyGroupsAsHost = StudyGroup.objects.filter(ownerId=request.user).order_by('-studyGroupId')[:(5-len(studyGroupIds))]
 
