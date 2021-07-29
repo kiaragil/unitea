@@ -26,6 +26,11 @@ body {
   color: #1a535c;
 }
 
+.educator-badge {
+  float: none !important;
+  margin-left: 0 !important;
+}
+
 .landing-box{
   font-family: 'Comfortaa', sans-serif;
   display: grid;
@@ -589,14 +594,20 @@ form input, button {
   transform: translateY(-50%);
 }
 
-/* REGISTER BUTTON */
+/* REGISTRATION */
 #reg-button{
   width: 130px;
   height: 50px;
   line-height: 50px;
   background-color: #26a69a;
 }
-/* END REGISTER BUTTON */
+
+.reg-text {
+  font-size: 15px;
+  text-align: left;
+}
+
+/* END REGISTRATION */
 
 .waves-effect{
   margin-top: 10px;

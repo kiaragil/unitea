@@ -1,7 +1,12 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
     <h3>{{ mainpost.postTitle }}</h3>
-    <span><a href="/{{ mainpost.userId.userId }}/userprofile" class="font-blue">{{ mainpost.userId }}</a></span>
+    <span>
+        <a href="/{{ mainpost.userId.userId }}/userprofile" class="font-blue">{{ mainpost.userId }}</a>
+        {% if mainpost.userId.role == "educator" %}
+        <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+        {% endif %}
+    </span>
     
     {% if mainpost.userId == user %}
     ・<a href="editmainpost">edit post</a>
@@ -20,6 +25,9 @@
                 <td>{{ comment.comment }}</td>
                 <td>
                     <a href="/{{ comment.userId.userId }}/userprofile" class="font-blue">{{ comment.userId }}</a>
+                    {% if comment.userId.role == "educator" %}
+                    <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                    {% endif %}
                     {% if comment.userId == user %}
                     ・<a href="{{comment.commentId}}/editmaincomment">edit comment</a>
                     {% endif %}

@@ -4,7 +4,11 @@
     <div class="collection">
         {% for studygroup in studygroups %}
         <a href="/{{ studygroup.studyGroupId }}/studygroup" class="collection-item">
-            <b>{{ studygroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
+            <b>{{ studygroup.groupName }}</b>・{{ studygroup.ownerId }}
+            {% if studygroup.ownerId.role == "educator" %}
+            <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+            {% endif %}
+            <br>
             <p>{{ studygroup.description }}</p>
         </a>
         {% endfor %}

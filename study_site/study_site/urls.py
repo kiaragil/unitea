@@ -39,7 +39,9 @@ urlpatterns = [
     path('landing', views.landing),
 
     path('register', views.register, name='register'),
+    path('registereducator', views.registerEducator),
     path('createuser', views.createUser),
+    path('createEducatorUser', views.createEducatorUser),
     path('edituser', views.editUserProfile),
     path('updateuser', views.updateUserProfile),
     path('login', views.loginPage, name='login'),

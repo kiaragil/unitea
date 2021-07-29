@@ -13,6 +13,11 @@ ex. Login, Register, contact, studygroup, etc
 from django import forms
 from study_app.models import *
 
+INSTITUTE_CHOICES = (
+    ('', 'Select Institute'),
+    ('SF State University', 'SF State University'),
+)
+
 SUBJECT_CHOICES = (
     ('', 'Select subject'),
     ('math', 'Math'),
@@ -52,6 +57,16 @@ class RegistrationForm(forms.Form):
     tosCheck = forms.NullBooleanField(
         label='I agree to Terms of Service',
         widget=forms.CheckboxInput()
+    )
+    institute = forms.CharField(
+        label = 'What institute are you teaching at?',
+        widget=forms.Select(choices=INSTITUTE_CHOICES),
+        required=True,
+    )
+    field = forms.CharField(
+        label = 'What field are you teaching?',
+        max_length=100,
+        required=True,
     )
 
 
