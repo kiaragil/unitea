@@ -589,17 +589,11 @@ def execCreateStudyGroup(request):
             studyGroup.subject = form.cleaned_data['subject']
             # owner is the currently logged in user
             studyGroup.ownerId = User.objects.get(userId=request.user.userId)
-
-            if studyGroup.subject is not None:
-
-                try:
-                    messages.success(request, "New study group created")
-                    studyGroup.save()
-                    return redirect(f'/{studyGroup.studyGroupId}/studygroup')
-                except:
-                    pass
+            studyGroup.save()
+            messages.success(request, "New study group created")
+            return redirect(f'/{studyGroup.studyGroupId}/studygroup')
         else:
-            messages.error(request, "Invalid form data")
+            messages.error(request, "Title, Description, and Subject cannot be left blank")
 
     context['form'] = StudyGroupForm()
     return render(request, 'createStudyGroup.html', context)
