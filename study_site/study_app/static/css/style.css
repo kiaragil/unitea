@@ -18,12 +18,24 @@ body {
   text-align: center;
 }
 
+#search-result-container {
+  max-width: 500px;
+}
+
+#main-forum-container {
+  max-width: 500px;
+}
+
 .font-white {
   color: #fdfffc;
 }
 
 .font-blue {
   color: #1a535c;
+}
+
+.collection {
+  font-size: 16px !important;
 }
 
 .educator-badge {
@@ -409,11 +421,16 @@ form input, button {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 782px;
-  padding-left: 40px;
   background-color: #ccffea;
-  justify-content: space-evenly;
+  justify-content: center;
+  margin: auto;
   border-radius: 10px;
+  padding-bottom: 30px;
+}
+
+#subject-button {
+  margin-left: 4em;
+  margin-right: 4em;
 }
 
 .box {
