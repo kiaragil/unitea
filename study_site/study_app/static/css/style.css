@@ -28,8 +28,6 @@ body {
 
 .font-white {
   color: #fdfffc;
-  margin-left: 4em;
-  margin-right: 4em;
 }
 
 .font-blue {
@@ -428,6 +426,11 @@ form input, button {
   margin: auto;
   border-radius: 10px;
   padding-bottom: 30px;
+}
+
+#subject-button {
+  margin-left: 4em;
+  margin-right: 4em;
 }
 
 .box {
