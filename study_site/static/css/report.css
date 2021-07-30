@@ -1,0 +1,46 @@
+.report-wrapper{
+    display: grid;
+    justify-content: center;
+}
+
+.report-content{
+    display: grid;
+    grid-template-columns: auto;
+    max-width: 400px;
+    justify-content: left;
+    margin-top: 70px;
+}
+
+.report-title{
+    font-size: 32px;
+    justify-self: center;
+}
+
+.report-text{
+    width: 400px; 
+    font-size: 20px;
+}
+
+#report-label{
+    margin-left: 15px;
+    font-size: 24px;
+    width: 400px;
+    color: black;
+}
+
+#report-text.materialize-textarea{
+    margin-top: 10px;
+    margin-left: -19px;
+    font-size: 20px;
+    width: 400px;
+}
+
+#report-text::placeholder{
+    color:rgb(174, 164, 164);
+    text-align: center;
+}
+
+#report-button{
+    width: 100px;
+    left: 75%;
+}

@@ -1,6 +1,6 @@
 # Credentials Folder
 
-1. Server URL        : ec2-54-177-222-205.us-west-1.compute.amazonaws.com       
+1. Server URL        : http://ec2-54-219-170-81.us-west-1.compute.amazonaws.com     
 2. SSH Username      : ubuntu                                                   
 3. SSH Password      : "provided within credential folder"                      
 4. Database URL      : http://t4mt-db.cg98yuluxbkx.us-west-1.rds.amazonaws.com/ 
