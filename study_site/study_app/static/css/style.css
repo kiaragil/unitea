@@ -18,6 +18,14 @@ body {
   text-align: center;
 }
 
+#search-result-container {
+  max-width: 500px;
+}
+
+#main-forum-container {
+  max-width: 500px;
+}
+
 .font-white {
   color: #fdfffc;
 }
