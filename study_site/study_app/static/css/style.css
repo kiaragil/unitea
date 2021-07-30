@@ -18,6 +18,14 @@ body {
   text-align: center;
 }
 
+#search-result-container {
+  max-width: 500px;
+}
+
+#main-forum-container {
+  max-width: 500px;
+}
+
 .font-white {
   color: #fdfffc;
   margin-left: 4em;
@@ -26,6 +34,10 @@ body {
 
 .font-blue {
   color: #1a535c;
+}
+
+.collection {
+  font-size: 16px !important;
 }
 
 .educator-badge {
