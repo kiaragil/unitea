@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
-    <div class="container">
+    <div class="container" id="main-forum-container">
         <h3>Main Forum</h3>
 
         <div class="collection">
@@ -10,6 +10,9 @@
             {% for mainpost in mainposts %} 
             <a href="/{{ mainpost.postId }}/mainpost" class="collection-item">
                 <b>{{ mainpost.postTitle }}</b>・{{ mainpost.userId }}
+                {% if mainpost.userId.role == "educator" %}
+                <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                {% endif %}
             </a>
             {% endfor %}
         </div>

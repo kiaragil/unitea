@@ -3,32 +3,26 @@
     <h3>Create a Study Group</h3>
     <div class="contact-box">
         <div class="row">
-            <form method="POST" class="col s12" enctype="multipart/form-data" action="/execcreatestudygroup">
+            <form method="POST" class="col s12" enctype="multipart/form-data" action="/execcreatestudygroup" id="createstudygroupform">
                 {% csrf_token %}
                 <tbody>
                     <tr>
                         <th>{{ form.groupName.label }}</th>
                         <td>{{ form.groupName }}</td>
-                        <td>{{ form.groupName.errors }}</td>
                     </tr>
                     <tr>
                         <th>{{ form.description.label }}</th>
                         <td>{{ form.description }}</td>
-                        <td>{{ form.description.error }}</td>
                     </tr>
                     <tr>
                         <th>{{ form.subject.label }}</th>
                         <div class="input-field col s12">
                             {{ form.subject }}
                         </div>
-                        <td>{{ form.subject.error }}</td>
                     </tr>
                 </tbody>
                 <br>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-  
+                <a href="#" onclick="document.forms['createstudygroupform'].submit();" class="waves-effect waves-light btn-small" id="editSGPC-button">Submit</a>
             </form>
         </div>
     </div>

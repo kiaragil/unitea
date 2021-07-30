@@ -1,9 +1,9 @@
  {% extends 'layouts/base.html' %}
  {% load materializecss %} {% block content %}
 
-    <h3>Sign up</h3>
+    <h3>Educator User Sign up</h3>
     {% if error %}
-        <div id="registration-error-box">
+        <div class="registration-error-box">
             {% if user_error %}
             <p class="registration-error-message">Username already exist.</p>
             {% endif %}
@@ -23,7 +23,7 @@
         </div>
     {% endif %}
     <div class="contact-box">
-        <form method="POST" class="col s12" enctype="multipart/form-data" action="/createuser">
+        <form method="POST" class="col s12" enctype="multipart/form-data" action="/createEducatorUser">
             {% csrf_token %}
             <tbody>
                 <tr>
@@ -40,6 +40,18 @@
                 <tr>
                     <td>{{ form.confirmPassword | materializecss:'s12 m6, icon=password' }}</td>
                 </tr>
+                <br>
+                <tr>
+                    <div class="reg-text">{{ form.institute.label }}</div>
+                    <div class="input-field col s12">
+                        {{ form.institute }}
+                    </div>
+                </tr>
+                <tr>
+                    <div class="reg-text">{{ form.field.label }}</div>
+                    {{ form.field }}
+                </tr>
+                <br>
                 <tr>
                     <label>
                         {{ form.tosCheck }}
@@ -51,11 +63,13 @@
                     </button>
                 </tr>
             </tbody>
-            <p><br>Already have an account? Click below to login!</p>
-            <a href="login" class="waves-effect waves-light btn-small" id="reg-button">Login</a>
         </form>
-        <br>
-        <a href="/registereducator">Are you an educator?</a>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, []);
+      });
+    </script>
 {% endblock %}

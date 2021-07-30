@@ -1,3 +1,14 @@
+"""
+Class: CSC648-848 SW Engineering SU21
+Team: Team 4
+Name: Kiara Gil, Ostyn Sy, Joshua Stone, Cong Le, Miho Shimizu, Vernon Xie, Melinda Yee
+GitHub Name: KiaraGil, OstynSy, JoshLikesToCode, CleGuren, simicity, vxie123, melinda15
+
+File Name: forms.py
+
+Description: The routing page/ pathing of urls to functions.
+"""
+
 """study_site URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,6 +24,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
 from study_app import views
@@ -27,7 +39,9 @@ urlpatterns = [
     path('landing', views.landing),
 
     path('register', views.register, name='register'),
+    path('registereducator', views.registerEducator),
     path('createuser', views.createUser),
+    path('createEducatorUser', views.createEducatorUser),
     path('edituser', views.editUserProfile),
     path('updateuser', views.updateUserProfile),
     path('login', views.loginPage, name='login'),

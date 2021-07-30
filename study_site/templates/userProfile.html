@@ -1,14 +1,18 @@
 {% extends 'layouts/base.html' %} {% block content %}
 <div class="bio">
     <div class="avatar flex-center">
-        {% if userprofile.avatar %}
+        {% if not userprofile.avatar %}
         <img src=MEDIA_URL+{{ user.avatar }} />
         {% else %}
         <img src="https://i.pinimg.com/236x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg" alt="..." class="avatar-img rounded-circle" />
         {% endif %}
     </div>
     <div class="flex-center">
-        <h4>{{ userprofile.username }}</h4>
+        <h4>{{ userprofile.username }}
+            {% if userprofile.role == "educator" %}
+            <span class="new badge red" data-badge-caption="Educator"></span>
+            {% endif %}
+        </h4>
     </div>
     {% if userprofile.profile %}
     <div>
@@ -35,7 +39,11 @@
         <div class="collection">
             {% for studyGroupAsMember in studyGroupsAsMember %}
             <a href="/{{ studyGroupAsMember.studyGroupId }}/studygroup" class="collection-item">
-                <b>{{ studyGroupAsMember.groupName }}</b>・{{ studyGroupAsMember.ownerId }}<br>
+                <b>{{ studyGroupAsMember.groupName }}</b>・{{ studyGroupAsMember.ownerId }}
+                {% if studyGroupAsMember.ownerId.role == "educator" %}
+                <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                {% endif %}
+                <br>
                 <p>{{ studyGroupAsMember.description }}</p>
             </a>
             {% endfor %}
@@ -49,7 +57,11 @@
         <div class="collection">
             {% for studyGroupAsHost in studyGroupsAsHost %}
             <a href="/{{ studyGroupAsHost.studyGroupId }}/studygroup" class="collection-item">
-                <b>{{ studyGroupAsHost.groupName }}</b>・{{ studyGroupAsHost.ownerId }}<br>
+                <b>{{ studyGroupAsHost.groupName }}</b>・{{ studyGroupAsHost.ownerId }}
+                {% if studyGroupAsHost.ownerId.role == "educator" %}
+                <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                {% endif %}
+                <br>
                 <p>{{ studyGroupAsHost.description }}</p>
             </a>
             {% endfor %}
@@ -63,7 +75,11 @@
         <div class="collection">
             {% for mainPost in mainPosts %}
             <a href="/{{ mainPost.postId }}/mainpost" class="collection-item">
-                <b>{{ mainPost.postTitle }}</b>・{{ mainPost.userId }}<br>
+                <b>{{ mainPost.postTitle }}</b>・{{ mainPost.userId }}
+                {% if mainPost.userId.role == "educator" %}
+                <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                {% endif %}
+                <br>
                 <p>{{ mainPost.post }}</p>
             </a>
             {% endfor %}
@@ -77,7 +93,11 @@
         <div class="collection">
             {% for studyGroupPost in studyGroupPosts %}
             <a href="/{{ studyGroupPost.studyGroupId.studyGroupId }}/{{ studyGroupPost.postId }}/studygrouppost" class="collection-item">
-                <b>{{ studyGroupPost.postTitle }}</b>・{{ studyGroupPost.userId }}<br>
+                <b>{{ studyGroupPost.postTitle }}</b>・{{ studyGroupPost.userId }}
+                {% if studyGroupPost.userId.role == "educator" %}
+                <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                {% endif %}
+                <br>
                 <p>{{ studyGroupPost.post }}</p>
             </a>
             {% endfor %}

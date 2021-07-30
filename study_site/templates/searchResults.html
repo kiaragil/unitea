@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/searchResults.css' %}">
 {% endblock %}
 
-<div class="container">
+<div class="container" id="search-result-container">
     {% if searched %}
     <br>
     <br>
@@ -21,7 +21,11 @@
     <div class="collection">
         {% for foundStudyGroup in foundStudyGroups %}
         <a href="{{ foundStudyGroup.studyGroupId }}/studygroup" class="collection-item">
-            <b>{{ foundStudyGroup.groupName }}</b>・{{ foundStudyGroup.ownerId }}<br>
+            <b>{{ foundStudyGroup.groupName }}</b>・{{ foundStudyGroup.ownerId }}
+            {% if foundStudyGroup.ownerId.role == "educator" %}
+            <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+            {% endif %}
+            <br>
             <p>{{ foundStudyGroup.description }}</p>
         </a>
         {% endfor %}
@@ -45,7 +49,11 @@
     <div class="collection">
         {% for maybeStudyGroup in maybeStudyGroups %}
         <a href="{{ maybeStudyGroup.studyGroupId }}/studygroup" class="collection-item">
-            <b>{{ maybeStudyGroup.groupName }}</b>・{{ maybeStudyGroup.ownerId }}<br>
+            <b>{{ maybeStudyGroup.groupName }}</b>・{{ maybeStudyGroup.ownerId }}
+            {% if maybeStudyGroup.ownerId.role == "educator" %}
+            <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+            {% endif %}
+            <br>
             <p>{{ maybeStudyGroup.description }}</p>
         </a>
         {% endfor %}
@@ -65,55 +73,37 @@
     <div class="collection">
         {% for suggestStudyGroup in suggestStudyGroups %}
         <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
-            <b>{{ suggestStudyGroup.groupName }}</b>・{{ suggestStudyGroup.ownerId }}<br>
+            <b>{{ suggestStudyGroup.groupName }}</b>・{{ suggestStudyGroup.ownerId }}
+            {% if suggestStudyGroup.ownerId.role == "educator" %}
+            <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+            {% endif %}
+            <br>
             <p>{{ suggestStudyGroup.description }}</p>
         </a>
         {% endfor %}
     </div>
 
-<<<<<<< HEAD
     {% else %}
-=======
-                <h6>No study group found.</h6>
-                <h5>Start a New Group!</h5>
-                <a href="/createstudygroup" class="font-white"><div class="box-search">+ Create Group</div></a>
-                <br>
+        <h6>No study group found.</h6>
+        <h5>Start a New Group!</h5>
+        <a href="/createstudygroup" class="font-white"><div class="box-search">+ Create Group</div></a>
+        <br>
 
-                {% if suggestStudyGroups %}
-                <h5>You might be interested in these groups.</h5>
-                <div class="collection">
-                {% for suggestStudyGroup in suggestStudyGroups %}
-                <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
-                    <b>{{ suggestStudyGroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
-                    <p>{{ suggestStudyGroup.description }}</p>
-                </a>
-                {% endfor %}
-                </div>
-                {% endif %}
->>>>>>> 38771f85d575efea22b2c03028d6f9da1825828a
-
-    <h5>No study group found.</h5>
-  
-    <br>
-    <br>
-    <h5>Start a New Group!</h5>
-    <a href="/createstudygroup" class="font-white">
-        <div class="box-search">+ Create Group</div>
-    </a>
-    <br>
-    <br>
-    <hr class="solid">
-    <br>
-    <br>
-    <h5>You might be interested in these groups.</h5>
-    <div class="collection">
+        {% if suggestStudyGroups %}
+        <h5>You might be interested in these groups.</h5>
+        <div class="collection">
         {% for suggestStudyGroup in suggestStudyGroups %}
         <a href="{{ suggestStudyGroup.studyGroupId }}/studygroup" class="collection-item">
-            <b>{{ suggestStudyGroup.groupName }}</b>・{{ studygroup.ownerId }}<br>
+            <b>{{ suggestStudyGroup.groupName }}</b>・{{ studygroup.ownerId }}
+            {% if suggestStudyGroup.ownerId.role == "educator" %}
+            <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+            {% endif %}
+            <br>
             <p>{{ suggestStudyGroup.description }}</p>
         </a>
         {% endfor %}
-    </div>
+        </div>
+    {% endif %}
 
     {% endif %}
 

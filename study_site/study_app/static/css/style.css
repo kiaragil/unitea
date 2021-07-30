@@ -18,12 +18,29 @@ body {
   text-align: center;
 }
 
+#search-result-container {
+  max-width: 500px;
+}
+
+#main-forum-container {
+  max-width: 500px;
+}
+
 .font-white {
   color: #fdfffc;
 }
 
 .font-blue {
   color: #1a535c;
+}
+
+.collection {
+  font-size: 16px !important;
+}
+
+.educator-badge {
+  float: none !important;
+  margin-left: 0 !important;
 }
 
 .landing-box{
@@ -288,7 +305,7 @@ body {
 }
 
 .dash-col{
-  width: 25%;
+  width: 20%;
   padding: 0 .75rem;
 }
 
@@ -365,7 +382,6 @@ form input, button {
 
 
 /* CONTACT US */
-
 .contact-box {
   display: grid;
   grid-template-columns: 1;
@@ -373,6 +389,12 @@ form input, button {
   margin: auto;
 }
 
+.register-text {
+  text-align: left;
+  margin-top: -10px;
+  padding-left: 50px;
+  font-size: smaller;
+}
 
 
 
@@ -386,24 +408,27 @@ form input, button {
 /* SUBMIT BUTTON */
 
 .btn {
-  /* background-color: rgb(52, 50, 73); */
   background-color: #26a69a;
-
 }
-
 
 
 /* END SUBMIT BUTTON */
 
 /* SUBJECT BUTTONS */
 .subject-wrapper {
-  display: grid;
-  row-gap: 40px;
-  grid-template-columns:  repeat(3, [col] 25%);
-  grid-template-rows:  repeat(2, [row] 25%);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   background-color: #ccffea;
-  justify-content: space-evenly;
+  justify-content: center;
+  margin: auto;
   border-radius: 10px;
+  padding-bottom: 30px;
+}
+
+#subject-button {
+  margin-left: 4em;
+  margin-right: 4em;
 }
 
 .box {
@@ -510,6 +535,10 @@ form input, button {
 
 /* FOOTER */
 
+.footer-container {
+  margin-right: auto;
+  padding-left: 40px;
+}
 .page-footer {
   background-color: #011627;
   position: fixed;
@@ -519,7 +548,15 @@ form input, button {
   padding-top: 0px;
   color: white;
 }
+#footer-link1 {
+  padding-right: 30px;
+}
 
+#footer-link2 {
+  padding-right: 40px;
+}
+
+/* ENF OF FOOTER */
 
 /* PASSWORD CHECK  */
 
@@ -567,14 +604,20 @@ form input, button {
   transform: translateY(-50%);
 }
 
-/* REGISTER BUTTON */
+/* REGISTRATION */
 #reg-button{
   width: 130px;
   height: 50px;
   line-height: 50px;
   background-color: #26a69a;
 }
-/* END REGISTER BUTTON */
+
+.reg-text {
+  font-size: 15px;
+  text-align: left;
+}
+
+/* END REGISTRATION */
 
 .waves-effect{
   margin-top: 10px;
@@ -656,5 +699,21 @@ details[open] summary::before {
 details summary {
   outline: none;
 }
+
+/* EDIT COMMENT PAGE */
+.edit-comment-wrapper{
+  display: grid;
+  justify-content: center;
+}
+
+.edit-comment-buttons {
+  width: 400px;
+  justify-items: center;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* END EDIT COMMENT PAGE */
 
 

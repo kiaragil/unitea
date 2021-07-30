@@ -3,16 +3,22 @@
     <h3>{{ studygroup.groupName }}</h3>
 
     <ul>
-        <li>Host: <a href="/{{ studygroup.ownerId.userId }}/userprofile" class="font-blue">{{ studygroup.ownerId }}</a>
+        <li>Host: <a href="/{{ studygroup.ownerId.userId }}/userprofile" class="font-blue">{{ studygroup.ownerId }}
+        {% if studygroup.ownerId.role == "educator" %}
+        <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+        {% endif %}
         {% if studygroup.ownerId == user %}
         ・<a href="editstudygroup">edit study group</a>
         <br>
         {% endif %}
         </li>
         <li>Subject: {{ studygroup.subject }} </li>
-        <li>Members ({{ studygroup.memberCount }}):
+        <li>Members ({{ studygroup.memberCount }}/{{ sizeLimit }}):
             {% for member in members %}
-                <a href="/{{ member.userId.userId }}/userprofile" class="font-blue">{{ member.userId }}</a> 
+                <a href="/{{ member.userId.userId }}/userprofile" class="font-blue">{{ member.userId }}</a>
+                {% if member.userId.role == "educator" %}
+                <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                {% endif %}
             {% endfor %}
         </li>
         <li>Description: {{ studygroup.description }} </li>
@@ -31,7 +37,7 @@
     
     <hr>
 
-    <h4>Forum</h4>
+    <h4>Study Group Forum</h4>
     <div class="collection">
         <a href="createstudygrouppost" class="collection-item">
             <b>+ Create a Post</b>
@@ -39,6 +45,9 @@
         {% for studygrouppost in studygroupposts %}
         <a href="{{ studygrouppost.postId }}/studygrouppost" class="collection-item">
             <b>{{ studygrouppost.postTitle }}</b>・{{ studygrouppost.userId }}
+            {% if studygrouppost.userId.role == "educator" %}
+            <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+            {% endif %}
         </a>
         {% endfor %}
     </div>

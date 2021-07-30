@@ -1,5 +1,22 @@
+"""
+Class: CSC648-848 SW Engineering SU21
+Team: Team 4
+Name: Kiara Gil, Ostyn Sy, Joshua Stone, Cong Le, Miho Shimizu, Vernon Xie, Melinda Yee
+GitHub Name: KiaraGil, OstynSy, JoshLikesToCode, CleGuren, simicity, vxie123, melinda15
+
+File Name: forms.py
+
+Description: This file includes all forms on the website
+ex. Login, Register, contact, studygroup, etc
+"""
+
 from django import forms
 from study_app.models import *
+
+INSTITUTE_CHOICES = (
+    ('', 'Select Institute'),
+    ('SF State University', 'SF State University'),
+)
 
 SUBJECT_CHOICES = (
     ('', 'Select subject'),
@@ -12,6 +29,7 @@ SUBJECT_CHOICES = (
 )
 
 
+# Form for registration
 class RegistrationForm(forms.Form):
 
     username = forms.CharField(
@@ -40,8 +58,19 @@ class RegistrationForm(forms.Form):
         label='I agree to Terms of Service',
         widget=forms.CheckboxInput()
     )
+    institute = forms.CharField(
+        label = 'What institute are you teaching at?',
+        widget=forms.Select(choices=INSTITUTE_CHOICES),
+        required=True,
+    )
+    field = forms.CharField(
+        label = 'What field are you teaching?',
+        max_length=100,
+        required=True,
+    )
 
 
+# Edit User Profile Form
 class UserProfileForm(forms.ModelForm):
     avatar = forms.ImageField(
         required=False,
@@ -59,6 +88,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ['username', 'avatar', 'profile']
 
 
+# Login Form
 class LoginForm(forms.Form):
     email = forms.EmailField(
         label='Email',
@@ -73,6 +103,7 @@ class LoginForm(forms.Form):
     )
 
 
+# Contact Form
 class ContactForm(forms.Form):
     fullname = forms.CharField(
         label='Full Name',
@@ -97,10 +128,11 @@ class ContactForm(forms.Form):
     )
 
 
+# Study Group Form
 class StudyGroupForm(forms.ModelForm):
     groupName = forms.CharField(
         label='Study Group Name',
-        max_length = 100,
+        max_length=100,
         required=True
     )
     description = forms.CharField(
@@ -114,7 +146,7 @@ class StudyGroupForm(forms.ModelForm):
     subject = forms.CharField(
         label='Subject',
         widget=forms.Select(choices=SUBJECT_CHOICES),
-        required=False
+        required=True
     )
     subject.widget.attrs.update({'class':'editSGP-subject'})
 
@@ -123,6 +155,7 @@ class StudyGroupForm(forms.ModelForm):
         fields = ['groupName', 'description', 'subject']
 
 
+# Main Forum Post Form
 class MainPostForm(forms.ModelForm):
     postTitle = forms.CharField(
         label='Title'
@@ -139,6 +172,7 @@ class MainPostForm(forms.ModelForm):
         fields = ['postTitle', 'post']
 
 
+# Main Forum Commenting Form
 class MainCommentForm(forms.ModelForm):
     comment = forms.CharField(
         label='Comment',
@@ -152,6 +186,7 @@ class MainCommentForm(forms.ModelForm):
         fields = ['comment']
 
 
+# Create Study Group Post Form
 class StudyGroupPostForm(forms.ModelForm):
     postTitle = forms.CharField(
         label='Title'
@@ -168,6 +203,7 @@ class StudyGroupPostForm(forms.ModelForm):
         fields = ['postTitle', 'post']
 
 
+# Study Group Comment Form
 class StudyGroupCommentForm(forms.ModelForm):
     comment = forms.CharField(
         widget=forms.Textarea(),
@@ -179,16 +215,7 @@ class StudyGroupCommentForm(forms.ModelForm):
         fields = ['comment']
 
 
-class MessageForm(forms.ModelForm):
-    message = forms.CharField(
-        widget=forms.Textarea(),
-    )
-
-    class Meta:
-        model = Message
-        fields = ['message']
-
-
+# Change User Password Form
 class UserPasswordForm(forms.Form):
     currentPassword = forms.CharField(
         label='Current Password',
