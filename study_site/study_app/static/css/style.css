@@ -20,6 +20,8 @@ body {
 
 .font-white {
   color: #fdfffc;
+  margin-left: 4em;
+  margin-right: 4em;
 }
 
 .font-blue {
@@ -409,11 +411,11 @@ form input, button {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 782px;
-  padding-left: 40px;
   background-color: #ccffea;
-  justify-content: space-evenly;
+  justify-content: center;
+  margin: auto;
   border-radius: 10px;
+  padding-bottom: 30px;
 }
 
 .box {
