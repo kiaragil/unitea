@@ -10,6 +10,9 @@
             {% for mainpost in mainposts %} 
             <a href="/{{ mainpost.postId }}/mainpost" class="collection-item">
                 <b>{{ mainpost.postTitle }}</b>・{{ mainpost.userId }}
+                {% if mainpost.userId.role == "educator" %}
+                <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                {% endif %}
             </a>
             {% endfor %}
         </div>

@@ -26,6 +26,11 @@ body {
   color: #1a535c;
 }
 
+.educator-badge {
+  float: none !important;
+  margin-left: 0 !important;
+}
+
 .landing-box{
   font-family: 'Comfortaa', sans-serif;
   display: grid;
@@ -288,7 +293,7 @@ body {
 }
 
 .dash-col{
-  width: 25%;
+  width: 20%;
   padding: 0 .75rem;
 }
 
@@ -393,24 +398,19 @@ form input, button {
 /* SUBMIT BUTTON */
 
 .btn {
-  /* background-color: rgb(52, 50, 73); */
   background-color: #26a69a;
-
 }
 
-.btn:hover {
-  /* background-color:rgb(43, 63, 87); */
-}
 
 /* END SUBMIT BUTTON */
 
 /* SUBJECT BUTTONS */
 .subject-wrapper {
-  display: grid;
-  row-gap: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 782px;
   padding-left: 40px;
-  grid-template-columns:  repeat(3, [col] 25%);
-  grid-template-rows:  repeat(2, [row] 34%);
   background-color: #ccffea;
   justify-content: space-evenly;
   border-radius: 10px;
@@ -589,14 +589,20 @@ form input, button {
   transform: translateY(-50%);
 }
 
-/* REGISTER BUTTON */
+/* REGISTRATION */
 #reg-button{
   width: 130px;
   height: 50px;
   line-height: 50px;
   background-color: #26a69a;
 }
-/* END REGISTER BUTTON */
+
+.reg-text {
+  font-size: 15px;
+  text-align: left;
+}
+
+/* END REGISTRATION */
 
 .waves-effect{
   margin-top: 10px;

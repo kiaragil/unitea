@@ -29,8 +29,8 @@ GROUP_TYPE_CHOICES = (
 )
 
 # Group Capacities
-STUDY_GROUP_CAPACITY = 21
-EDUCATOR_STUDY_GROUP_CAPACITY = 51
+STUDY_GROUP_CAPACITY = 20
+EDUCATOR_STUDY_GROUP_CAPACITY = 50
 
 
 # User Model
@@ -91,7 +91,10 @@ class StudyGroup(models.Model):
 	ownerId = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	def isFull(self):
-		return True if self.memberCount >= STUDY_GROUP_CAPACITY else False
+		if self.ownerId.role == "educator":
+			return True if self.memberCount >= EDUCATOR_STUDY_GROUP_CAPACITY else False
+		else:
+			return True if self.memberCount >= STUDY_GROUP_CAPACITY else False
 
 	class Meta:
 		db_table = "studygroups";

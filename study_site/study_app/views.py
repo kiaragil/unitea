@@ -40,10 +40,11 @@ def home(request):
         studyGroupIds.append(studyGroupMember.studyGroupId.studyGroupId)
     studyGroupsAsMember = StudyGroup.objects.filter(studyGroupId__in=studyGroupIds).order_by('-studyGroupId')
 
-    #fetch groups whose host is the user
+    #if the user belongs to more than 3 groups, display the 3 most recent groups, then 2 most recent they host 
     if len(studyGroupIds) > 3:
         studyGroupsAsHost = StudyGroup.objects.filter(ownerId=request.user).order_by('-studyGroupId')[:2]
         studyGroupsAsMember = studyGroupsAsMember[:(5-len(studyGroupsAsHost))]
+    #else display up to the 5 most recent groups they host
     else:
         studyGroupsAsHost = StudyGroup.objects.filter(ownerId=request.user).order_by('-studyGroupId')[:(5-len(studyGroupIds))]
 
@@ -135,6 +136,16 @@ def register(request):
     context['form'] = RegistrationForm()
     return render(request, "register.html", context)
 
+# show the user registration page
+def registerEducator(request):
+    # logged in users must not access
+    if request.user.is_authenticated:
+        print("user is already logged in")
+        return redirect('/')
+
+    context = {}
+    context['form'] = RegistrationForm()
+    return render(request, "registerEducator.html", context)
 
 # create a user account
 def createUser(request):
@@ -203,6 +214,73 @@ def createUser(request):
     # user creation failed (this should never be called, but exist as precaution
     return render(request, 'register.html', context)
 
+# create a user account
+def createEducatorUser(request):
+    context = {}
+    if request.method == "POST":
+        form = RegistrationForm(request.POST, request.FILES)
+        if form.is_valid() and form.cleaned_data['tosCheck']:
+            user = User()
+            user.username = form.cleaned_data['username']
+            user.email = form.cleaned_data['email']
+            user.password = form.cleaned_data['password']
+            user.confirmPassword = form.cleaned_data['confirmPassword']
+            user.role = "educator"
+            username_exist = User.objects.filter(username=form.cleaned_data['username'])
+            email_exist = User.objects.filter(email=form.cleaned_data['email'])
+            # password and confirm password must match
+            if user.password == user.confirmPassword:
+                # validate password
+                try:
+                    validation.validate_password(user.password, user)
+                except ValidationError as val_err:
+                    return render(request, 'registerEducator.html',
+                                  {'form': form,
+                                   'error': True,
+                                   'valMessages': val_err.messages,
+                                   'user_error': username_exist,
+                                   'email_error': email_exist,
+                                   'different_pw_error': False})
+
+                if username_exist or email_exist:
+                    # if make it here, means password is good, but either username/email is taken
+                    return render(request, 'registerEducator.html',
+                                  {'form': form,
+                                   'error': True,
+                                   'valMessages': False,
+                                   'user_error': username_exist,
+                                   'email_error': email_exist,
+                                   'different_pw_error': False})
+                # no sign up error
+                else:
+                    try:
+                        # hash password
+                        user.password = make_password(user.password)
+                        # register a user
+                        messages.success(request, "New account created!")
+                        user.save()
+                        return redirect('/login')
+                    except:
+                        pass
+            # confirm password does not match, throw error
+            else:
+                context['form'] = form
+                return render(request, 'register.html',
+                              {'form': form,
+                               'error': True,
+                               'valMessages': False,
+                               'user_error': username_exist,
+                               'email_error': email_exist,
+                               'different_pw_error': True})
+        else:
+            messages.error(request, "Invalid form data")
+            context['form'] = form
+    else:
+        messages.error(request, "Something is wrong")
+        context['form'] = RegistrationForm()
+
+    # user creation failed (this should never be called, but exist as precaution
+    return render(request, 'registerEducator.html', context)
 
 # show the edit user profile page
 def editUserProfile(request):
@@ -375,7 +453,7 @@ def showUserProfile(request, userId):
 
 # show main forum
 def showMainForum(request):
-    mainposts = MainPost.objects.all()
+    mainposts = MainPost.objects.all().order_by('-postDateTime')
     return render(request, 'mainforum.html', {'mainposts': mainposts})
 
 
@@ -551,7 +629,7 @@ def deleteMainComment(request, postId, commentId):
 
 # show study group listing
 def showStudyGroupListing(request, subject):
-    studyGroups = StudyGroup.objects.filter(subject__contains=subject)
+    studyGroups = StudyGroup.objects.filter(subject__contains=subject).order_by('-studyGroupId')
     return render(request, 'studyGroupListing.html', {'studygroups': studyGroups})
 
 # show a main post
@@ -565,16 +643,16 @@ def showMainPost(request, postId):
 # show a study group page
 def showStudyGroup(request, studyGroupId):
     studygroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
-    studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId)
+    studygroupposts = StudyGroupPost.objects.filter(studyGroupId=studyGroupId).order_by('-postDateTime')
     members = StudyGroupMember.objects.filter(studyGroupId=studyGroupId)
-    # memberCheck = StudyGroupMember.objects.filter(studyGroupId=studyGroupId, userId=request.user.userId)
+    sizeLimit = EDUCATOR_STUDY_GROUP_CAPACITY if studygroup.ownerId.role == "educator" else STUDY_GROUP_CAPACITY
     if not request.user.is_authenticated:
         return render(request, 'studyGroupPage.html',
                   {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members, 'isHost': False, 'isMember': False, 'isUnreg': True})
     checkMem = isMember(request, studyGroupId)
     checkHost = isHost(request, studyGroupId)
     return render(request, 'studyGroupPage.html',
-                  {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members, 'isHost': checkHost, 'isMember': checkMem})
+                  {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members, 'isHost': checkHost, 'isMember': checkMem, 'sizeLimit': sizeLimit})
 
 # show the study group creation page
 def createStudyGroup(request):
@@ -705,12 +783,12 @@ def searchStudyGroups(request):
         searched = request.POST['searched']
         if searched:
             #find groups whose name contains the searched word
-            foundStudyGroups = StudyGroup.objects.filter(groupName__icontains=searched)
+            foundStudyGroups = StudyGroup.objects.filter(groupName__icontains=searched).order_by('-studyGroupId')
             if foundStudyGroups:
                 found = True
             else:
                 #find groups whose description contains the searched word
-                maybeStudyGroups = StudyGroup.objects.filter(description__icontains=searched)
+                maybeStudyGroups = StudyGroup.objects.filter(description__icontains=searched).order_by('-studyGroupId')
                 if len(maybeStudyGroups) > 10:
                     maybe = True
 

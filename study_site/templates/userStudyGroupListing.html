@@ -11,7 +11,11 @@
         <div class="collection">
             {% for studyGroupAsMember in studyGroupsAsMember %}
             <a href="/{{ studyGroupAsMember.studyGroupId }}/studygroup" class="collection-item">
-                <b>{{ studyGroupAsMember.groupName }}</b>・{{ studyGroupAsMember.ownerId }}<br>
+                <b>{{ studyGroupAsMember.groupName }}</b>・{{ studyGroupAsMember.ownerId }}
+                {% if studyGroupAsMember.ownerId.role == "educator" %}
+                <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                {% endif %}
+                <br>
                 <p>{{ studyGroupAsMember.description }}</p>
             </a>
             {% endfor %}
@@ -25,7 +29,11 @@
         <div class="collection">
             {% for studyGroupAsHost in studyGroupsAsHost %}
             <a href="/{{ studyGroupAsHost.studyGroupId }}/studygroup" class="collection-item">
-                <b>{{ studyGroupAsHost.groupName }}</b>・{{ studyGroupAsHost.ownerId }}<br>
+                <b>{{ studyGroupAsHost.groupName }}</b>・{{ studyGroupAsHost.ownerId }}
+                {% if studyGroupAsHost.ownerId.role == "educator" %}
+                <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                {% endif %}
+                <br>
                 <p>{{ studyGroupAsHost.description }}</p>
             </a>
             {% endfor %}

@@ -1,7 +1,12 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
     <h3>{{ studygroup.groupName }}</h3>
-    <span><a href="/{{ studygrouppost.userId.userId }}/userprofile" class="font-blue">{{ studygrouppost.userId }}</a></span>
+    <span>
+        <a href="/{{ studygrouppost.userId.userId }}/userprofile" class="font-blue">{{ studygrouppost.userId }}</a>
+        {% if studygrouppost.userId.role == "educator" %}
+        <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+        {% endif %}
+    </span>
 
     {% if studygrouppost.userId == user %}
     ・<a href="editstudygrouppost">edit post</a>
@@ -22,6 +27,9 @@
                 <td>{{ comment.comment }}</td>
                 <td>
                     <a href="/{{ comment.userId.userId }}/userprofile" class="font-blue">{{ comment.userId }}</a>
+                    {% if comment.userId.role == "educator" %}
+                    <span class="new badge red educator-badge" data-badge-caption="Educator"></span>
+                    {% endif %}
                     {% if comment.userId == user %}
                     ・<a href="{{ comment.commentId }}/editstudygroupcomment">edit comment</a>
                     <br>
