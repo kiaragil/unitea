@@ -396,9 +396,7 @@ form input, button {
   font-size: smaller;
 }
 
-.input-field {
-  /* margin: 20px; */
-}
+
 
 .row {
   display: flex;
@@ -562,7 +560,7 @@ form input, button {
 
 /* PASSWORD CHECK  */
 
-.registration-error-box{
+#registration-error-box{
   border-radius: 10px;
   border: 2px solid #f8d7da;
   background: #f8d7da;
@@ -648,11 +646,11 @@ form input, button {
 /* END OF TERMS OF SERVICE */
 
 /* Help / FAQ */
-.FAQ-head {
+#FAQ-head {
   padding-top: 4em;
 }
 
-.FAQ-circle {
+#FAQ-circle {
   text-align: center;
   font-size: xxx-large;
   padding: 1em;
@@ -665,7 +663,7 @@ form input, button {
   margin-right: auto;
 }
 
-.FAQ-box {
+#FAQ-box {
   margin-top: 16px;
   padding: 10px 20px;
   margin-right: 40px;
