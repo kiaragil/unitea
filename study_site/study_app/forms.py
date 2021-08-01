@@ -58,6 +58,37 @@ class RegistrationForm(forms.Form):
         label='I agree to Terms of Service',
         widget=forms.CheckboxInput()
     )
+
+
+# Educator Registration Form
+class EducatorRegistrationForm(forms.Form):
+
+    username = forms.CharField(
+        label='Username',
+        max_length=40,
+        required=True,
+    )
+    email = forms.EmailField(
+        label='Email',
+        max_length=100,
+        required=True,
+    )
+    password = forms.CharField(
+        label='Password',
+        widget=forms.PasswordInput(),
+        max_length=100,
+        required=True,
+    )
+    confirmPassword = forms.CharField(
+        label='Confirm Password',
+        widget=forms.PasswordInput(),
+        max_length=100,
+        required=True
+    )
+    tosCheck = forms.NullBooleanField(
+        label='I agree to Terms of Service',
+        widget=forms.CheckboxInput()
+    )
     institute = forms.CharField(
         label = 'What institute are you teaching at?',
         widget=forms.Select(choices=INSTITUTE_CHOICES),

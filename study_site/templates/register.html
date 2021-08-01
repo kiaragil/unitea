@@ -27,7 +27,7 @@
             {% csrf_token %}
             <tbody>
                 <tr>
-                    <td class="tooltip">{{ form.username | materializecss:'s12 m6, icon=person' }}</td>
+                    <td>{{ form.username | materializecss:'s12 m6, icon=person' }}</td>
                 </tr>
                 <p class="register-text">*Username must be unique.</p>
                 <tr>

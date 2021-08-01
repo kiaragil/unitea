@@ -1,10 +1,10 @@
 {% extends 'layouts/base.html' %} {% block content %}
 <div class="bio">
     <div class="avatar flex-center">
-        {% if not userprofile.avatar %}
-        <img src=MEDIA_URL+{{ user.avatar }} />
+        {% if userprofile.avatar %}
+        <img class="profile-image" src= {{ user.avatar.url }} />
         {% else %}
-        <img src="https://i.pinimg.com/236x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg" alt="..." class="avatar-img rounded-circle" />
+        <img class="profile-image" src="https://i.pinimg.com/236x/38/aa/95/38aa95f88d5f0fc3fc0f691abfaeaf0c.jpg" alt="..." class="avatar-img rounded-circle" />
         {% endif %}
     </div>
     <div class="flex-center">

@@ -372,6 +372,11 @@ body {
   width: 172px;
 }
 
+.profile-image {
+  width: 200px;
+  height: 200px;
+}
+
 /* FORM */
 
 form input, button {

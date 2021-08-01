@@ -144,7 +144,7 @@ def registerEducator(request):
         return redirect('/')
 
     context = {}
-    context['form'] = RegistrationForm()
+    context['form'] = EducatorRegistrationForm()
     return render(request, "registerEducator.html", context)
 
 # create a user account
@@ -218,7 +218,7 @@ def createUser(request):
 def createEducatorUser(request):
     context = {}
     if request.method == "POST":
-        form = RegistrationForm(request.POST, request.FILES)
+        form = EducatorRegistrationForm(request.POST, request.FILES)
         if form.is_valid() and form.cleaned_data['tosCheck']:
             user = User()
             user.username = form.cleaned_data['username']
@@ -277,7 +277,7 @@ def createEducatorUser(request):
             context['form'] = form
     else:
         messages.error(request, "Something is wrong")
-        context['form'] = RegistrationForm()
+        context['form'] = EducatorRegistrationForm()
 
     # user creation failed (this should never be called, but exist as precaution
     return render(request, 'registerEducator.html', context)
