@@ -316,7 +316,7 @@ body {
 
 .dash-col{
   width: 20%;
-  min-width: 140px;
+  min-width: 175px;
   padding: 0 .75rem;
 }
 
@@ -588,7 +588,6 @@ form input, button {
 }
 
 .registration-error-message{
-  font-family: 'Comfortaa', sans-serif;
   font-weight: bold;
   color: #862954;
   text-align: left;
