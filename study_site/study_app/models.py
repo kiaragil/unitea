@@ -13,6 +13,8 @@ Description: Creates models of objects that connect variables to our database.
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from .managers import UserManager
+from datetime import datetime
+from dateutil.tz import tzutc, tzlocal
 
 # Create your models here.
 

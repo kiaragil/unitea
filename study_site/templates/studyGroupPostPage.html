@@ -1,4 +1,6 @@
-{% extends 'layouts/base.html' %} {% block content %}
+{% extends 'layouts/base.html' %} 
+{% load tz %}
+{% block content %}
 
     <h3>{{ studygroup.groupName }}</h3>
     <span>
@@ -13,7 +15,7 @@
     <br>
     {% endif %}
     
-    {{ studygrouppost.postDateTime }}
+    {{ studygrouppost.postDateTime | localtime}}
 
     <p>{{ studygrouppost.post }}</p>
     
@@ -35,7 +37,7 @@
                     <br>
                     {% endif %}
                 </td>
-                <td>{{ comment.commentDateTime }}</td>
+                <td>{{ comment.commentDateTime | localtime}}</td>
             </tr>  
             {% endfor %}
             <tr>
