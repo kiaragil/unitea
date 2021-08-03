@@ -51,7 +51,7 @@ def home(request):
 
     return render(request, 'index.html', {'studyGroupsAsMember': studyGroupsAsMember, 'studyGroupsAsHost': studyGroupsAsHost})
 
-
+# NEED COMMENTING
 def userStudyGroupListing(request):
     studyGroupMembers = StudyGroupMember.objects.filter(userId=request.user.userId)
     studyGroupIds = []
@@ -94,11 +94,11 @@ def submitContactus(request):
         context['form'] = ContactForm()
     return render(request, 'contactus.html', context)
 
-
+# show the under-construction page
 def construction(request):
     return render(request, 'construction.html')
 
-
+# show the about page
 def about(request):
     return render(request, 'about.html')
 
@@ -112,7 +112,7 @@ def landing(request):
 
     return render(request, 'landing.html')
 
-
+# NEED COMMENTING
 def aboutUs(request, member):
     template = loader.get_template('about/T4TM-{name}.html'.format(name=member))
     context = {}
@@ -176,7 +176,7 @@ def createUser(request):
                                    'different_pw_error': False})
 
                 if username_exist or email_exist:
-                    # if make it here, means password is good, but either username/email is taken
+                    # username or email already exist, user cannot register with this username/email
                     return render(request, 'register.html',
                                   {'form': form,
                                    'error': True,
@@ -184,12 +184,12 @@ def createUser(request):
                                    'user_error': username_exist,
                                    'email_error': email_exist,
                                    'different_pw_error': False})
-                # no sign up error
+                # no credential error, proceed to record information
                 else:
                     try:
                         # hash password
                         user.password = make_password(user.password)
-                        # register a user
+                        # register the user
                         messages.success(request, "New account created!")
                         user.save()
                         return redirect('/login')
@@ -206,7 +206,7 @@ def createUser(request):
                                'email_error': email_exist,
                                'different_pw_error': True})
         else:
-            messages.error(request, "Invalid form data")
+            messages.error(request, "Invalid login credentials")
             context['form'] = form
     else:
         messages.error(request, "Something is wrong")
@@ -215,7 +215,7 @@ def createUser(request):
     # user creation failed (this should never be called, but exist as precaution
     return render(request, 'register.html', context)
 
-# create a user account
+# create an educator user account
 def createEducatorUser(request):
     context = {}
     if request.method == "POST":
@@ -244,7 +244,7 @@ def createEducatorUser(request):
                                    'different_pw_error': False})
 
                 if username_exist or email_exist:
-                    # if make it here, means password is good, but either username/email is taken
+                    # username or email already exist, user cannot register with this username/email
                     return render(request, 'registerEducator.html',
                                   {'form': form,
                                    'error': True,
@@ -252,7 +252,7 @@ def createEducatorUser(request):
                                    'user_error': username_exist,
                                    'email_error': email_exist,
                                    'different_pw_error': False})
-                # no sign up error
+                # no credential error, proceed to record information
                 else:
                     try:
                         # hash password
@@ -280,7 +280,7 @@ def createEducatorUser(request):
         messages.error(request, "Something is wrong")
         context['form'] = EducatorRegistrationForm()
 
-    # user creation failed (this should never be called, but exist as precaution
+    # user creation failed (this should never be called, but exist as failsafe
     return render(request, 'registerEducator.html', context)
 
 # show the edit user profile page
@@ -331,6 +331,7 @@ def loginUser(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             user = authenticate(email=email, password=password)
+            # proceed with log in process if user is not already logged in
             if user is not None:
                 messages.success(request, "You are successfully logged in!")
                 login(request, user)
@@ -401,30 +402,56 @@ def updatePassword(request):
             auth = authenticate(email=user.email, password=currentPassword)
             if auth is not None:
                 if newPassword == confirmPassword:
-                    try:
-                        validation.validate_password(newPassword, user)
-                    except ValidationError as val_err:
+                    if newPassword == currentPassword:
+                        # new password cannot be the same as current password
                         return render(request, 'updatePassword.html',
                                       {'form': form,
                                        'error': True,
-                                       'valMessages': val_err.messages,
-                                       'different_pw_error': False})
-                    try:
-                        # hash password
-                        user.password = make_password(newPassword)
-                        # register a user
-                        messages.success(request, "New Password Updated!")
-                        user.save()
-                        return redirect('/login')
-                    except:
-                        pass
+                                       'valMessages': False,
+                                       'different_pw_error': False,
+                                       'incorrect_pw_error': False,
+                                       'unchanged_pw_error': True})
+                    else:
+                        try:
+                            # validate the new password
+                            validation.validate_password(newPassword, user)
+                        except ValidationError as val_err:
+                            # new password does not meet the criteria of a good password
+                            return render(request, 'updatePassword.html',
+                                          {'form': form,
+                                           'error': True,
+                                           'valMessages': val_err.messages,
+                                           'different_pw_error': False,
+                                           'incorrect_pw_error': False,
+                                           'unchanged_pw_error': False})
+                        # no credential error
+                        try:
+                            # hash password
+                            user.password = make_password(newPassword)
+                            # register a user
+                            messages.success(request, "New Password Updated!")
+                            user.save()
+                            return redirect('/login')
+                        except:
+                            pass
+                # "new password" and "confirm new password" do not match
                 else:
-                    messages.error(request, "Passwords do not match")
-                    context['form'] = form
-                return redirect('/editpassword')
+                    return render(request, 'updatePassword.html',
+                                  {'form': form,
+                                   'error': True,
+                                   'valMessages': False,
+                                   'different_pw_error': True,
+                                   'incorrect_pw_error': False,
+                                   'unchanged_pw_error': False})
+            # incorrect "current password"
             else:
-                messages.error(request, "Current Password is incorrect")
-                context['form'] = form
+                return render(request, 'updatePassword.html',
+                              {'form': form,
+                               'error': True,
+                               'valMessages': False,
+                               'different_pw_error': False,
+                               'incorrect_pw_error': True,
+                               'unchanged_pw_error': False})
         else:
             messages.error(request, "Invalid form data")
             context['form'] = form
@@ -446,7 +473,7 @@ def showUserProfile(request, userId):
 
     #fetch information of groups hosted by the user
     studyGroupsAsHost = StudyGroup.objects.filter(ownerId=user).order_by('-studyGroupId')
-    
+
     #fetch information of the user's main forum posts
     mainPosts = MainPost.objects.filter(userId=user).order_by('-postDateTime')
 
@@ -656,8 +683,10 @@ def showStudyGroup(request, studyGroupId):
     members = StudyGroupMember.objects.filter(studyGroupId=studyGroupId)
     sizeLimit = EDUCATOR_STUDY_GROUP_CAPACITY if studygroup.ownerId.role == "educator" else STUDY_GROUP_CAPACITY
     if not request.user.is_authenticated:
+        # display a default study group page if the current session user is not a logged in user
         return render(request, 'studyGroupPage.html',
                   {'studygroup': studygroup, 'studygroupposts': studygroupposts, 'members': members, 'isHost': False, 'isMember': False, 'isUnreg': True})
+    # display the page differently if the current session user is a host of the study group, or if they are a member of the study group
     checkMem = isMember(request, studyGroupId)
     checkHost = isHost(request, studyGroupId)
     return render(request, 'studyGroupPage.html',
@@ -742,6 +771,7 @@ def isMember(request, studyGroupId):
     studyGroupMember = StudyGroupMember.objects.filter(userId=request.user.userId, studyGroupId=studyGroupId)
     return True if studyGroupMember else False
 
+# check if the logged in user is the host of the study group
 def isHost(request, studyGroupId):
     studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
     return True if request.user == studyGroup.ownerId else False
@@ -749,11 +779,11 @@ def isHost(request, studyGroupId):
 # let the logged in user join a study group
 def joinStudyGroup(request, studyGroupId):
     studyGroup = StudyGroup.objects.get(studyGroupId=studyGroupId)
-
+    # requires current session user to log in if they are not logged in
     if not request.user.is_authenticated:
         messages.error(request, "Login to Join Groups!")
         return redirect('/login')
-
+    # a user can only join when the study group is full and when the user is not a member of this group
     if not studyGroup.isFull() and not isMember(request, studyGroupId):
         studyGroupMember = StudyGroupMember()
         studyGroupMember.userId = User.objects.get(userId=request.user.userId)

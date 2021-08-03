@@ -7,14 +7,14 @@ GitHub URL: https://github.com/sfsu-joseo/csc648-848-sw-engineering-SU21-T04
 
 File Name: validators.py
 
-Description: Validation checks for Registration.
+Description: Defining various functions to validate password during registration process for a regular user or an educator user.
 """
 
 import re
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
-
+# to ensure the password contains numbers
 class NumberValidator(object):
     def validate(self, password, user=None):
         if not re.findall('\d', password):
@@ -23,7 +23,7 @@ class NumberValidator(object):
                 code='password_no_number',
             )
 
-
+# to ensure the password contains an uppercase letter
 class UppercaseValidator(object):
     def validate(self, password, user=None):
         if not re.findall('[A-Z]', password):
@@ -32,7 +32,7 @@ class UppercaseValidator(object):
                 code='password_no_upper',
             )
 
-
+# to ensure the password contains a lowercase letter
 class LowercaseValidator(object):
     def validate(self, password, user=None):
         if not re.findall('[a-z]', password):
@@ -41,7 +41,7 @@ class LowercaseValidator(object):
                 code='password_no_lower',
             )
 
-
+# to ensure the password contains a symbol
 class SymbolValidator(object):
     def validate(self, password, user=None):
         if not re.findall('[()[\]{}|\\`~!@#$%^&*_\-+=;:\'",<>./?]', password):
