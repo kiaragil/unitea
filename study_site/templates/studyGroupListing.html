@@ -16,14 +16,10 @@
     {% else %}
         <h4>There is no study group in this section yet.</h4>
         <div class="create-wrapper">
-            <div class="boxB"><a href="/createstudygroup" class="font-white">+ Create Group for this section</a></div>
+            <a href="/createstudygroup" class="font-white">
+                <div class="boxB">+ Create Group</div>
+            </a>
         </div>
     {% endif %}
-
-    <div class="create-wrapper">
-    <a href="/createstudygroup" class="font-white">
-        <div class="boxB">+ Create Group</div>
-    </a>
-</div>
 
 {% endblock %}
