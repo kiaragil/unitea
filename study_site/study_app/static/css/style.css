@@ -304,8 +304,19 @@ body {
   justify-content: left;
 }
 
+@media screen and (max-width: 825px) {
+  .dash-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+  }
+}
+
 .dash-col{
   width: 20%;
+  min-width: 140px;
   padding: 0 .75rem;
 }
 
