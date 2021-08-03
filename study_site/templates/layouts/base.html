@@ -93,7 +93,7 @@
     <!-- <li><a href="contactus">Contact</a></li> -->
     <li><a href="/FAQ" class="font-white">FAQ</a></li>
     {% if user.is_authenticated %}
-    <li style="margin-left: 32px;">Logged in as {{ user.username }}</li>
+    <li style="margin-left: 32px;"> <a href="/{{ user.userId }}/userprofile">Logged in as {{ user.username }}</a></li>
     <li><a href="/logout">Logout</a></li>
     {% else %}
     <li><a href="/register">Register</a></li>
