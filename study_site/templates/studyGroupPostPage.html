@@ -1,7 +1,8 @@
 {% extends 'layouts/base.html' %} 
-{% load tz %}
+
 {% block content %}
 
+{% load tz %}
     <h3>{{ studygroup.groupName }}</h3>
     <span>
         <a href="/{{ studygrouppost.userId.userId }}/userprofile" class="font-blue">{{ studygrouppost.userId }}</a>
