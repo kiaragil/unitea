@@ -588,7 +588,6 @@ form input, button {
 }
 
 .registration-error-message{
-  font-family: 'Comfortaa', sans-serif;
   font-weight: bold;
   color: #862954;
   text-align: left;
