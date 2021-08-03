@@ -402,6 +402,14 @@ def updatePassword(request):
             if auth is not None:
                 if newPassword == confirmPassword:
                     try:
+                        validation.validate_password(newPassword, user)
+                    except ValidationError as val_err:
+                        return render(request, 'updatePassword.html',
+                                      {'form': form,
+                                       'error': True,
+                                       'valMessages': val_err.messages,
+                                       'different_pw_error': False})
+                    try:
                         # hash password
                         user.password = make_password(newPassword)
                         # register a user
